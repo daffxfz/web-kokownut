@@ -8,13 +8,13 @@
     <title>Kokownut Segar — Official Web Store (Pembayaran QRIS)</title>
 
     <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" class="elemen-kokownut">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin class="elemen-kokownut">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" class="elemen-kokownut">
 
-    <style>
+    <style class="elemen-kokownut">
         /* ==========================================================================
-           1. DESIGN TOKENS & RESET
+           1. DESIGN TOKENS & RESET + PEMBLOKIR BADGE EKSTERNAL NETLIFY
            ========================================================================== */
         :root {
             --hijau-gelap: #0f2911;
@@ -51,6 +51,25 @@
 
             --transisi-cepat: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             --transisi-halus: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Sembunyikan paksa badge "Powered by Netlify" atau script suntikan luar */
+        body > *:not(.elemen-kokownut):not(script):not(style),
+        a[href*="netlify.com"],
+        a[href*="netlify.app"][target="_blank"]:not(.elemen-kokownut),
+        iframe[src*="netlify"],
+        div[class*="netlify"],
+        div[id*="netlify"] {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+            width: 0 !important;
+            height: 0 !important;
+            position: fixed !important;
+            top: -9999px !important;
+            left: -9999px !important;
+            z-index: -99999 !important;
         }
 
         [hidden] {
@@ -1109,7 +1128,7 @@
         }
 
         /* ==========================================================================
-           6. SEKSI RIWAYAT PEMBELIAN PRIBADI (TERKUNCI PER PERANGKAT)
+           6. SEKSI RIWAYAT PEMBELIAN PRIBADI
            ========================================================================== */
         .seksi-riwayat-pembelian {
             max-width: 1240px;
@@ -1599,19 +1618,23 @@
         .grup-form {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 4px;
+            min-width: 0;
         }
 
         .label-form {
-            font-size: 12.5px;
+            font-size: 12px;
             font-weight: 700;
             color: var(--teks-utama);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .input-nama,
         .select-kustom {
             width: 100%;
-            padding: 10px 13px;
+            padding: 9px 11px;
             font-size: 14px;
             color: var(--teks-utama);
             background-color: var(--putih);
@@ -1759,14 +1782,14 @@
         }
 
         /* ==========================================================================
-           9. DRAWER KERANJANG (100dvh MOBILE SAFE)
+           9. DRAWER KERANJANG (Z-INDEX MAKSIMUM & KOMPAK DI SMARTPHONE)
            ========================================================================== */
         .latar-gelap-drawer {
             position: fixed;
             inset: 0;
             background: rgba(15, 41, 17, 0.62);
             backdrop-filter: blur(5px);
-            z-index: 1100;
+            z-index: 2147483642;
             opacity: 0;
             pointer-events: none;
             transition: opacity var(--transisi-halus);
@@ -1786,7 +1809,7 @@
             height: 100vh;
             height: 100dvh;
             background-color: var(--putih);
-            z-index: 1200;
+            z-index: 2147483644;
             box-shadow: var(--bayangan-modal);
             display: flex;
             flex-direction: column;
@@ -1799,7 +1822,7 @@
         }
 
         .drawer-kepala {
-            padding: 16px 20px;
+            padding: 14px 18px;
             background-color: var(--hijau-tua);
             color: var(--putih);
             display: flex;
@@ -1810,7 +1833,7 @@
 
         .drawer-kepala h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 20px;
+            font-size: 19px;
             font-weight: 700;
             display: flex;
             align-items: center;
@@ -1818,8 +1841,8 @@
         }
 
         .tombol-tutup-drawer {
-            width: 34px;
-            height: 34px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.14);
             color: var(--putih);
@@ -1832,10 +1855,10 @@
         .drawer-badan {
             flex: 1;
             overflow-y: auto;
-            padding: 14px 20px;
+            padding: 12px 16px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
             -webkit-overflow-scrolling: touch;
         }
 
@@ -1860,8 +1883,8 @@
         .item-keranjang {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            padding: 12px;
+            gap: 8px;
+            padding: 11px;
             background-color: var(--krem-latar);
             border: 1px solid var(--abu-garis);
             border-radius: var(--radius-sedang);
@@ -1869,28 +1892,28 @@
 
         .item-keranjang-atas {
             display: grid;
-            grid-template-columns: 54px 1fr auto;
-            gap: 12px;
+            grid-template-columns: 52px 1fr auto;
+            gap: 10px;
             align-items: center;
         }
 
         .img-item-keranjang {
-            width: 54px;
-            height: 54px;
+            width: 52px;
+            height: 52px;
             border-radius: var(--radius-kecil);
             object-fit: cover;
         }
 
         .info-item-keranjang h4 {
-            font-size: 14.5px;
+            font-size: 14px;
             font-weight: 700;
             color: var(--hijau-tua);
         }
 
         .harga-satuan-keranjang {
-            font-size: 12px;
+            font-size: 11.5px;
             color: var(--teks-sekunder);
-            margin-bottom: 6px;
+            margin-bottom: 5px;
             display: block;
         }
 
@@ -1911,25 +1934,25 @@
         }
 
         .btn-qty-kecil {
-            width: 28px;
-            height: 28px;
+            width: 26px;
+            height: 26px;
             font-weight: 800;
             color: var(--hijau-utama);
         }
 
         .angka-qty-kecil {
-            width: 28px;
+            width: 26px;
             text-align: center;
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 700;
         }
 
         .btn-pisah-cup {
-            font-size: 11px;
+            font-size: 10.5px;
             font-weight: 700;
             color: var(--hijau-utama);
             background-color: var(--hijau-muda);
-            padding: 5px 9px;
+            padding: 4px 8px;
             border-radius: 6px;
         }
 
@@ -1942,13 +1965,13 @@
         }
 
         .subtotal-item-keranjang {
-            font-size: 14px;
+            font-size: 13.5px;
             font-weight: 800;
             color: var(--hijau-utama);
         }
 
         .btn-hapus-item {
-            font-size: 11.5px;
+            font-size: 11px;
             color: var(--merah-error);
             font-weight: 600;
         }
@@ -1957,18 +1980,18 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 8px;
-            padding-top: 8px;
+            padding-top: 7px;
             border-top: 1px dashed var(--abu-garis);
         }
 
         .grup-kustom-mini {
             display: flex;
             flex-direction: column;
-            gap: 3px;
+            gap: 2px;
         }
 
         .grup-kustom-mini label {
-            font-size: 10.5px;
+            font-size: 10px;
             font-weight: 700;
             color: var(--teks-sekunder);
             text-transform: uppercase;
@@ -1976,8 +1999,8 @@
 
         .select-kustom-mini {
             width: 100%;
-            padding: 7px 8px;
-            font-size: 12.5px;
+            padding: 6px 8px;
+            font-size: 12px;
             font-weight: 600;
             color: var(--hijau-tua);
             background-color: var(--putih);
@@ -1990,7 +2013,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 6px;
+            padding-bottom: 5px;
             border-bottom: 1px solid var(--abu-garis);
             font-size: 12px;
             color: var(--teks-sekunder);
@@ -2009,44 +2032,44 @@
 
         .input-promo {
             flex: 1;
-            padding: 8px 12px;
+            padding: 7px 11px;
             border: 1.5px solid var(--abu-garis);
             border-radius: var(--radius-kecil);
-            font-size: 13px;
+            font-size: 12.5px;
             text-transform: uppercase;
             background-color: var(--putih);
             outline: none;
         }
 
         .btn-pakai-promo {
-            padding: 8px 14px;
+            padding: 7px 14px;
             background-color: var(--hijau-muda);
             color: var(--hijau-utama);
             font-weight: 800;
-            font-size: 12.5px;
+            font-size: 12px;
             border-radius: var(--radius-kecil);
         }
 
         .info-promo-aktif {
-            font-size: 12px;
+            font-size: 11.5px;
             font-weight: 700;
             color: var(--hijau-segar);
         }
 
         .drawer-kaki {
-            padding: 14px 20px calc(16px + env(safe-area-inset-bottom, 0px)) 20px;
+            padding: 12px 16px calc(14px + env(safe-area-inset-bottom, 0px)) 16px;
             background-color: #f9fcf9;
             border-top: 1px solid var(--abu-garis);
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
             flex-shrink: 0;
         }
 
         .ringkasan-checkout {
             display: flex;
             flex-direction: column;
-            gap: 3px;
+            gap: 2px;
             padding-bottom: 6px;
             border-bottom: 1px dashed var(--abu-garis);
         }
@@ -2054,17 +2077,18 @@
         .baris-ringkasan {
             display: flex;
             justify-content: space-between;
-            font-size: 13px;
+            font-size: 12.5px;
             color: var(--teks-sekunder);
         }
 
         .baris-ringkasan.total-akhir {
-            font-size: 16.5px;
+            font-size: 15.5px;
             font-weight: 800;
             color: var(--hijau-tua);
             padding-top: 2px;
         }
 
+        /* Nama Pemesan & Jam Ambil Tetap 2 Kolom Sejajar agar Hemat Ruang Vertikal */
         .grid-form-checkout-keranjang {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -2078,22 +2102,22 @@
         }
 
         .tombol-cetak-nota {
-            padding: 12px 14px;
+            padding: 11px 13px;
             border-radius: var(--radius-kecil);
             border: 1.5px solid var(--hijau-utama);
             color: var(--hijau-utama);
             font-weight: 700;
-            font-size: 13px;
+            font-size: 12.5px;
             background-color: var(--putih);
         }
 
         .tombol-checkout-wa {
             width: 100%;
-            padding: 13px 16px;
+            padding: 12px 16px;
             border-radius: var(--radius-kecil);
             background-color: var(--hijau-utama);
             color: var(--putih);
-            font-size: 14px;
+            font-size: 13.5px;
             font-weight: 800;
             display: flex;
             align-items: center;
@@ -2109,7 +2133,7 @@
         }
 
         /* ==========================================================================
-           10. MODAL PEMBAYARAN QRIS (ANTI-ORDER FIKTIF)
+           10. MODAL PEMBAYARAN QRIS (Z-INDEX MAKSIMUM)
            ========================================================================== */
         .modal-umum {
             position: fixed;
@@ -2122,7 +2146,7 @@
             max-height: 90dvh;
             background-color: var(--putih);
             border-radius: var(--radius-besar);
-            z-index: 1300;
+            z-index: 2147483645;
             box-shadow: var(--bayangan-modal);
             display: flex;
             flex-direction: column;
@@ -2242,7 +2266,6 @@
             border-radius: var(--radius-penuh);
         }
 
-        /* Kotak Upload Bukti Pembayaran QRIS (Wajib) */
         .qris-kotak-bukti {
             background-color: #f9fcf9;
             border: 1.5px solid #c5dbc5;
@@ -2337,7 +2360,7 @@
         }
 
         /* ==========================================================================
-           11. STICKY BOTTOM CART BAR KHUSUS SMARTPHONE
+           11. STICKY BOTTOM CART BAR KHUSUS SMARTPHONE (Z-INDEX TERTINGGI)
            ========================================================================== */
         .bar-keranjang-bawah-mobile {
             display: none;
@@ -2345,13 +2368,13 @@
             bottom: 0;
             left: 0;
             right: 0;
-            z-index: 980;
-            background: rgba(255, 255, 255, 0.96);
+            z-index: 2147483640;
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-top: 1px solid var(--abu-garis);
-            padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)) 16px;
-            box-shadow: 0 -8px 25px rgba(15, 41, 17, 0.12);
+            padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px)) 14px;
+            box-shadow: 0 -8px 25px rgba(15, 41, 17, 0.14);
         }
 
         .tombol-bar-keranjang-mobile {
@@ -2363,6 +2386,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 10px;
             box-shadow: 0 6px 18px rgba(30, 70, 32, 0.28);
         }
 
@@ -2371,15 +2395,22 @@
             align-items: center;
             gap: 10px;
             text-align: left;
+            min-width: 0;
         }
 
         .badge-cup-bar-mobile {
             background-color: var(--aksen-kuning);
             color: var(--hijau-gelap);
             font-weight: 800;
-            font-size: 13px;
+            font-size: 12.5px;
             padding: 4px 10px;
             border-radius: var(--radius-penuh);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .teks-bar-mobile {
+            min-width: 0;
         }
 
         .teks-bar-mobile strong {
@@ -2389,18 +2420,23 @@
         }
 
         .teks-bar-mobile span {
-            font-size: 11.5px;
-            color: rgba(255, 255, 255, 0.82);
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.85);
             display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .harga-kanan-bar-mobile {
-            font-size: 15px;
+            font-size: 14.5px;
             font-weight: 800;
             color: #fde68a;
             display: flex;
             align-items: center;
             gap: 6px;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
         /* ==========================================================================
@@ -2442,7 +2478,7 @@
             position: fixed;
             bottom: 90px;
             right: 24px;
-            z-index: 1500;
+            z-index: 2147483647;
             display: flex;
             flex-direction: column;
             gap: 10px;
@@ -2534,7 +2570,7 @@
         }
 
         /* ==========================================================================
-           13. RESPONSIVE BREAKPOINTS (TABLET & SMARTPHONE — ANTI KELUAR GARIS)
+           13. RESPONSIVE BREAKPOINTS (TABLET & SMARTPHONE)
            ========================================================================== */
         @media (max-width: 960px) {
             .hero-isi,
@@ -2582,7 +2618,6 @@
                 display: none;
             }
 
-            /* Merampingkan Navbar & Tombol Keranjang agar Pas di Layar HP */
             .navbar-isi {
                 padding: 10px 12px;
                 gap: 8px;
@@ -2774,9 +2809,14 @@
             }
 
             .grid-kustomisasi,
-            .grup-tombol-detail,
-            .grid-form-checkout-keranjang {
+            .grup-tombol-detail {
                 grid-template-columns: 1fr;
+            }
+
+            /* Pertahankan 2 Kolom Sejajar pada Form Nama & Jam di Keranjang Mobile agar Hemat Ruang */
+            .grid-form-checkout-keranjang {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
             }
 
             .bar-keranjang-bawah-mobile.ada-isi {
@@ -2790,7 +2830,7 @@
             }
 
             footer {
-                padding: 44px 16px 96px 16px;
+                padding: 44px 16px 104px 16px;
             }
         }
     </style>
@@ -2798,7 +2838,7 @@
 <body>
 
     <!-- ====== 1. TOPBAR PENGUMUMAN ====== -->
-    <div class="topbar">
+    <div class="topbar elemen-kokownut">
         <div class="topbar-isi">
             <div class="topbar-kiri">
                 <span class="topbar-lencana">REMINDER!</span>
@@ -2813,7 +2853,7 @@
     </div>
 
     <!-- ====== 2. NAVBAR UTAMA ====== -->
-    <nav id="navbar" class="navbar">
+    <nav id="navbar" class="navbar elemen-kokownut">
         <div class="navbar-isi">
             <a href="index.html" class="brand-logo">
                 <span class="brand-ikon">🥥</span>
@@ -2857,7 +2897,7 @@
     </nav>
 
     <!-- ====== 3. HALAMAN UTAMA (BERANDA) ====== -->
-    <div id="beranda">
+    <div id="beranda" class="elemen-kokownut">
         <header class="hero">
             <div class="hero-isi">
                 <div class="hero-teks">
@@ -2992,7 +3032,7 @@
             <div id="grid-produk" class="container-produk"></div>
         </section>
 
-        <!-- Seksi Riwayat Pembelian Pribadi (Hanya Muncul di Perangkat Pembeli Itu Sendiri) -->
+        <!-- Seksi Riwayat Pembelian Pribadi -->
         <section id="seksi-riwayat-pembelian" class="seksi-riwayat-pembelian" hidden>
             <div class="kotak-riwayat-utama">
                 <div class="kepala-riwayat-utama">
@@ -3117,7 +3157,7 @@
     <!-- ====== AKHIR HALAMAN UTAMA ====== -->
 
     <!-- ====== 4. HALAMAN DETAIL PRODUK ====== -->
-    <div id="detail" class="konten-detail" hidden>
+    <div id="detail" class="konten-detail elemen-kokownut" hidden>
         <div class="bar-atas">
             <a href="index.html" class="link-kembali">&larr; Kembali ke semua produk</a>
             <div id="breadcrumb-teks" class="breadcrumb-detail">Beranda / Katalog / <strong>Detail Produk</strong></div>
@@ -3127,9 +3167,9 @@
     <!-- ====== AKHIR HALAMAN DETAIL ====== -->
 
     <!-- ====== 5. DRAWER KERANJANG BELANJA & CHECKOUT ====== -->
-    <div id="latar-drawer" class="latar-gelap-drawer"></div>
+    <div id="latar-drawer" class="latar-gelap-drawer elemen-kokownut"></div>
 
-    <aside id="drawer-keranjang" class="drawer-keranjang" aria-label="Keranjang Belanja">
+    <aside id="drawer-keranjang" class="drawer-keranjang elemen-kokownut" aria-label="Keranjang Belanja">
         <div class="drawer-kepala">
             <h2>
                 <span>🛒</span>
@@ -3149,11 +3189,7 @@
 
             <div class="ringkasan-checkout">
                 <div class="baris-ringkasan">
-                    <span>Total Jumlah Cup</span>
-                    <strong id="ringkasan-cup">0 Cup</strong>
-                </div>
-                <div class="baris-ringkasan">
-                    <span>Subtotal Produk</span>
+                    <span>Total Jumlah Cup (<strong id="ringkasan-cup">0 Cup</strong>)</span>
                     <span id="ringkasan-subtotal">Rp 0</span>
                 </div>
                 <div id="baris-diskon-ringkasan" class="baris-ringkasan" hidden>
@@ -3189,8 +3225,8 @@
         </div>
     </aside>
 
-    <!-- ====== 6. MODAL GERBANG PEMBAYARAN QRIS (WAJIB SEBELUM KE WHATSAPP) ====== -->
-    <div id="modal-qris" class="modal-umum" role="dialog" aria-label="Pembayaran QRIS Kokownut">
+    <!-- ====== 6. MODAL GERBANG PEMBAYARAN QRIS ====== -->
+    <div id="modal-qris" class="modal-umum elemen-kokownut" role="dialog" aria-label="Pembayaran QRIS Kokownut">
         <div class="drawer-kepala">
             <h2>📲 Pembayaran QRIS Kokownut</h2>
             <button type="button" id="btn-tutup-qris" class="tombol-tutup-drawer" aria-label="Tutup QRIS">&times;</button>
@@ -3251,7 +3287,7 @@
     </div>
 
     <!-- ====== 7. STICKY BOTTOM CART BAR KHUSUS SMARTPHONE ====== -->
-    <div id="bar-keranjang-bawah-mobile" class="bar-keranjang-bawah-mobile">
+    <div id="bar-keranjang-bawah-mobile" class="bar-keranjang-bawah-mobile elemen-kokownut">
         <button type="button" id="btn-buka-keranjang-bawah" class="tombol-bar-keranjang-mobile">
             <div class="info-kiri-bar-mobile">
                 <span id="badge-cup-mobile" class="badge-cup-bar-mobile">0 Cup</span>
@@ -3268,7 +3304,7 @@
     </div>
 
     <!-- ====== 8. MODAL RIWAYAT PEMBELIAN PRIBADI ====== -->
-    <div id="modal-riwayat" class="modal-umum" role="dialog" aria-label="Riwayat Pembelian Saya">
+    <div id="modal-riwayat" class="modal-umum elemen-kokownut" role="dialog" aria-label="Riwayat Pembelian Saya">
         <div class="drawer-kepala">
             <h2>🔒 Riwayat Pembelian Saya</h2>
             <button type="button" id="btn-tutup-riwayat" class="tombol-tutup-drawer" aria-label="Tutup Riwayat">&times;</button>
@@ -3277,7 +3313,7 @@
     </div>
 
     <!-- ====== 9. MODAL NOTA / STRUK DIGITAL ====== -->
-    <div id="modal-nota" class="modal-umum" role="dialog" aria-label="Nota Pesanan">
+    <div id="modal-nota" class="modal-umum elemen-kokownut" role="dialog" aria-label="Nota Pesanan">
         <div class="drawer-kepala">
             <h2>Struk Ringkasan Pesanan</h2>
             <button type="button" id="btn-tutup-nota" class="tombol-tutup-drawer" aria-label="Tutup Nota">&times;</button>
@@ -3289,10 +3325,10 @@
     </div>
 
     <!-- ====== 10. WADAH TOAST NOTIFIKASI ====== -->
-    <div id="wadah-toast" class="wadah-toast"></div>
+    <div id="wadah-toast" class="wadah-toast elemen-kokownut"></div>
 
     <!-- ====== 11. FOOTER ====== -->
-    <footer>
+    <footer class="elemen-kokownut">
         <div class="footer-grid">
             <div>
                 <div class="footer-brand">Kokownut Segar.</div>
@@ -3324,9 +3360,47 @@
     </footer>
 
     <!-- ==========================================================================
-         12. LOGIKA JAVASCRIPT UTAMA
+         12. LOGIKA JAVASCRIPT UTAMA + PEMBERSIH OTOMATIS BADGE NETLIFY
          ========================================================================== -->
-    <script>
+    <script class="elemen-kokownut">
+        // Pembersih Otomatis Elemen Suntikan "Powered by Netlify"
+        (function bersihkanBadgeEksternal() {
+            function sapuElemenLuar() {
+                // 1. Hapus semua anak langsung dari <body> yang bukan milik Kokownut
+                Array.from(document.body.children).forEach(function (el) {
+                    const tag = el.tagName ? el.tagName.toLowerCase() : "";
+                    if (tag === "script" || tag === "style") return;
+                    if (!el.classList.contains("elemen-kokownut")) {
+                        el.style.setProperty("display", "none", "important");
+                        el.style.setProperty("visibility", "hidden", "important");
+                        el.style.setProperty("pointer-events", "none", "important");
+                        el.remove();
+                    }
+                });
+
+                // 2. Cari tautan atau elemen yang mengandung teks "Powered by Netlify"
+                document.querySelectorAll("a, div, aside, iframe, span").forEach(function (node) {
+                    if (node.classList && node.classList.contains("elemen-kokownut")) return;
+                    if (node.closest && node.closest(".elemen-kokownut")) return;
+                    const teks = (node.textContent || "").toLowerCase();
+                    const href = (node.getAttribute && (node.getAttribute("href") || node.getAttribute("src"))) || "";
+                    if (teks.indexOf("powered by netlify") !== -1 || href.indexOf("netlify.com") !== -1) {
+                        node.style.setProperty("display", "none", "important");
+                        node.remove();
+                    }
+                });
+            }
+
+            sapuElemenLuar();
+            window.addEventListener("DOMContentLoaded", sapuElemenLuar);
+            window.addEventListener("load", sapuElemenLuar);
+
+            const pengamat = new MutationObserver(function () {
+                sapuElemenLuar();
+            });
+            pengamat.observe(document.documentElement, { childList: true, subtree: true });
+        })();
+
         const NOMOR_WA = "6287881623552";
 
         // GANTI NAMA FILE GAMBAR QRIS ANDA DI BARIS INI JIKA PERLU:
@@ -3351,7 +3425,6 @@
             "14:00 - 15:00"
         ];
 
-        // Semua kode voucher aktif dihapus sementara sesuai instruksi.
         const DAFTAR_VOUCHER = {};
 
         // ====== 1. DATABASE PRODUK UTAMA ======
@@ -4173,7 +4246,7 @@
             badan.appendChild(daftarEl);
         }
 
-        // ====== 8. MANAJEMEN RIWAYAT PEMBELIAN PRIBADI (TERKUNCI TOKEN PERANGKAT) ======
+        // ====== 8. MANAJEMEN RIWAYAT PEMBELIAN PRIBADI ======
         function muatDaftarRiwayatPribadi() {
             try {
                 const data = JSON.parse(localStorage.getItem(KUNCI_STORAGE_RIWAYAT) || "[]");
