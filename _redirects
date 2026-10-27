@@ -1,0 +1,3 @@
+# Tautan lama ke detail.html diarahkan ke halaman utama (parameter ?produk=... tetap terbawa)
+/detail.html  /  301
+/detail       /  301

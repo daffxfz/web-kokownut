@@ -1,0 +1,4878 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Kokownut Segar - Minuman Air Kelapa Murni dengan Ekstrak Buah Tropis Asli. Pembayaran Praktis via QRIS. Hadir di Bazaar Politeknik Negeri Jakarta 10-11 November.">
+    <meta name="theme-color" content="#163818">
+    <title>Kokownut Segar — Official Web Store (Pembayaran QRIS)</title>
+
+    <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+           1. DESIGN TOKENS & RESET
+           ========================================================================== */
+        :root {
+            --hijau-gelap: #0f2911;
+            --hijau-tua: #163818;
+            --hijau-utama: #1e4620;
+            --hijau-sedang: #2e6b32;
+            --hijau-segar: #558b2f;
+            --hijau-cerah: #7cb342;
+            --hijau-muda: #e8f3e8;
+            --hijau-pudar: #f1f8f1;
+            --krem-latar: #f7fbf7;
+            --putih: #ffffff;
+            --abu-terang: #f3f6f3;
+            --abu-garis: #dce6dc;
+            --teks-utama: #182419;
+            --teks-sekunder: #4a5d4c;
+            --teks-redup: #768978;
+            --aksen-kuning: #f59e0b;
+            --aksen-kuning-muda: #fef3c7;
+            --merah-error: #dc2626;
+            --merah-muda: #fef2f2;
+            --hijau-wa: #1ebe57;
+            --hijau-wa-gelap: #169c46;
+
+            --bayangan-kecil: 0 4px 12px rgba(22, 56, 24, 0.05);
+            --bayangan-halus: 0 10px 30px rgba(22, 56, 24, 0.07);
+            --bayangan-tegas: 0 20px 45px rgba(22, 56, 24, 0.14);
+            --bayangan-modal: 0 25px 60px rgba(15, 41, 17, 0.35);
+
+            --radius-kecil: 10px;
+            --radius-sedang: 16px;
+            --radius-besar: 24px;
+            --radius-penuh: 9999px;
+
+            --transisi-cepat: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transisi-halus: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: clip;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--krem-latar);
+            color: var(--teks-utama);
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 100vw;
+            min-height: 100vh;
+            min-height: 100dvh;
+            line-height: 1.6;
+            overflow-x: clip;
+        }
+
+        body.kunci-scroll {
+            overflow: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font-family: inherit;
+            font-size: inherit;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            touch-action: manipulation;
+        }
+
+        button:disabled {
+            cursor: not-allowed;
+            opacity: 0.55;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            touch-action: manipulation;
+        }
+
+        /* ==========================================================================
+           2. TOPBAR & NAVBAR (DESKTOP + MOBILE QUICK-NAV)
+           ========================================================================== */
+        .topbar {
+            width: 100%;
+            background-color: var(--hijau-gelap);
+            color: rgba(255, 255, 255, 0.92);
+            font-size: 13px;
+            font-weight: 500;
+            padding: 9px 20px;
+        }
+
+        .topbar-isi {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .topbar-kiri {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 0;
+        }
+
+        .topbar-lencana {
+            background-color: var(--aksen-kuning);
+            color: var(--hijau-gelap);
+            font-weight: 800;
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: var(--radius-penuh);
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+
+        .topbar-kanan {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 800;
+            width: 100%;
+            max-width: 100vw;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(30, 70, 32, 0.08);
+            transition: box-shadow var(--transisi-cepat);
+        }
+
+        .navbar.tergulir {
+            box-shadow: var(--bayangan-kecil);
+        }
+
+        .navbar-isi {
+            width: 100%;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .brand-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--hijau-utama);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .brand-ikon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--hijau-utama), var(--hijau-segar));
+            color: var(--putih);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            box-shadow: 0 4px 10px rgba(30, 70, 32, 0.25);
+            flex-shrink: 0;
+        }
+
+        .brand-titik {
+            color: var(--hijau-segar);
+        }
+
+        .nav-tautan {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-link {
+            color: var(--teks-sekunder);
+            font-weight: 600;
+            font-size: 14px;
+            transition: color var(--transisi-cepat);
+            position: relative;
+            padding: 4px 0;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover {
+            color: var(--hijau-utama);
+        }
+
+        .nav-aksi {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .tombol-utilitas-nav {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 9px 14px;
+            border-radius: var(--radius-penuh);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--hijau-utama);
+            background-color: var(--hijau-pudar);
+            border: 1px solid var(--abu-garis);
+            transition: all var(--transisi-cepat);
+            white-space: nowrap;
+        }
+
+        .tombol-utilitas-nav:hover {
+            background-color: var(--hijau-muda);
+        }
+
+        .lencana-riwayat-nav {
+            background-color: var(--hijau-utama);
+            color: var(--putih);
+            font-size: 11px;
+            font-weight: 800;
+            min-width: 20px;
+            height: 20px;
+            padding: 0 6px;
+            border-radius: var(--radius-penuh);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tombol-buka-keranjang {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--hijau-utama);
+            color: var(--putih);
+            padding: 10px 18px;
+            border-radius: var(--radius-penuh);
+            font-size: 14px;
+            font-weight: 700;
+            box-shadow: 0 6px 16px rgba(30, 70, 32, 0.22);
+            transition: all var(--transisi-cepat);
+            white-space: nowrap;
+        }
+
+        .tombol-buka-keranjang:hover {
+            background-color: var(--hijau-sedang);
+            transform: translateY(-2px);
+        }
+
+        .tombol-buka-keranjang svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .lencana-jumlah-keranjang {
+            background-color: var(--aksen-kuning);
+            color: var(--hijau-gelap);
+            font-size: 12px;
+            font-weight: 800;
+            min-width: 22px;
+            height: 22px;
+            padding: 0 6px;
+            border-radius: var(--radius-penuh);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform var(--transisi-cepat);
+        }
+
+        .lencana-jumlah-keranjang.memantul {
+            transform: scale(1.35);
+        }
+
+        .nav-mobile-strip {
+            display: none;
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding: 8px 12px;
+            background-color: rgba(247, 251, 247, 0.95);
+            border-top: 1px solid rgba(30, 70, 32, 0.06);
+            gap: 8px;
+        }
+
+        .nav-mobile-strip::-webkit-scrollbar {
+            display: none;
+        }
+
+        .pill-nav-mobile {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 6px 12px;
+            border-radius: var(--radius-penuh);
+            background-color: var(--putih);
+            border: 1px solid var(--abu-garis);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--hijau-tua);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        /* ==========================================================================
+           3. HERO SECTION & AUTO-ROLLING CAROUSEL
+           ========================================================================== */
+        .hero {
+            position: relative;
+            width: 100%;
+            background:
+                radial-gradient(circle at 85% 15%, rgba(124, 179, 66, 0.18) 0%, transparent 45%),
+                radial-gradient(circle at 15% 80%, rgba(30, 70, 32, 0.08) 0%, transparent 50%),
+                linear-gradient(180deg, #eef7ee 0%, var(--krem-latar) 100%);
+            padding: 56px 24px 48px 24px;
+            border-bottom: 1px solid rgba(30, 70, 32, 0.06);
+        }
+
+        .hero-isi {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .hero-teks {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            min-width: 0;
+        }
+
+        .hero-lencana {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--putih);
+            color: var(--hijau-utama);
+            padding: 7px 16px;
+            border-radius: var(--radius-penuh);
+            font-size: 13px;
+            font-weight: 700;
+            border: 1px solid var(--abu-garis);
+            box-shadow: var(--bayangan-kecil);
+            margin-bottom: 20px;
+        }
+
+        .hero-lencana-titik {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--hijau-segar);
+        }
+
+        .judul-utama {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(32px, 5vw, 60px);
+            font-weight: 800;
+            color: var(--hijau-tua);
+            line-height: 1.12;
+            margin-bottom: 18px;
+        }
+
+        .judul-utama span {
+            font-style: italic;
+            color: var(--hijau-segar);
+        }
+
+        .deskripsi-produk {
+            font-size: clamp(15px, 1.9vw, 18px);
+            color: var(--teks-sekunder);
+            max-width: 560px;
+            margin-bottom: 28px;
+            line-height: 1.7;
+        }
+
+        .hero-tombol-grup {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 34px;
+        }
+
+        .btn-primer {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: var(--hijau-utama);
+            color: var(--putih);
+            font-weight: 700;
+            font-size: 15px;
+            padding: 14px 28px;
+            border-radius: var(--radius-penuh);
+            box-shadow: 0 10px 24px rgba(30, 70, 32, 0.25);
+            transition: all var(--transisi-cepat);
+        }
+
+        .btn-primer:hover {
+            background-color: var(--hijau-sedang);
+            transform: translateY(-2px);
+        }
+
+        .btn-sekunder {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: var(--putih);
+            color: var(--hijau-utama);
+            font-weight: 700;
+            font-size: 15px;
+            padding: 14px 24px;
+            border-radius: var(--radius-penuh);
+            border: 1.5px solid var(--abu-garis);
+            transition: all var(--transisi-cepat);
+        }
+
+        .btn-sekunder:hover {
+            border-color: var(--hijau-utama);
+            background-color: var(--hijau-pudar);
+        }
+
+        .hero-statistik {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(30, 70, 32, 0.12);
+            width: 100%;
+        }
+
+        .stat-item {
+            min-width: 0;
+        }
+
+        .stat-item strong {
+            display: block;
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--hijau-tua);
+        }
+
+        .stat-item span {
+            font-size: 12.5px;
+            color: var(--teks-sekunder);
+            font-weight: 500;
+        }
+
+        /* Carousel Rolling di Kanan Hero */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            min-width: 0;
+        }
+
+        .hero-kartu-utama {
+            width: 100%;
+            max-width: 420px;
+            background: var(--putih);
+            border-radius: var(--radius-besar);
+            padding: 16px;
+            box-shadow: var(--bayangan-tegas);
+            border: 1px solid rgba(30, 70, 32, 0.08);
+            position: relative;
+            user-select: none;
+        }
+
+        .hero-bungkus-gambar {
+            position: relative;
+            width: 100%;
+            height: 310px;
+            border-radius: var(--radius-sedang);
+            overflow: hidden;
+            background-color: #e4efe4;
+        }
+
+        .hero-kartu-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.4s ease, transform 0.5s ease;
+        }
+
+        .hero-kartu-img.sedang-berganti {
+            opacity: 0.25;
+            transform: scale(1.04);
+        }
+
+        .hero-lencana-varian {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(6px);
+            color: var(--hijau-tua);
+            font-size: 12px;
+            font-weight: 800;
+            padding: 5px 12px;
+            border-radius: var(--radius-penuh);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+        }
+
+        .hero-nav-panah {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.92);
+            color: var(--hijau-tua);
+            font-size: 18px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
+            transition: background var(--transisi-cepat);
+            z-index: 5;
+        }
+
+        .hero-nav-panah:hover {
+            background: var(--hijau-utama);
+            color: var(--putih);
+        }
+
+        .hero-panah-kiri {
+            left: 10px;
+        }
+
+        .hero-panah-kanan {
+            right: 10px;
+        }
+
+        .hero-kartu-info {
+            padding: 14px 6px 10px 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            text-align: left;
+        }
+
+        .hero-kartu-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 21px;
+            color: var(--hijau-tua);
+            margin-bottom: 2px;
+        }
+
+        .hero-kartu-info p {
+            font-size: 13px;
+            color: var(--teks-sekunder);
+        }
+
+        .hero-kartu-harga {
+            background-color: var(--hijau-muda);
+            color: var(--hijau-utama);
+            font-weight: 800;
+            font-size: 15px;
+            padding: 6px 14px;
+            border-radius: var(--radius-penuh);
+            white-space: nowrap;
+        }
+
+        .hero-indikator-dots {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #eef3ee;
+        }
+
+        .hero-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: var(--radius-penuh);
+            background-color: #cbd8cb;
+            transition: all 0.3s ease;
+        }
+
+        .hero-dot.aktif {
+            width: 24px;
+            background-color: var(--hijau-utama);
+        }
+
+        .hero-badge-melayang {
+            position: absolute;
+            bottom: 110px;
+            left: -12px;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(8px);
+            padding: 10px 14px;
+            border-radius: var(--radius-sedang);
+            box-shadow: var(--bayangan-tegas);
+            border: 1px solid var(--abu-garis);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--hijau-tua);
+            pointer-events: none;
+            z-index: 4;
+        }
+
+        /* ==========================================================================
+           4. HIGHLIGHT BANNER BAZAAR PNJ
+           ========================================================================== */
+        .seksi-bazaar-wrapper {
+            width: 100%;
+            max-width: 1240px;
+            margin: 36px auto 0 auto;
+            padding: 0 24px;
+        }
+
+        .kartu-bazaar-pnj {
+            position: relative;
+            background: linear-gradient(135deg, var(--hijau-gelap) 0%, var(--hijau-utama) 60%, #2b632e 100%);
+            color: var(--putih);
+            border-radius: var(--radius-besar);
+            padding: 28px 34px;
+            box-shadow: var(--bayangan-tegas);
+            border: 2px solid rgba(245, 158, 11, 0.45);
+            display: grid;
+            grid-template-columns: 1.35fr 0.65fr;
+            gap: 28px;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .kartu-bazaar-pnj > div {
+            min-width: 0;
+        }
+
+        .kartu-bazaar-pnj::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 340px;
+            height: 340px;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.22) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .bazaar-lencana-atas {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--aksen-kuning);
+            color: var(--hijau-gelap);
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            padding: 5px 14px;
+            border-radius: var(--radius-penuh);
+            margin-bottom: 12px;
+        }
+
+        .bazaar-judul {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(22px, 3vw, 34px);
+            font-weight: 800;
+            line-height: 1.22;
+            margin-bottom: 10px;
+            color: var(--putih);
+        }
+
+        .bazaar-judul span {
+            color: #fde68a;
+            font-style: italic;
+        }
+
+        .bazaar-deskripsi {
+            font-size: 14.5px;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 640px;
+            line-height: 1.65;
+        }
+
+        .bazaar-info-kanan {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-sedang);
+            padding: 18px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .bazaar-baris-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 13.5px;
+        }
+
+        .bazaar-ikon {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background-color: rgba(245, 158, 11, 0.22);
+            color: #fde68a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            flex-shrink: 0;
+        }
+
+        .bazaar-baris-detail strong {
+            display: block;
+            font-size: 14px;
+            font-weight: 800;
+            color: #fde68a;
+        }
+
+        .bazaar-baris-detail span {
+            color: rgba(255, 255, 255, 0.92);
+            font-size: 13px;
+            line-height: 1.4;
+            display: block;
+        }
+
+        /* ==========================================================================
+           5. SEKSI KATALOG & FILTER
+           ========================================================================== */
+        .seksi-katalog {
+            width: 100%;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 44px 24px 48px 24px;
+        }
+
+        .kepala-seksi {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .sub-label-seksi {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--hijau-segar);
+            margin-bottom: 6px;
+        }
+
+        .kepala-seksi h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(26px, 3.5vw, 38px);
+            color: var(--hijau-tua);
+            line-height: 1.2;
+        }
+
+        .kepala-seksi p {
+            color: var(--teks-sekunder);
+            font-size: 14.5px;
+            margin-top: 4px;
+        }
+
+        .bar-kontrol-katalog {
+            background-color: var(--putih);
+            padding: 16px 20px;
+            border-radius: var(--radius-sedang);
+            box-shadow: var(--bayangan-kecil);
+            border: 1px solid var(--abu-garis);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .daftar-filter-kategori {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            min-width: 0;
+        }
+
+        .tombol-filter {
+            padding: 9px 16px;
+            border-radius: var(--radius-penuh);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--teks-sekunder);
+            background-color: var(--abu-terang);
+            transition: all var(--transisi-cepat);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .tombol-filter:hover {
+            color: var(--hijau-utama);
+            background-color: var(--hijau-muda);
+        }
+
+        .tombol-filter.aktif {
+            background-color: var(--hijau-utama);
+            color: var(--putih);
+        }
+
+        .kontrol-kanan-katalog {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            flex: 1;
+            justify-content: flex-end;
+            min-width: 0;
+        }
+
+        .bungkus-input-cari {
+            position: relative;
+            min-width: 200px;
+            flex: 1;
+            max-width: 300px;
+        }
+
+        .input-cari {
+            width: 100%;
+            padding: 10px 14px 10px 36px;
+            border-radius: var(--radius-penuh);
+            border: 1px solid var(--abu-garis);
+            background-color: var(--krem-latar);
+            font-size: 14px;
+            outline: none;
+        }
+
+        .input-cari:focus {
+            border-color: var(--hijau-utama);
+            background-color: var(--putih);
+        }
+
+        .ikon-cari {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            color: var(--teks-redup);
+            pointer-events: none;
+        }
+
+        .pilih-urutan {
+            padding: 10px 14px;
+            border-radius: var(--radius-penuh);
+            border: 1px solid var(--abu-garis);
+            background-color: var(--krem-latar);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--teks-utama);
+            outline: none;
+            cursor: pointer;
+        }
+
+        .container-produk {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 26px;
+        }
+
+        .kartu-produk {
+            background-color: var(--putih);
+            border-radius: var(--radius-besar);
+            overflow: hidden;
+            box-shadow: var(--bayangan-halus);
+            transition: transform var(--transisi-halus), box-shadow var(--transisi-halus);
+            border: 1px solid rgba(30, 70, 32, 0.06);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-width: 0;
+        }
+
+        .kartu-produk:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--bayangan-tegas);
+        }
+
+        .bungkus-img {
+            position: relative;
+            width: 100%;
+            height: 260px;
+            overflow: hidden;
+            background-color: #e4efe4;
+            display: block;
+        }
+
+        .produk-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.55s ease;
+        }
+
+        .kartu-produk:hover .produk-img {
+            transform: scale(1.05);
+        }
+
+        .lencana-kartu {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(6px);
+            color: var(--hijau-tua);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: var(--radius-penuh);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .lencana-kalori {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(15, 41, 17, 0.78);
+            color: var(--putih);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: var(--radius-penuh);
+        }
+
+        .isi-kartu {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .baris-judul-kartu {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 6px;
+        }
+
+        .nama-produk {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--hijau-tua);
+        }
+
+        .harga-kartu {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--hijau-utama);
+            background-color: var(--hijau-muda);
+            padding: 4px 12px;
+            border-radius: var(--radius-penuh);
+            white-space: nowrap;
+        }
+
+        .tagline-kartu {
+            font-size: 14px;
+            color: var(--teks-sekunder);
+            margin-bottom: 14px;
+            flex-grow: 1;
+        }
+
+        .meta-nutrisi-kartu {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+        }
+
+        .chip-nutrisi {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--teks-sekunder);
+            background-color: var(--abu-terang);
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .aksi-kartu-grup {
+            display: grid;
+            grid-template-columns: 1fr 1.25fr;
+            gap: 10px;
+            padding-top: 14px;
+            border-top: 1px solid #edf2ed;
+        }
+
+        .btn-detail-kartu {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 11px 14px;
+            border-radius: var(--radius-kecil);
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--hijau-utama);
+            background-color: var(--hijau-pudar);
+            transition: all var(--transisi-cepat);
+        }
+
+        .btn-detail-kartu:hover {
+            background-color: var(--hijau-muda);
+        }
+
+        .btn-tambah-keranjang-cepat {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 11px 14px;
+            border-radius: var(--radius-kecil);
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--putih);
+            background-color: var(--hijau-utama);
+            transition: all var(--transisi-cepat);
+        }
+
+        .btn-tambah-keranjang-cepat:hover {
+            background-color: var(--hijau-segar);
+        }
+
+        /* ==========================================================================
+           6. SEKSI RIWAYAT PEMBELIAN PRIBADI (TERKUNCI PER PERANGKAT)
+           ========================================================================== */
+        .seksi-riwayat-pembelian {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 8px 24px 64px 24px;
+        }
+
+        .kotak-riwayat-utama {
+            background: linear-gradient(145deg, #ffffff 0%, #f1f8f1 100%);
+            border: 1.5px solid #c5dec5;
+            border-radius: var(--radius-besar);
+            padding: 28px;
+            box-shadow: var(--bayangan-halus);
+        }
+
+        .kepala-riwayat-utama {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--abu-garis);
+        }
+
+        .lencana-privasi-riwayat {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: var(--hijau-muda);
+            color: var(--hijau-utama);
+            font-size: 11.5px;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: var(--radius-penuh);
+            margin-bottom: 8px;
+        }
+
+        .btn-hapus-semua-riwayat {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--merah-error);
+            background-color: var(--merah-muda);
+            padding: 8px 16px;
+            border-radius: var(--radius-penuh);
+        }
+
+        .grid-riwayat-beranda {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 18px;
+        }
+
+        .kartu-riwayat-item {
+            border: 1px solid var(--abu-garis);
+            background-color: var(--putih);
+            border-radius: var(--radius-sedang);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            box-shadow: var(--bayangan-kecil);
+        }
+
+        .kepala-riwayat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--teks-redup);
+            font-weight: 600;
+        }
+
+        .id-order-lencana {
+            background-color: var(--hijau-muda);
+            color: var(--hijau-utama);
+            padding: 3px 10px;
+            border-radius: var(--radius-penuh);
+            font-weight: 800;
+            font-size: 11px;
+        }
+
+        .nama-pemesan-riwayat {
+            font-size: 13px;
+            color: var(--teks-sekunder);
+            font-weight: 600;
+        }
+
+        .detail-riwayat-item {
+            font-size: 14.5px;
+            font-weight: 700;
+            color: var(--hijau-tua);
+            line-height: 1.45;
+        }
+
+        .jam-ambil-riwayat {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--hijau-segar);
+            background-color: var(--hijau-pudar);
+            padding: 4px 10px;
+            border-radius: 8px;
+            align-self: flex-start;
+        }
+
+        .kaki-riwayat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: auto;
+            padding-top: 12px;
+            border-top: 1px dashed var(--abu-garis);
+        }
+
+        .total-riwayat-item {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--hijau-utama);
+        }
+
+        .btn-pesan-ulang {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--putih);
+            background-color: var(--hijau-utama);
+            padding: 8px 14px;
+            border-radius: var(--radius-penuh);
+        }
+
+        /* ==========================================================================
+           7. SEKSI KEUNGGULAN & FAQ
+           ========================================================================== */
+        .seksi-keunggulan {
+            background-color: var(--putih);
+            border-top: 1px solid var(--abu-garis);
+            border-bottom: 1px solid var(--abu-garis);
+            padding: 60px 24px;
+        }
+
+        .kontainer-lebar {
+            max-width: 1240px;
+            margin: 0 auto;
+        }
+
+        .grid-keunggulan {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 28px;
+        }
+
+        .kartu-keunggulan {
+            background-color: var(--krem-latar);
+            border: 1px solid var(--abu-garis);
+            border-radius: var(--radius-sedang);
+            padding: 22px;
+        }
+
+        .ikon-keunggulan {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            background-color: var(--hijau-muda);
+            color: var(--hijau-utama);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            margin-bottom: 14px;
+        }
+
+        .kartu-keunggulan h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--hijau-tua);
+            margin-bottom: 6px;
+        }
+
+        .kartu-keunggulan p {
+            font-size: 14px;
+            color: var(--teks-sekunder);
+        }
+
+        .seksi-faq {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        .daftar-faq {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .item-faq {
+            background-color: var(--putih);
+            border: 1px solid var(--abu-garis);
+            border-radius: var(--radius-sedang);
+            overflow: hidden;
+        }
+
+        .tombol-faq {
+            width: 100%;
+            padding: 16px 20px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--hijau-tua);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .ikon-faq {
+            font-size: 18px;
+            color: var(--hijau-segar);
+            transition: transform var(--transisi-cepat);
+            flex-shrink: 0;
+        }
+
+        .item-faq.terbuka .ikon-faq {
+            transform: rotate(45deg);
+        }
+
+        .jawaban-faq {
+            padding: 0 20px 16px 20px;
+            font-size: 14px;
+            color: var(--teks-sekunder);
+            line-height: 1.7;
+            display: none;
+        }
+
+        .item-faq.terbuka .jawaban-faq {
+            display: block;
+        }
+
+        /* ==========================================================================
+           8. HALAMAN DETAIL PRODUK
+           ========================================================================== */
+        .konten-detail {
+            width: 100%;
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 20px 24px 72px 24px;
+        }
+
+        .bar-atas {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 4px 0 20px 0;
+        }
+
+        .link-kembali {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--hijau-utama);
+            font-weight: 700;
+            font-size: 14px;
+            padding: 10px 18px;
+            border-radius: var(--radius-penuh);
+            background-color: var(--putih);
+            border: 1px solid var(--abu-garis);
+            box-shadow: var(--bayangan-kecil);
+        }
+
+        .breadcrumb-detail {
+            font-size: 13px;
+            color: var(--teks-redup);
+            font-weight: 500;
+        }
+
+        .breadcrumb-detail strong {
+            color: var(--hijau-utama);
+        }
+
+        .detail-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.15fr;
+            gap: 40px;
+            background-color: var(--putih);
+            border-radius: var(--radius-besar);
+            overflow: hidden;
+            box-shadow: var(--bayangan-halus);
+            border: 1px solid rgba(30, 70, 32, 0.08);
+            margin-bottom: 44px;
+        }
+
+        .detail-kiri {
+            display: flex;
+            flex-direction: column;
+            background-color: #eaf2ea;
+            min-width: 0;
+        }
+
+        .detail-img-container {
+            position: relative;
+            height: 430px;
+            overflow: hidden;
+        }
+
+        .detail-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .kotak-nutrisi-detail {
+            padding: 20px 24px;
+            background-color: var(--hijau-pudar);
+            border-top: 1px solid var(--abu-garis);
+            margin-top: auto;
+        }
+
+        .judul-nutrisi {
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: var(--hijau-utama);
+            margin-bottom: 12px;
+        }
+
+        .grid-nutrisi {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .item-nutrisi {
+            background-color: var(--putih);
+            padding: 10px;
+            border-radius: var(--radius-kecil);
+            text-align: center;
+            border: 1px solid var(--abu-garis);
+        }
+
+        .item-nutrisi strong {
+            display: block;
+            font-size: 14.5px;
+            font-weight: 800;
+            color: var(--hijau-tua);
+        }
+
+        .item-nutrisi span {
+            font-size: 11px;
+            color: var(--teks-sekunder);
+        }
+
+        .detail-teks {
+            padding: 34px 38px 34px 0;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        .detail-lencana {
+            display: inline-block;
+            align-self: flex-start;
+            background-color: var(--hijau-muda);
+            color: var(--hijau-utama);
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 5px 14px;
+            border-radius: var(--radius-penuh);
+            margin-bottom: 10px;
+        }
+
+        .detail-nama {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 3.8vw, 40px);
+            font-weight: 800;
+            color: var(--hijau-tua);
+            line-height: 1.18;
+            margin-bottom: 6px;
+        }
+
+        .detail-tagline {
+            font-size: 15.5px;
+            font-style: italic;
+            color: var(--hijau-segar);
+            margin-bottom: 14px;
+        }
+
+        .detail-harga {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--hijau-utama);
+            margin-bottom: 14px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid #edf2ed;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .detail-harga span {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--teks-sekunder);
+        }
+
+        .detail-deskripsi {
+            font-size: 15px;
+            color: var(--teks-sekunder);
+            line-height: 1.7;
+            margin-bottom: 14px;
+        }
+
+        .detail-sorotan {
+            list-style: none;
+            margin-bottom: 18px;
+            background-color: var(--krem-latar);
+            padding: 12px 16px;
+            border-radius: var(--radius-sedang);
+            border: 1px solid var(--abu-garis);
+        }
+
+        .detail-sorotan li {
+            position: relative;
+            padding: 4px 0 4px 24px;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--teks-utama);
+        }
+
+        .detail-sorotan li::before {
+            content: "\2713";
+            position: absolute;
+            left: 0;
+            color: var(--hijau-segar);
+            font-weight: 800;
+        }
+
+        .kartu-form-pesan {
+            background-color: #f9fcf9;
+            border: 1.5px solid #cfe2cf;
+            border-radius: var(--radius-sedang);
+            padding: 18px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .kepala-form-pesan {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            border-bottom: 1px dashed #cfe2cf;
+            padding-bottom: 8px;
+        }
+
+        .judul-form-pesan {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--hijau-tua);
+        }
+
+        .sub-form-pesan {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--hijau-utama);
+            background-color: var(--hijau-muda);
+            padding: 3px 10px;
+            border-radius: var(--radius-penuh);
+        }
+
+        .grid-kustomisasi {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .grup-form {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .label-form {
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--teks-utama);
+        }
+
+        .input-nama,
+        .select-kustom {
+            width: 100%;
+            padding: 10px 13px;
+            font-size: 14px;
+            color: var(--teks-utama);
+            background-color: var(--putih);
+            border: 1.5px solid #c5dbc5;
+            border-radius: var(--radius-kecil);
+            outline: none;
+        }
+
+        .input-nama:focus,
+        .select-kustom:focus {
+            border-color: var(--hijau-utama);
+        }
+
+        .input-nama.input-error {
+            border-color: var(--merah-error);
+            background-color: var(--merah-muda);
+        }
+
+        .teks-error {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--merah-error);
+            display: none;
+        }
+
+        .baris-kuantitas-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .pengatur-jumlah {
+            display: inline-flex;
+            align-items: center;
+            border: 1.5px solid #c5dbc5;
+            border-radius: var(--radius-kecil);
+            background: var(--putih);
+            overflow: hidden;
+        }
+
+        .tombol-jml {
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--hijau-utama);
+        }
+
+        .input-jml {
+            width: 44px;
+            text-align: center;
+            font-size: 15px;
+            font-weight: 800;
+            border: none;
+            color: var(--teks-utama);
+            background: transparent;
+            outline: none;
+        }
+
+        .kotak-total-harga {
+            text-align: right;
+        }
+
+        .label-total {
+            font-size: 12px;
+            color: var(--teks-sekunder);
+            display: block;
+            font-weight: 600;
+        }
+
+        .nominal-total {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--hijau-utama);
+        }
+
+        .grup-tombol-detail {
+            display: grid;
+            grid-template-columns: 1fr 1.25fr;
+            gap: 10px;
+        }
+
+        .tombol-masuk-keranjang {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--putih);
+            color: var(--hijau-utama);
+            border: 1.5px solid var(--hijau-utama);
+            font-weight: 700;
+            font-size: 14px;
+            padding: 13px 16px;
+            border-radius: var(--radius-kecil);
+        }
+
+        .tombol-beli-langsung {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--hijau-utama);
+            color: var(--putih);
+            font-weight: 700;
+            font-size: 14px;
+            padding: 13px 16px;
+            border-radius: var(--radius-kecil);
+            box-shadow: 0 8px 20px rgba(30, 70, 32, 0.22);
+        }
+
+        .varian-lain {
+            width: 100%;
+            text-align: center;
+            padding-top: 12px;
+        }
+
+        .varian-lain h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: var(--hijau-tua);
+            margin-bottom: 18px;
+        }
+
+        .daftar-pilihan-lain {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .varian-lain a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: var(--radius-penuh);
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--hijau-utama);
+            background-color: var(--putih);
+            border: 1px solid var(--abu-garis);
+            box-shadow: var(--bayangan-kecil);
+        }
+
+        /* ==========================================================================
+           9. DRAWER KERANJANG (100dvh MOBILE SAFE)
+           ========================================================================== */
+        .latar-gelap-drawer {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 41, 17, 0.62);
+            backdrop-filter: blur(5px);
+            z-index: 1100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transisi-halus);
+        }
+
+        .latar-gelap-drawer.aktif {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .drawer-keranjang {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            max-width: 480px;
+            height: 100vh;
+            height: 100dvh;
+            background-color: var(--putih);
+            z-index: 1200;
+            box-shadow: var(--bayangan-modal);
+            display: flex;
+            flex-direction: column;
+            transform: translateX(100%);
+            transition: transform var(--transisi-halus);
+        }
+
+        .drawer-keranjang.aktif {
+            transform: translateX(0);
+        }
+
+        .drawer-kepala {
+            padding: 16px 20px;
+            background-color: var(--hijau-tua);
+            color: var(--putih);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .drawer-kepala h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tombol-tutup-drawer {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.14);
+            color: var(--putih);
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .drawer-badan {
+            flex: 1;
+            overflow-y: auto;
+            padding: 14px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .keranjang-kosong {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--teks-sekunder);
+            margin: auto 0;
+        }
+
+        .ikon-keranjang-kosong {
+            font-size: 44px;
+            margin-bottom: 12px;
+        }
+
+        .daftar-item-keranjang {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .item-keranjang {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 12px;
+            background-color: var(--krem-latar);
+            border: 1px solid var(--abu-garis);
+            border-radius: var(--radius-sedang);
+        }
+
+        .item-keranjang-atas {
+            display: grid;
+            grid-template-columns: 54px 1fr auto;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .img-item-keranjang {
+            width: 54px;
+            height: 54px;
+            border-radius: var(--radius-kecil);
+            object-fit: cover;
+        }
+
+        .info-item-keranjang h4 {
+            font-size: 14.5px;
+            font-weight: 700;
+            color: var(--hijau-tua);
+        }
+
+        .harga-satuan-keranjang {
+            font-size: 12px;
+            color: var(--teks-sekunder);
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .baris-qty-dan-pisah {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .kontrol-qty-keranjang {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid var(--abu-garis);
+            border-radius: 8px;
+            background-color: var(--putih);
+            overflow: hidden;
+        }
+
+        .btn-qty-kecil {
+            width: 28px;
+            height: 28px;
+            font-weight: 800;
+            color: var(--hijau-utama);
+        }
+
+        .angka-qty-kecil {
+            width: 28px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .btn-pisah-cup {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--hijau-utama);
+            background-color: var(--hijau-muda);
+            padding: 5px 9px;
+            border-radius: 6px;
+        }
+
+        .kanan-item-keranjang {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .subtotal-item-keranjang {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--hijau-utama);
+        }
+
+        .btn-hapus-item {
+            font-size: 11.5px;
+            color: var(--merah-error);
+            font-weight: 600;
+        }
+
+        .baris-kustom-keranjang {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed var(--abu-garis);
+        }
+
+        .grup-kustom-mini {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .grup-kustom-mini label {
+            font-size: 10.5px;
+            font-weight: 700;
+            color: var(--teks-sekunder);
+            text-transform: uppercase;
+        }
+
+        .select-kustom-mini {
+            width: 100%;
+            padding: 7px 8px;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: var(--hijau-tua);
+            background-color: var(--putih);
+            border: 1px solid #c5dbc5;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        .baris-kosongkan-keranjang {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--abu-garis);
+            font-size: 12px;
+            color: var(--teks-sekunder);
+        }
+
+        .btn-kosongkan {
+            color: var(--merah-error);
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .kotak-promo-keranjang {
+            display: flex;
+            gap: 8px;
+        }
+
+        .input-promo {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1.5px solid var(--abu-garis);
+            border-radius: var(--radius-kecil);
+            font-size: 13px;
+            text-transform: uppercase;
+            background-color: var(--putih);
+            outline: none;
+        }
+
+        .btn-pakai-promo {
+            padding: 8px 14px;
+            background-color: var(--hijau-muda);
+            color: var(--hijau-utama);
+            font-weight: 800;
+            font-size: 12.5px;
+            border-radius: var(--radius-kecil);
+        }
+
+        .info-promo-aktif {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--hijau-segar);
+        }
+
+        .drawer-kaki {
+            padding: 14px 20px calc(16px + env(safe-area-inset-bottom, 0px)) 20px;
+            background-color: #f9fcf9;
+            border-top: 1px solid var(--abu-garis);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .ringkasan-checkout {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            padding-bottom: 6px;
+            border-bottom: 1px dashed var(--abu-garis);
+        }
+
+        .baris-ringkasan {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: var(--teks-sekunder);
+        }
+
+        .baris-ringkasan.total-akhir {
+            font-size: 16.5px;
+            font-weight: 800;
+            color: var(--hijau-tua);
+            padding-top: 2px;
+        }
+
+        .grid-form-checkout-keranjang {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .grup-aksi-checkout {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 8px;
+        }
+
+        .tombol-cetak-nota {
+            padding: 12px 14px;
+            border-radius: var(--radius-kecil);
+            border: 1.5px solid var(--hijau-utama);
+            color: var(--hijau-utama);
+            font-weight: 700;
+            font-size: 13px;
+            background-color: var(--putih);
+        }
+
+        .tombol-checkout-wa {
+            width: 100%;
+            padding: 13px 16px;
+            border-radius: var(--radius-kecil);
+            background-color: var(--hijau-utama);
+            color: var(--putih);
+            font-size: 14px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 8px 20px rgba(30, 70, 32, 0.25);
+            transition: background-color var(--transisi-cepat), transform var(--transisi-cepat);
+        }
+
+        .tombol-checkout-wa:hover:not(:disabled) {
+            background-color: var(--hijau-segar);
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================================================
+           10. MODAL PEMBAYARAN QRIS (ANTI-ORDER FIKTIF)
+           ========================================================================== */
+        .modal-umum {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.95);
+            width: 94%;
+            max-width: 520px;
+            max-height: 90vh;
+            max-height: 90dvh;
+            background-color: var(--putih);
+            border-radius: var(--radius-besar);
+            z-index: 1300;
+            box-shadow: var(--bayangan-modal);
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            pointer-events: none;
+            transition: all var(--transisi-cepat);
+            overflow: hidden;
+        }
+
+        .modal-umum.aktif {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .isi-modal {
+            padding: 18px 22px 22px 22px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .qris-banner-instruksi {
+            background-color: var(--aksen-kuning-muda);
+            border: 1px solid #f59e0b;
+            color: #92400e;
+            padding: 10px 14px;
+            border-radius: var(--radius-kecil);
+            font-size: 12.5px;
+            font-weight: 600;
+            line-height: 1.45;
+        }
+
+        .qris-kotak-tagihan {
+            background-color: var(--hijau-pudar);
+            border: 1.5px solid #c5dec5;
+            border-radius: var(--radius-sedang);
+            padding: 14px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .qris-nominal-besar {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--hijau-tua);
+            line-height: 1.1;
+        }
+
+        .btn-salin-nominal {
+            background-color: var(--putih);
+            color: var(--hijau-utama);
+            border: 1px solid var(--hijau-utama);
+            padding: 7px 12px;
+            border-radius: var(--radius-penuh);
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .qris-rincian-mini {
+            font-size: 12.5px;
+            color: var(--teks-sekunder);
+            background-color: var(--abu-terang);
+            padding: 10px 14px;
+            border-radius: var(--radius-kecil);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .qris-bingkai-gambar {
+            background-color: var(--putih);
+            border: 2px dashed #b8d0b8;
+            border-radius: var(--radius-sedang);
+            padding: 16px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .qris-img-tampil {
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
+            border-radius: var(--radius-kecil);
+            border: 1px solid var(--abu-garis);
+            background-color: #fafafa;
+        }
+
+        .qris-placeholder-info {
+            padding: 24px 16px;
+            background-color: var(--krem-latar);
+            border-radius: var(--radius-kecil);
+            font-size: 12.5px;
+            color: var(--teks-sekunder);
+            max-width: 280px;
+        }
+
+        .btn-unduh-qris {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--hijau-utama);
+            background-color: var(--hijau-muda);
+            padding: 8px 16px;
+            border-radius: var(--radius-penuh);
+        }
+
+        /* Kotak Upload Bukti Pembayaran QRIS (Wajib) */
+        .qris-kotak-bukti {
+            background-color: #f9fcf9;
+            border: 1.5px solid #c5dbc5;
+            border-radius: var(--radius-sedang);
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .label-upload-bukti {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 14px;
+            background-color: var(--putih);
+            border: 1.5px dashed var(--hijau-segar);
+            border-radius: var(--radius-kecil);
+            cursor: pointer;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--hijau-utama);
+            transition: background-color var(--transisi-cepat);
+        }
+
+        .label-upload-bukti:hover {
+            background-color: var(--hijau-pudar);
+        }
+
+        .pratinjau-bukti-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background-color: var(--hijau-muda);
+            padding: 8px 12px;
+            border-radius: var(--radius-kecil);
+        }
+
+        .img-pratinjau-bukti {
+            width: 48px;
+            height: 48px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid var(--putih);
+        }
+
+        .info-file-bukti {
+            flex: 1;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--hijau-tua);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .baris-centang-qris {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: var(--teks-utama);
+            cursor: pointer;
+        }
+
+        .baris-centang-qris input {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            accent-color: var(--hijau-utama);
+            flex-shrink: 0;
+        }
+
+        .tombol-kirim-wa-qris {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: var(--radius-kecil);
+            background-color: var(--hijau-wa);
+            color: var(--putih);
+            font-size: 14.5px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 8px 20px rgba(30, 190, 87, 0.28);
+            transition: all var(--transisi-cepat);
+        }
+
+        /* ==========================================================================
+           11. STICKY BOTTOM CART BAR KHUSUS SMARTPHONE
+           ========================================================================== */
+        .bar-keranjang-bawah-mobile {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 980;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid var(--abu-garis);
+            padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)) 16px;
+            box-shadow: 0 -8px 25px rgba(15, 41, 17, 0.12);
+        }
+
+        .tombol-bar-keranjang-mobile {
+            width: 100%;
+            background: linear-gradient(135deg, var(--hijau-tua), var(--hijau-utama));
+            color: var(--putih);
+            border-radius: var(--radius-sedang);
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 6px 18px rgba(30, 70, 32, 0.28);
+        }
+
+        .info-kiri-bar-mobile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-align: left;
+        }
+
+        .badge-cup-bar-mobile {
+            background-color: var(--aksen-kuning);
+            color: var(--hijau-gelap);
+            font-weight: 800;
+            font-size: 13px;
+            padding: 4px 10px;
+            border-radius: var(--radius-penuh);
+        }
+
+        .teks-bar-mobile strong {
+            display: block;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .teks-bar-mobile span {
+            font-size: 11.5px;
+            color: rgba(255, 255, 255, 0.82);
+            display: block;
+        }
+
+        .harga-kanan-bar-mobile {
+            font-size: 15px;
+            font-weight: 800;
+            color: #fde68a;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ==========================================================================
+           12. NOTA DIGITAL, TOAST & FOOTER
+           ========================================================================== */
+        .kertas-nota {
+            background-color: #fffef9;
+            border: 1px dashed #b5c4b5;
+            border-radius: var(--radius-kecil);
+            padding: 18px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 12.5px;
+            color: #1c281d;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .nota-tengah {
+            text-align: center;
+            border-bottom: 1px dashed #b5c4b5;
+            padding-bottom: 10px;
+        }
+
+        .nota-baris {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .nota-total {
+            border-top: 1px dashed #b5c4b5;
+            padding-top: 10px;
+            font-weight: 700;
+            font-size: 14.5px;
+        }
+
+        .wadah-toast {
+            position: fixed;
+            bottom: 90px;
+            right: 24px;
+            z-index: 1500;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: none;
+        }
+
+        .toast-item {
+            background-color: var(--hijau-gelap);
+            color: var(--putih);
+            padding: 12px 18px;
+            border-radius: var(--radius-kecil);
+            box-shadow: var(--bayangan-tegas);
+            font-size: 13.5px;
+            font-weight: 600;
+            animation: masukToast 0.25s ease forwards;
+        }
+
+        @keyframes masukToast {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 56px 24px 36px 24px;
+            width: 100%;
+            background-color: var(--hijau-gelap);
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 14px;
+        }
+
+        .footer-grid {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 36px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--putih);
+            margin-bottom: 12px;
+        }
+
+        .footer-kolom h4 {
+            color: var(--putih);
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        .footer-kolom ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-bawah {
+            max-width: 1240px;
+            margin: 24px auto 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        .tidak-ditemukan {
+            text-align: center;
+            padding: 60px 20px;
+            background: var(--putih);
+            border-radius: var(--radius-besar);
+            border: 1px solid var(--abu-garis);
+            width: 100%;
+        }
+
+        /* ==========================================================================
+           13. RESPONSIVE BREAKPOINTS (TABLET & SMARTPHONE — ANTI KELUAR GARIS)
+           ========================================================================== */
+        @media (max-width: 960px) {
+            .hero-isi,
+            .kartu-bazaar-pnj {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
+            .hero-isi {
+                text-align: center;
+            }
+
+            .hero-teks {
+                align-items: center;
+            }
+
+            .hero-tombol-grup,
+            .hero-statistik {
+                justify-content: center;
+            }
+
+            .detail-wrapper {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .detail-teks {
+                padding: 24px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .topbar {
+                font-size: 11px;
+                padding: 7px 12px;
+            }
+
+            .topbar-kanan,
+            .nav-tautan {
+                display: none;
+            }
+
+            /* Merampingkan Navbar & Tombol Keranjang agar Pas di Layar HP */
+            .navbar-isi {
+                padding: 10px 12px;
+                gap: 8px;
+            }
+
+            .brand-logo {
+                font-size: 19px;
+                gap: 6px;
+            }
+
+            .brand-ikon {
+                width: 28px;
+                height: 28px;
+                font-size: 14px;
+                border-radius: 8px;
+            }
+
+            .nav-aksi {
+                gap: 6px;
+            }
+
+            .tombol-utilitas-nav {
+                padding: 6px 9px;
+                font-size: 11.5px;
+                gap: 4px;
+            }
+
+            .tombol-utilitas-nav span:first-child {
+                display: none;
+            }
+
+            .tombol-utilitas-nav::before {
+                content: "🕒";
+                font-size: 12.5px;
+            }
+
+            .lencana-riwayat-nav {
+                min-width: 18px;
+                height: 18px;
+                font-size: 10px;
+                padding: 0 4px;
+            }
+
+            .tombol-buka-keranjang {
+                padding: 7px 11px;
+                font-size: 12px;
+                gap: 6px;
+            }
+
+            .tombol-buka-keranjang svg {
+                width: 15px;
+                height: 15px;
+            }
+
+            .lencana-jumlah-keranjang {
+                min-width: 18px;
+                height: 18px;
+                font-size: 10.5px;
+                padding: 0 4px;
+            }
+
+            .nav-mobile-strip {
+                display: flex;
+            }
+
+            .hero {
+                padding: 28px 14px 32px 14px;
+            }
+
+            .hero-tombol-grup {
+                width: 100%;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn-primer,
+            .btn-sekunder {
+                width: 100%;
+                padding: 13px 20px;
+            }
+
+            .hero-bungkus-gambar {
+                height: 250px;
+            }
+
+            .hero-badge-melayang {
+                display: none;
+            }
+
+            .hero-statistik {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 8px;
+            }
+
+            .stat-item strong {
+                font-size: 14px;
+                white-space: nowrap;
+            }
+
+            .stat-item span {
+                font-size: 10.5px;
+                display: block;
+                line-height: 1.3;
+            }
+
+            .seksi-bazaar-wrapper {
+                margin-top: 22px;
+                padding: 0 14px;
+            }
+
+            .kartu-bazaar-pnj {
+                padding: 20px 16px;
+                gap: 16px;
+            }
+
+            .seksi-katalog {
+                padding: 32px 14px 40px 14px;
+            }
+
+            .bar-kontrol-katalog {
+                padding: 12px;
+                gap: 10px;
+            }
+
+            .daftar-filter-kategori {
+                width: 100%;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                scrollbar-width: none;
+                padding-bottom: 2px;
+            }
+
+            .daftar-filter-kategori::-webkit-scrollbar {
+                display: none;
+            }
+
+            .kontrol-kanan-katalog {
+                width: 100%;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .bungkus-input-cari {
+                min-width: 0;
+                max-width: 100%;
+            }
+
+            .input-cari,
+            .pilih-urutan,
+            .input-nama,
+            .select-kustom,
+            .input-promo,
+            .select-kustom-mini {
+                font-size: 16px;
+            }
+
+            .container-produk {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .bungkus-img {
+                height: 230px;
+            }
+
+            .seksi-riwayat-pembelian {
+                padding: 0 14px 44px 14px;
+            }
+
+            .kotak-riwayat-utama {
+                padding: 18px 14px;
+            }
+
+            .seksi-keunggulan,
+            .seksi-faq {
+                padding: 40px 14px;
+            }
+
+            .konten-detail {
+                padding: 16px 14px 80px 14px;
+            }
+
+            .detail-img-container {
+                height: 280px;
+            }
+
+            .grid-nutrisi {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .grid-kustomisasi,
+            .grup-tombol-detail,
+            .grid-form-checkout-keranjang {
+                grid-template-columns: 1fr;
+            }
+
+            .bar-keranjang-bawah-mobile.ada-isi {
+                display: block;
+            }
+
+            .wadah-toast {
+                left: 14px;
+                right: 14px;
+                bottom: 88px;
+            }
+
+            footer {
+                padding: 44px 16px 96px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== 1. TOPBAR PENGUMUMAN ====== -->
+    <div class="topbar">
+        <div class="topbar-isi">
+            <div class="topbar-kiri">
+                <span class="topbar-lencana">REMINDER!</span>
+                <span>Bazaar Politeknik Negeri Jakarta (10–11 Nov) • Parkiran Samping Lapangan Spirit</span>
+            </div>
+            <div class="topbar-kanan">
+                <span>Jam Pengambilan: 08:00 – 15:00 WIB</span>
+                <span>•</span>
+                <span>Pembayaran Non-Tunai via QRIS</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 2. NAVBAR UTAMA ====== -->
+    <nav id="navbar" class="navbar">
+        <div class="navbar-isi">
+            <a href="index.html" class="brand-logo">
+                <span class="brand-ikon">🥥</span>
+                <span>Kokownut<span class="brand-titik">.</span></span>
+            </a>
+
+            <div class="nav-tautan">
+                <a href="index.html#info-bazaar" class="nav-link">Bazaar PNJ</a>
+                <a href="index.html#katalog" class="nav-link">Menu Varian</a>
+                <a href="index.html#seksi-riwayat-pembelian" id="nav-link-riwayat" class="nav-link" hidden>Riwayat Saya</a>
+                <a href="index.html#keunggulan" class="nav-link">Kualitas</a>
+                <a href="index.html#faq" class="nav-link">FAQ</a>
+            </div>
+
+            <div class="nav-aksi">
+                <button type="button" id="btn-buka-riwayat" class="tombol-utilitas-nav" aria-label="Riwayat Pembelian Pribadi">
+                    <span>Riwayat Saya</span>
+                    <span id="lencana-riwayat" class="lencana-riwayat-nav">0</span>
+                </button>
+
+                <button type="button" id="btn-buka-keranjang" class="tombol-buka-keranjang" aria-label="Buka Keranjang Belanja">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span>Keranjang</span>
+                    <span id="lencana-keranjang" class="lencana-jumlah-keranjang">0</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Bar Navigasi Cepat Khusus Smartphone -->
+        <div class="nav-mobile-strip">
+            <a href="index.html#info-bazaar" class="pill-nav-mobile">📌 Bazaar PNJ (10-11 Nov)</a>
+            <a href="index.html#katalog" class="pill-nav-mobile">🥥 Menu Varian</a>
+            <a href="index.html#seksi-riwayat-pembelian" id="pill-mobile-riwayat" class="pill-nav-mobile" hidden>🔒 Riwayat Saya</a>
+            <a href="index.html#keunggulan" class="pill-nav-mobile">✨ Keunggulan</a>
+            <a href="index.html#faq" class="pill-nav-mobile">❓ Cara Bayar QRIS</a>
+        </div>
+    </nav>
+
+    <!-- ====== 3. HALAMAN UTAMA (BERANDA) ====== -->
+    <div id="beranda">
+        <header class="hero">
+            <div class="hero-isi">
+                <div class="hero-teks">
+                    <div class="hero-lencana">
+                        <span class="hero-lencana-titik"></span>
+                        <span>Fresh Coconut Drink</span>
+                    </div>
+                    <h1 class="judul-utama">Kesegaran Alami <span>Kokownut</span> di Setiap Tegukan</h1>
+                    <p class="deskripsi-produk">
+                        Perpaduan murni air kelapa muda pilihan dengan 100% ekstrak buah tropis asli. Pilih varian favorit Anda, atur takaran es, gula, dan jam pengambilan, lalu bayar praktis menggunakan QRIS.
+                    </p>
+                    <div class="hero-tombol-grup">
+                        <a href="#katalog" class="btn-primer">Pilih Menu Sekarang &darr;</a>
+                        <button type="button" id="btn-hero-buka-keranjang" class="btn-sekunder">Buka Keranjang Belanja</button>
+                    </div>
+                    <div class="hero-statistik">
+                        <div class="stat-item">
+                            <strong>5 Varian</strong>
+                            <span>Rasa Tropis Khas</span>
+                        </div>
+                        <div class="stat-item">
+                            <strong>100% QRIS</strong>
+                            <span>Bebas Antre Tunai</span>
+                        </div>
+                        <div class="stat-item">
+                            <strong>08:00 - 15:00</strong>
+                            <span>Slot Jam Pengambilan</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Auto-Rolling Showcase Gambar Produk -->
+                <div class="hero-visual">
+                    <div id="hero-carousel-kartu" class="hero-kartu-utama">
+                        <div class="hero-bungkus-gambar">
+                            <span id="hero-slide-lencana" class="hero-lencana-varian">Signature Tropis</span>
+                            <button type="button" id="hero-sebelumnya" class="hero-nav-panah hero-panah-kiri" aria-label="Varian Sebelumnya">&lsaquo;</button>
+                            <a id="hero-slide-link" href="?produk=coco-passion">
+                                <img id="hero-slide-img" class="hero-kartu-img" src="images/coco-passion.jpeg" alt="Coco Passion" />
+                            </a>
+                            <button type="button" id="hero-selanjutnya" class="hero-nav-panah hero-panah-kanan" aria-label="Varian Selanjutnya">&rsaquo;</button>
+                        </div>
+
+                        <a id="hero-slide-info-link" href="?produk=coco-passion" class="hero-kartu-info">
+                            <div>
+                                <h3 id="hero-slide-nama">Coco Passion</h3>
+                                <p id="hero-slide-tagline">Segar manis kelapa berpadu asam markisa.</p>
+                            </div>
+                            <span id="hero-slide-harga" class="hero-kartu-harga">Rp 18.000</span>
+                        </a>
+
+                        <div id="hero-indikator-dots" class="hero-indikator-dots"></div>
+                    </div>
+
+                    <div class="hero-badge-melayang">
+                        <span>⚡</span>
+                        <span>Elektrolit & Vitamin Alami</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Highlight & Reminder Bazaar Politeknik Negeri Jakarta -->
+        <div id="info-bazaar" class="seksi-bazaar-wrapper">
+            <div class="kartu-bazaar-pnj">
+                <div>
+                    <div class="bazaar-lencana-atas">
+                        <span>📌</span>
+                        <span>Reminder & Highlight Event</span>
+                    </div>
+                    <h2 class="bazaar-judul">Kokownut Hadir di Bazaar <span>Politeknik Negeri Jakarta!</span></h2>
+                    <p class="bazaar-deskripsi">
+                        Hindari antrean panjang saat jam istirahat kampus. Pesan melalui website ini, selesaikan pembayaran via QRIS, dan pilih estimasi jam pengambilan agar pesanan Anda langsung siap diambil di booth.
+                    </p>
+                </div>
+
+                <div class="bazaar-info-kanan">
+                    <div class="bazaar-baris-detail">
+                        <div class="bazaar-ikon">📅</div>
+                        <div>
+                            <strong>Tanggal Pelaksanaan</strong>
+                            <span>10 – 11 November</span>
+                        </div>
+                    </div>
+                    <div class="bazaar-baris-detail">
+                        <div class="bazaar-ikon">📍</div>
+                        <div>
+                            <strong>Lokasi Booth Kokownut</strong>
+                            <span>Parkiran Mobil Samping Lapangan Spirit, Politeknik Negeri Jakarta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seksi Katalog Menu -->
+        <section id="katalog" class="seksi-katalog">
+            <div class="kepala-seksi">
+                <div>
+                    <span class="sub-label-seksi">Katalog Produk</span>
+                    <h2>Varian Menu Kokownut</h2>
+                    <p>Klik "+ Keranjang" untuk memilih beberapa menu sekaligus—takaran es batu & kemanisan bisa diatur langsung di Keranjang!</p>
+                </div>
+            </div>
+
+            <div class="bar-kontrol-katalog">
+                <div class="daftar-filter-kategori">
+                    <button type="button" class="tombol-filter aktif" data-kategori="semua">Semua Menu (5)</button>
+                    <button type="button" class="tombol-filter" data-kategori="klasik">Klasik Murni</button>
+                    <button type="button" class="tombol-filter" data-kategori="segar-asam">Segar Asam</button>
+                    <button type="button" class="tombol-filter" data-kategori="manis-lembut">Manis Lembut</button>
+                </div>
+
+                <div class="kontrol-kanan-katalog">
+                    <div class="bungkus-input-cari">
+                        <svg class="ikon-cari" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="search" id="input-cari-produk" class="input-cari" placeholder="Cari varian atau buah..." />
+                    </div>
+
+                    <select id="pilih-urutan-produk" class="pilih-urutan" aria-label="Urutkan produk">
+                        <option value="default">Urutan Rekomendasi</option>
+                        <option value="termurah">Harga: Rendah ke Tinggi</option>
+                        <option value="termahal">Harga: Tinggi ke Rendah</option>
+                        <option value="nama">Nama: A - Z</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="grid-produk" class="container-produk"></div>
+        </section>
+
+        <!-- Seksi Riwayat Pembelian Pribadi (Hanya Muncul di Perangkat Pembeli Itu Sendiri) -->
+        <section id="seksi-riwayat-pembelian" class="seksi-riwayat-pembelian" hidden>
+            <div class="kotak-riwayat-utama">
+                <div class="kepala-riwayat-utama">
+                    <div>
+                        <div class="lencana-privasi-riwayat">🔒 Tersimpan Privat di Perangkat Anda</div>
+                        <h2>Riwayat Pembelian Saya</h2>
+                        <p>Riwayat ini hanya tersimpan di browser perangkat Anda sendiri dan tidak dapat dilihat oleh pelanggan lain.</p>
+                    </div>
+                    <button type="button" id="btn-hapus-riwayat-beranda" class="btn-hapus-semua-riwayat">Bersihkan Riwayat</button>
+                </div>
+                <div id="grid-riwayat-beranda" class="grid-riwayat-beranda"></div>
+            </div>
+        </section>
+
+        <!-- Seksi Keunggulan -->
+        <section id="keunggulan" class="seksi-keunggulan">
+            <div class="kontainer-lebar">
+                <div class="kepala-seksi">
+                    <div>
+                        <span class="sub-label-seksi">Komitmen Kualitas</span>
+                        <h2>Mengapa Kokownut Segar Berbeda?</h2>
+                    </div>
+                </div>
+
+                <div class="grid-keunggulan">
+                    <div class="kartu-keunggulan">
+                        <div class="ikon-keunggulan">🥥</div>
+                        <h3>Air Kelapa Segar Pilihan</h3>
+                        <p>Menggunakan air kelapa asli yang kaya mineral dan elektrolit untuk mengembalikan kesegaran tubuh secara cepat.</p>
+                    </div>
+                    <div class="kartu-keunggulan">
+                        <div class="ikon-keunggulan">🍍</div>
+                        <h3>100% Ekstrak Buah Asli</h3>
+                        <p>Dipadukan dengan sari buah markisa, semangka, nanas, dan sitrus tropis asli tanpa perisa buatan.</p>
+                    </div>
+                    <div class="kartu-keunggulan">
+                        <div class="ikon-keunggulan">📲</div>
+                        <h3>Transaksi Cepat via QRIS</h3>
+                        <p>Mendukung pembayaran QRIS dari seluruh aplikasi m-Banking dan e-Wallet untuk memastikan pesanan Anda terjamin.</p>
+                    </div>
+                    <div class="kartu-keunggulan">
+                        <div class="ikon-keunggulan">🕒</div>
+                        <h3>Jadwal Pengambilan Terukur</h3>
+                        <p>Pilih estimasi jam pengambilan agar minuman tetap dingin saat Anda ambil.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seksi FAQ -->
+        <section id="faq" class="seksi-faq">
+            <div class="kepala-seksi">
+                <div>
+                    <span class="sub-label-seksi">Pusat Informasi</span>
+                    <h2>Pertanyaan yang Sering Diajukan (FAQ)</h2>
+                </div>
+            </div>
+
+            <div class="daftar-faq">
+                <div class="item-faq terbuka">
+                    <button type="button" class="tombol-faq">
+                        <span>Bagaimana alur pemesanan dan pembayaran QRIS di website ini?</span>
+                        <span class="ikon-faq">+</span>
+                    </button>
+                    <div class="jawaban-faq">
+                        Website ini khusus melayani pemesanan dengan pembayaran <strong>QRIS</strong>. Setelah Anda memilih menu, mengatur takaran es/manis, serta mengisi nama dan jam pengambilan, layar <strong>Pembayaran QRIS</strong> akan muncul. Silakan scan atau unduh gambar QRIS, lakukan pembayaran sesuai total tagihan, unggah bukti screenshot pembayaran pada kolom yang tersedia, lalu klik <strong>Kirim Pesanan ke WhatsApp</strong>.
+                    </div>
+                </div>
+
+                <div class="item-faq">
+                    <button type="button" class="tombol-faq">
+                        <span>Apakah Riwayat Pembelian saya bisa dilihat oleh orang lain yang membuka web ini?</span>
+                        <span class="ikon-faq">+</span>
+                    </button>
+                    <div class="jawaban-faq">
+                        <strong>Tidak bisa.</strong> Fitur Riwayat Pembelian menggunakan penyimpanan lokal terisolasi pada browser smartphone/perangkat Anda masing-masing. Pelanggan lain yang mengakses website ini dari perangkat mereka sama sekali tidak dapat melihat daftar pesanan maupun nama Anda.
+                    </div>
+                </div>
+
+                <div class="item-faq">
+                    <button type="button" class="tombol-faq">
+                        <span>Di mana lokasi booth Kokownut saat Bazaar Politeknik Negeri Jakarta?</span>
+                        <span class="ikon-faq">+</span>
+                    </button>
+                    <div class="jawaban-faq">
+                        Kokownut hadir di Bazaar Politeknik Negeri Jakarta pada tanggal <strong>10–11 November</strong>, berlokasi di <strong>Parkiran Mobil Samping Lapangan Spirit</strong>.
+                    </div>
+                </div>
+
+                <div class="item-faq">
+                    <button type="button" class="tombol-faq">
+                        <span>Apakah saya bisa memilih takaran es dan kemanisan langsung di Keranjang?</span>
+                        <span class="ikon-faq">+</span>
+                    </button>
+                    <div class="jawaban-faq">
+                        Bisa! Cukup klik tombol <strong>+ Keranjang</strong> di halaman utama. Saat membuka panel <strong>Keranjang</strong>, setiap item dilengkapi pilihan <strong>Takaran Es Batu</strong> dan <strong>Tingkat Kemanisan</strong>. Jika membeli lebih dari 1 cup pada varian yang sama dan ingin takaran berbeda, klik tombol <strong>Pisahkan 1 Cup</strong> di dalam keranjang.
+                    </div>
+                </div>
+
+                <div class="item-faq">
+                    <button type="button" class="tombol-faq">
+                        <span>Bagaimana aturan Estimasi Jam Pengambilan pesanan?</span>
+                        <span class="ikon-faq">+</span>
+                    </button>
+                    <div class="jawaban-faq">
+                        Kami menyediakan pilihan waktu pengambilan dengan rentang 1 jam (mulai pukul <strong>08:00</strong> hingga <strong>15:00</strong>). Tim kami meracik pesanan mendekati jam pengambilan Anda agar kesegaran air kelapa tetap terjaga.
+                    </div>
+                </div>
+
+                <div class="item-faq">
+                    <button type="button" class="tombol-faq">
+                        <span>Bagaimana cara menggunakan kode voucher di keranjang?</span>
+                        <span class="ikon-faq">+</span>
+                    </button>
+                    <div class="jawaban-faq">
+                        Saat Kokownut mengadakan promo khusus, kode voucher resmi akan diumumkan. Anda cukup mengetikkan kode tersebut pada kolom voucher di dalam <strong>Keranjang</strong> lalu menekan tombol <strong>Pakai</strong> sebelum melanjutkan ke pembayaran QRIS.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- ====== AKHIR HALAMAN UTAMA ====== -->
+
+    <!-- ====== 4. HALAMAN DETAIL PRODUK ====== -->
+    <div id="detail" class="konten-detail" hidden>
+        <div class="bar-atas">
+            <a href="index.html" class="link-kembali">&larr; Kembali ke semua produk</a>
+            <div id="breadcrumb-teks" class="breadcrumb-detail">Beranda / Katalog / <strong>Detail Produk</strong></div>
+        </div>
+        <main id="konten"></main>
+    </div>
+    <!-- ====== AKHIR HALAMAN DETAIL ====== -->
+
+    <!-- ====== 5. DRAWER KERANJANG BELANJA & CHECKOUT ====== -->
+    <div id="latar-drawer" class="latar-gelap-drawer"></div>
+
+    <aside id="drawer-keranjang" class="drawer-keranjang" aria-label="Keranjang Belanja">
+        <div class="drawer-kepala">
+            <h2>
+                <span>🛒</span>
+                <span>Keranjang Pesanan</span>
+            </h2>
+            <button type="button" id="btn-tutup-keranjang" class="tombol-tutup-drawer" aria-label="Tutup Keranjang">&times;</button>
+        </div>
+
+        <div id="badan-keranjang" class="drawer-badan"></div>
+
+        <div id="kaki-keranjang" class="drawer-kaki" hidden>
+            <div class="kotak-promo-keranjang">
+                <input type="text" id="input-kode-promo" class="input-promo" placeholder="Masukkan kode voucher..." />
+                <button type="button" id="btn-terapkan-promo" class="btn-pakai-promo">Pakai</button>
+            </div>
+            <div id="status-promo-teks" class="info-promo-aktif" hidden></div>
+
+            <div class="ringkasan-checkout">
+                <div class="baris-ringkasan">
+                    <span>Total Jumlah Cup</span>
+                    <strong id="ringkasan-cup">0 Cup</strong>
+                </div>
+                <div class="baris-ringkasan">
+                    <span>Subtotal Produk</span>
+                    <span id="ringkasan-subtotal">Rp 0</span>
+                </div>
+                <div id="baris-diskon-ringkasan" class="baris-ringkasan" hidden>
+                    <span>Potongan Voucher</span>
+                    <strong id="ringkasan-diskon" style="color: var(--hijau-segar);">- Rp 0</strong>
+                </div>
+                <div class="baris-ringkasan total-akhir">
+                    <span>Total Tagihan QRIS</span>
+                    <span id="ringkasan-harga">Rp 0</span>
+                </div>
+            </div>
+
+            <div class="grid-form-checkout-keranjang">
+                <div class="grup-form">
+                    <label for="input-nama-keranjang" class="label-form">Nama Pemesan</label>
+                    <input type="text" id="input-nama-keranjang" class="input-nama" placeholder="Nama Anda..." autocomplete="name" />
+                </div>
+
+                <div class="grup-form">
+                    <label for="select-jam-keranjang" class="label-form">Estimasi Jam Ambil</label>
+                    <select id="select-jam-keranjang" class="select-kustom"></select>
+                </div>
+            </div>
+            <span id="error-nama-keranjang" class="teks-error">Mohon isi nama Anda terlebih dahulu sebelum lanjut ke pembayaran QRIS.</span>
+
+            <div class="grup-aksi-checkout">
+                <button type="button" id="btn-lihat-nota" class="tombol-cetak-nota">Lihat Nota</button>
+                <button type="button" id="btn-checkout-keranjang" class="tombol-checkout-wa">
+                    <span>Lanjut Bayar QRIS</span>
+                    <span>&rarr;</span>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ====== 6. MODAL GERBANG PEMBAYARAN QRIS (WAJIB SEBELUM KE WHATSAPP) ====== -->
+    <div id="modal-qris" class="modal-umum" role="dialog" aria-label="Pembayaran QRIS Kokownut">
+        <div class="drawer-kepala">
+            <h2>📲 Pembayaran QRIS Kokownut</h2>
+            <button type="button" id="btn-tutup-qris" class="tombol-tutup-drawer" aria-label="Tutup QRIS">&times;</button>
+        </div>
+
+        <div class="isi-modal">
+            <div class="qris-banner-instruksi">
+                <strong>Penting:</strong> Pesanan hanya diproses bagi pelanggan yang telah menyelesaikan pembayaran QRIS. Silakan scan/unduh kode QRIS di bawah ini sesuai nominal tagihan.
+            </div>
+
+            <div class="qris-kotak-tagihan">
+                <div>
+                    <span class="label-total">Total yang Harus Dibayar</span>
+                    <div id="qris-nominal-tampil" class="qris-nominal-besar">Rp 0</div>
+                </div>
+                <button type="button" id="btn-salin-nominal-qris" class="btn-salin-nominal">Salin Nominal</button>
+            </div>
+
+            <div id="qris-rincian-pesanan" class="qris-rincian-mini"></div>
+
+            <!-- Bingkai Gambar QRIS Anda -->
+            <div class="qris-bingkai-gambar">
+                <img id="img-qris-utama" class="qris-img-tampil" src="images/qris.jpeg" alt="QRIS Kokownut Segar" />
+                <div id="qris-fallback-teks" class="qris-placeholder-info" hidden>
+                    <strong>Gambar QRIS Belum Dimasukkan</strong><br>
+                    Simpan gambar QRIS Anda di folder <code>images/qris.jpeg</code> agar tampil otomatis di sini.
+                </div>
+                <a id="link-unduh-qris" href="images/qris.jpeg" download="QRIS-Kokownut-Segar.jpeg" class="btn-unduh-qris">
+                    ⬇ Unduh Gambar QRIS (Untuk Pengguna HP)
+                </a>
+            </div>
+
+            <!-- Verifikasi Bukti Pembayaran Sebelum Tombol WhatsApp Terbuka -->
+            <div class="qris-kotak-bukti">
+                <span class="label-form">1. Unggah Screenshot Bukti Pembayaran QRIS (Wajib)</span>
+                <label for="input-file-bukti-qris" class="label-upload-bukti">
+                    <span>📤 Pilih Gambar Bukti Transfer dari Galeri</span>
+                    <span style="font-size: 11px; font-weight: 500; color: var(--teks-sekunder);">Format JPG / PNG / Screenshot m-Banking atau e-Wallet</span>
+                </label>
+                <input type="file" id="input-file-bukti-qris" accept="image/*" hidden />
+
+                <div id="wadah-pratinjau-bukti" class="pratinjau-bukti-wrapper" hidden>
+                    <img id="img-pratinjau-bukti" class="img-pratinjau-bukti" src="" alt="Pratinjau Bukti" />
+                    <div id="nama-file-bukti" class="info-file-bukti">bukti-transfer.jpg</div>
+                </div>
+
+                <label class="baris-centang-qris">
+                    <input type="checkbox" id="cek-konfirmasi-qris" />
+                    <span>Saya sudah membayar via QRIS sesuai nominal di atas dan siap melampirkan foto bukti transfer di chat WhatsApp.</span>
+                </label>
+            </div>
+
+            <button type="button" id="btn-konfirmasi-kirim-wa" class="tombol-kirim-wa-qris" disabled>
+                <span>Kirim Pesanan ke WhatsApp Sekarang</span>
+                <span>&rarr;</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- ====== 7. STICKY BOTTOM CART BAR KHUSUS SMARTPHONE ====== -->
+    <div id="bar-keranjang-bawah-mobile" class="bar-keranjang-bawah-mobile">
+        <button type="button" id="btn-buka-keranjang-bawah" class="tombol-bar-keranjang-mobile">
+            <div class="info-kiri-bar-mobile">
+                <span id="badge-cup-mobile" class="badge-cup-bar-mobile">0 Cup</span>
+                <div class="teks-bar-mobile">
+                    <strong>Keranjang Belanja</strong>
+                    <span>Ketuk untuk atur es/manis & bayar QRIS</span>
+                </div>
+            </div>
+            <div class="harga-kanan-bar-mobile">
+                <span id="harga-bar-mobile">Rp 0</span>
+                <span>&rarr;</span>
+            </div>
+        </button>
+    </div>
+
+    <!-- ====== 8. MODAL RIWAYAT PEMBELIAN PRIBADI ====== -->
+    <div id="modal-riwayat" class="modal-umum" role="dialog" aria-label="Riwayat Pembelian Saya">
+        <div class="drawer-kepala">
+            <h2>🔒 Riwayat Pembelian Saya</h2>
+            <button type="button" id="btn-tutup-riwayat" class="tombol-tutup-drawer" aria-label="Tutup Riwayat">&times;</button>
+        </div>
+        <div id="isi-riwayat" class="isi-modal"></div>
+    </div>
+
+    <!-- ====== 9. MODAL NOTA / STRUK DIGITAL ====== -->
+    <div id="modal-nota" class="modal-umum" role="dialog" aria-label="Nota Pesanan">
+        <div class="drawer-kepala">
+            <h2>Struk Ringkasan Pesanan</h2>
+            <button type="button" id="btn-tutup-nota" class="tombol-tutup-drawer" aria-label="Tutup Nota">&times;</button>
+        </div>
+        <div class="isi-modal">
+            <div id="wadah-kertas-nota" class="kertas-nota"></div>
+            <button type="button" id="btn-lanjut-qris-nota" class="tombol-checkout-wa">Lanjut ke Pembayaran QRIS &rarr;</button>
+        </div>
+    </div>
+
+    <!-- ====== 10. WADAH TOAST NOTIFIKASI ====== -->
+    <div id="wadah-toast" class="wadah-toast"></div>
+
+    <!-- ====== 11. FOOTER ====== -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <div class="footer-brand">Kokownut Segar.</div>
+                <p>Minuman air kelapa murni dengan perpaduan ekstrak buah tropis asli. Hadir di Bazaar Politeknik Negeri Jakarta (10–11 November) di Parkiran Mobil Samping Lapangan Spirit.</p>
+            </div>
+            <div class="footer-kolom">
+                <h4>Varian Menu</h4>
+                <ul>
+                    <li><a href="?produk=original-coco">Original Coco — Rp 8.000</a></li>
+                    <li><a href="?produk=cocomellon">Cocomellon — Rp 12.000</a></li>
+                    <li><a href="?produk=pinnacollada">Pinnacollada — Rp 12.000</a></li>
+                    <li><a href="?produk=coco-sunkissed">Coco Sunkissed — Rp 15.000</a></li>
+                    <li><a href="?produk=coco-passion">Coco Passion — Rp 18.000</a></li>
+                </ul>
+            </div>
+            <div class="footer-kolom">
+                <h4>Ketentuan Pemesanan</h4>
+                <ul>
+                    <li><a href="#faq">Khusus Pembayaran QRIS</a></li>
+                    <li><a href="#info-bazaar">Lokasi Bazaar PNJ</a></li>
+                    <li><a href="#faq">Bantuan & FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bawah">
+            <div>&copy; 2026 Kokownut Indonesia. All Rights Reserved.</div>
+            <div>Official QRIS Web Store Kokownut Segar</div>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+         12. LOGIKA JAVASCRIPT UTAMA
+         ========================================================================== -->
+    <script>
+        const NOMOR_WA = "6287881623552";
+
+        // GANTI NAMA FILE GAMBAR QRIS ANDA DI BARIS INI JIKA PERLU:
+        const GAMBAR_QRIS = "images/qris.jpeg";
+
+        const KUNCI_STORAGE_DEVICE_ID = "kokownut_device_token_v4";
+        const KUNCI_STORAGE_KERANJANG = "kokownut_keranjang_v4";
+        const KUNCI_STORAGE_NAMA = "kokownut_nama_pelanggan_v4";
+        const KUNCI_STORAGE_JAM = "kokownut_jam_ambil_v4";
+        const KUNCI_STORAGE_RIWAYAT = "kokownut_riwayat_privat_v4";
+
+        const OPSI_ES = ["Normal Ice", "Less Ice", "No Ice"];
+        const OPSI_MANIS = ["Normal Sweet", "Less Sweet", "Murni Tanpa Gula"];
+
+        const OPSI_JAM_PENGAMBILAN = [
+            "08:00 - 09:00",
+            "09:00 - 10:00",
+            "10:00 - 11:00",
+            "11:00 - 12:00",
+            "12:00 - 13:00",
+            "13:00 - 14:00",
+            "14:00 - 15:00"
+        ];
+
+        // Semua kode voucher aktif dihapus sementara sesuai instruksi.
+        const DAFTAR_VOUCHER = {};
+
+        // ====== 1. DATABASE PRODUK UTAMA ======
+        const produk = {
+            "original-coco": {
+                nama: "Original Coco",
+                harga: 8000,
+                kategori: "klasik",
+                lencana: "Klasik Favorit",
+                gambar: "images/original-coco.jpeg",
+                tagline: "Kesegaran air kelapa murni, apa adanya.",
+                deskripsi: "Original Coco adalah varian paling klasik dari Kokownut Segar. Rasa manis alami air kelapa muda pilihan yang ringan, murni, dan menghidrasi tubuh secara optimal saat cuaca panas.",
+                nutrisi: {
+                    volume: "350 ml",
+                    kalori: "65 kkal",
+                    utama: "Elektrolit Tinggi",
+                    karakter: "Manis Alami"
+                },
+                sorotan: [
+                    "100% rasa khas air kelapa alami tanpa campuran",
+                    "Ringan, murni, dan cepat menghidrasi tubuh",
+                    "Pilihan klasik yang cocok untuk semua kalangan"
+                ]
+            },
+            "coco-passion": {
+                nama: "Coco Passion",
+                harga: 18000,
+                kategori: "segar-asam",
+                lencana: "Signature Tropis",
+                gambar: "images/coco-passion.jpeg",
+                tagline: "Segar manis kelapa berpadu asam markisa.",
+                deskripsi: "Coco Passion memadukan air kelapa murni dengan ekstrak buah markisa asli. Manis lembut kelapa bertemu sensasi asam segar markisa, menghasilkan profil rasa tropis yang kuat dan berkarakter.",
+                nutrisi: {
+                    volume: "350 ml",
+                    kalori: "95 kkal",
+                    utama: "Kaya Vitamin C",
+                    karakter: "Asam Manis Segar"
+                },
+                sorotan: [
+                    "Perpaduan air kelapa murni dan ekstrak markisa asli",
+                    "Sensasi segar dengan sentuhan asam tropis yang pas",
+                    "Varian premium untuk penyuka rasa buah yang tegas"
+                ]
+            },
+            "cocomellon": {
+                nama: "Cocomellon",
+                harga: 12000,
+                kategori: "manis-lembut",
+                lencana: "Paling Menyegarkan",
+                gambar: "images/cocomellon.jpeg",
+                tagline: "Manis lembut semangka, sejuk air kelapa.",
+                deskripsi: "Cocomellon menghadirkan kombinasi air kelapa dengan ekstrak buah semangka merah segar. Rasanya manis lembut, ringan di tenggorokan, dan sangat menyejukkan di siang hari.",
+                nutrisi: {
+                    volume: "350 ml",
+                    kalori: "80 kkal",
+                    utama: "Hidrasi Ganda",
+                    karakter: "Manis Sejuk"
+                },
+                sorotan: [
+                    "Perpaduan air kelapa dan ekstrak buah semangka segar",
+                    "Rasa manis lembut dan ringan di tenggorokan",
+                    "Sangat nikmat disajikan dalam kondisi dingin"
+                ]
+            },
+            "coco-sunkissed": {
+                nama: "Coco Sunkissed",
+                harga: 15000,
+                kategori: "segar-asam",
+                lencana: "Mood Booster",
+                gambar: "images/coco-sunkissed.jpeg",
+                tagline: "Hangat cerahnya buah tropis dalam setiap tegukan.",
+                deskripsi: "Coco Sunkissed memadukan air kelapa dengan ekstrak buah sitrus tropis yang memberi kesan cerah seperti sinar matahari. Rasanya segar, manis seimbang, dan membangkitkan semangat.",
+                nutrisi: {
+                    volume: "350 ml",
+                    kalori: "90 kkal",
+                    utama: "Vitamin C & Mineral",
+                    karakter: "Cerah Menyegarkan"
+                },
+                sorotan: [
+                    "Air kelapa dengan ekstrak buah sitrus tropis asli",
+                    "Profil rasa cerah, segar, dan manis seimbang",
+                    "Teman terbaik untuk menemani aktivitas siang hari"
+                ]
+            },
+            "pinnacollada": {
+                nama: "Pinnacollada",
+                harga: 12000,
+                kategori: "manis-lembut",
+                lencana: "Best Seller",
+                gambar: "images/pinnacollada.jpeg",
+                tagline: "Nanas dan kelapa, duet tropis yang klasik.",
+                deskripsi: "Pinnacollada memadukan air kelapa dengan ekstrak buah nanas madu pilihan, terinspirasi dari kombinasi mocktail klasik dunia. Manis, segar, dan menghadirkan suasana liburan tropis.",
+                nutrisi: {
+                    volume: "350 ml",
+                    kalori: "85 kkal",
+                    utama: "Bromelain & Mineral",
+                    karakter: "Manis Tropis"
+                },
+                sorotan: [
+                    "Perpaduan harmonis air kelapa dan ekstrak nanas",
+                    "Manis segar dengan sentuhan asam khas nanas",
+                    "Rasa mocktail tropis yang paling mudah disukai"
+                ]
+            }
+        };
+
+        // ====== 2. STATE APLIKASI & ISOLASI PERANGKAT ======
+        const tokenPerangkatPribadi = dapatkanAtauBuatTokenPerangkat();
+        let keranjang = muatKeranjangDariStorage();
+        let kodePromoAktif = "";
+        let kategoriAktif = "semua";
+        let kataKunciCari = "";
+        let urutanAktif = "default";
+
+        let transaksiTertundaQRIS = null;
+        let fileBuktiTerpilih = null;
+
+        // ====== 3. FUNGSI UTILITAS & TOKEN PRIVASI ======
+        function dapatkanAtauBuatTokenPerangkat() {
+            try {
+                let token = localStorage.getItem(KUNCI_STORAGE_DEVICE_ID);
+                if (!token) {
+                    token = "dev_" + Date.now().toString(36) + "_" + Math.random().toString(36).substring(2, 10);
+                    localStorage.setItem(KUNCI_STORAGE_DEVICE_ID, token);
+                }
+                return token;
+            } catch (err) {
+                return "dev_session_local";
+            }
+        }
+
+        function formatRupiah(angka) {
+            return "Rp " + Number(angka).toLocaleString("id-ID");
+        }
+
+        function buatEl(tag, kelas, teks) {
+            const el = document.createElement(tag);
+            if (kelas) el.className = kelas;
+            if (teks !== undefined) el.textContent = teks;
+            return el;
+        }
+
+        function buatUidItem() {
+            return "item_" + Date.now() + "_" + Math.floor(Math.random() * 10000);
+        }
+
+        function muatKeranjangDariStorage() {
+            try {
+                const data = localStorage.getItem(KUNCI_STORAGE_KERANJANG);
+                if (!data) return [];
+                const parsed = JSON.parse(data);
+                if (Array.isArray(parsed)) {
+                    return parsed.filter(function (it) {
+                        return it && produk[it.idProduk] && it.qty > 0;
+                    });
+                }
+                return [];
+            } catch (err) {
+                return [];
+            }
+        }
+
+        function simpanKeranjangKeStorage() {
+            try {
+                localStorage.setItem(KUNCI_STORAGE_KERANJANG, JSON.stringify(keranjang));
+            } catch (err) {}
+        }
+
+        function ambilNamaTersimpan() {
+            try {
+                return localStorage.getItem(KUNCI_STORAGE_NAMA) || "";
+            } catch (err) {
+                return "";
+            }
+        }
+
+        function simpanNamaPelanggan(nama) {
+            try {
+                localStorage.setItem(KUNCI_STORAGE_NAMA, nama);
+            } catch (err) {}
+        }
+
+        function ambilJamTersimpan() {
+            try {
+                const tersimpan = localStorage.getItem(KUNCI_STORAGE_JAM);
+                if (tersimpan && OPSI_JAM_PENGAMBILAN.indexOf(tersimpan) !== -1) {
+                    return tersimpan;
+                }
+                return OPSI_JAM_PENGAMBILAN[0];
+            } catch (err) {
+                return OPSI_JAM_PENGAMBILAN[0];
+            }
+        }
+
+        function simpanJamPengambilan(jam) {
+            try {
+                localStorage.setItem(KUNCI_STORAGE_JAM, jam);
+            } catch (err) {}
+        }
+
+        function isiDropdownJam(selectEl) {
+            if (!selectEl) return;
+            selectEl.innerHTML = "";
+            const jamAktif = ambilJamTersimpan();
+            OPSI_JAM_PENGAMBILAN.forEach(function (slot) {
+                const opt = buatEl("option", "", slot + " WIB");
+                opt.value = slot;
+                if (slot === jamAktif) opt.selected = true;
+                selectEl.appendChild(opt);
+            });
+        }
+
+        function tampilkanToast(pesan) {
+            const wadah = document.getElementById("wadah-toast");
+            const toast = buatEl("div", "toast-item", "✓ " + pesan);
+            wadah.appendChild(toast);
+            setTimeout(function () {
+                toast.remove();
+            }, 2600);
+        }
+
+        // ====== 4. FORMAT PESAN WHATSAPP RESMI (KHUSUS PEMBAYARAN QRIS) ======
+        function susunTeksPesanWA(namaPelanggan, teksVarian, totalJumlahCup, totalHargaNominal, jamPengambilan, idOrderRef) {
+            const namaBersih = (namaPelanggan || "").trim() || "-";
+            const jamBersih = jamPengambilan || ambilJamTersimpan();
+            const refBersih = idOrderRef ? " (#" + idOrderRef + ")" : "";
+            return (
+                "Halo Kokownut, saya ingin melakukan pemesanan" + refBersih + "\n\n" +
+                "Nama: " + namaBersih + "\n" +
+                "Varian: " + teksVarian + "\n" +
+                "Jumlah: " + totalJumlahCup + "\n" +
+                "Estimasi Jam Pengambilan: " + jamBersih + "\n" +
+                "Total Harga: " + formatRupiah(totalHargaNominal) + "\n" +
+                "Pembayaran: QRIS (Sudah Bayar - Bukti Terlampir)\n\n" +
+                "Terima Kasih"
+            );
+        }
+
+        function buatLinkWA(teksPesan) {
+            return "https://wa.me/" + NOMOR_WA + "?text=" + encodeURIComponent(teksPesan);
+        }
+
+        // ====== 5. INISIALISASI GERBANG PEMBAYARAN QRIS ======
+        function inisialisasiModalQRIS() {
+            const imgQrisEl = document.getElementById("img-qris-utama");
+            const fallbackQrisEl = document.getElementById("qris-fallback-teks");
+            const linkUnduhQrisEl = document.getElementById("link-unduh-qris");
+            const inputBuktiEl = document.getElementById("input-file-bukti-qris");
+            const wadahPratinjauEl = document.getElementById("wadah-pratinjau-bukti");
+            const imgPratinjauEl = document.getElementById("img-pratinjau-bukti");
+            const namaFileBuktiEl = document.getElementById("nama-file-bukti");
+            const cekKonfirmasiEl = document.getElementById("cek-konfirmasi-qris");
+            const btnKirimWaEl = document.getElementById("btn-konfirmasi-kirim-wa");
+            const btnSalinNominalEl = document.getElementById("btn-salin-nominal-qris");
+
+            imgQrisEl.src = GAMBAR_QRIS;
+            linkUnduhQrisEl.href = GAMBAR_QRIS;
+
+            imgQrisEl.addEventListener("error", function () {
+                imgQrisEl.hidden = true;
+                fallbackQrisEl.hidden = false;
+            });
+
+            imgQrisEl.addEventListener("load", function () {
+                imgQrisEl.hidden = false;
+                fallbackQrisEl.hidden = true;
+            });
+
+            function validasiKunciTombolWA() {
+                const syaratTerpenuhi = Boolean(fileBuktiTerpilih) && cekKonfirmasiEl.checked && Boolean(transaksiTertundaQRIS);
+                btnKirimWaEl.disabled = !syaratTerpenuhi;
+            }
+
+            inputBuktiEl.addEventListener("change", function (e) {
+                const file = e.target.files && e.target.files[0];
+                if (!file) {
+                    fileBuktiTerpilih = null;
+                    wadahPratinjauEl.hidden = true;
+                    validasiKunciTombolWA();
+                    return;
+                }
+                fileBuktiTerpilih = file;
+                namaFileBuktiEl.textContent = "Bukti siap: " + file.name;
+                const reader = new FileReader();
+                reader.onload = function (ev) {
+                    imgPratinjauEl.src = ev.target.result;
+                    wadahPratinjauEl.hidden = false;
+                };
+                reader.readAsDataURL(file);
+                validasiKunciTombolWA();
+            });
+
+            cekKonfirmasiEl.addEventListener("change", validasiKunciTombolWA);
+
+            btnSalinNominalEl.addEventListener("click", function () {
+                if (!transaksiTertundaQRIS) return;
+                const angkaMurni = String(transaksiTertundaQRIS.total);
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(angkaMurni);
+                }
+                tampilkanToast("Nominal " + formatRupiah(transaksiTertundaQRIS.total) + " disalin");
+            });
+
+            btnKirimWaEl.addEventListener("click", function () {
+                if (!transaksiTertundaQRIS || !fileBuktiTerpilih || !cekKonfirmasiEl.checked) return;
+
+                const trx = transaksiTertundaQRIS;
+                const idOrder = "KKW-" + Math.floor(100000 + Math.random() * 900000);
+
+                const teksWA = susunTeksPesanWA(
+                    trx.nama,
+                    trx.varian,
+                    trx.jumlah,
+                    trx.total,
+                    trx.jamAmbil,
+                    idOrder
+                );
+
+                simpanKeRiwayatPribadi({
+                    idOrder: idOrder,
+                    waktu: new Date().toLocaleDateString("id-ID", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit"
+                    }),
+                    nama: trx.nama,
+                    varian: trx.varian,
+                    jumlah: trx.jumlah,
+                    jamAmbil: trx.jamAmbil,
+                    total: trx.total
+                });
+
+                if (trx.sumber === "keranjang") {
+                    keranjang = [];
+                    kodePromoAktif = "";
+                    simpanKeranjangKeStorage();
+                    perbaruiUIKeranjang();
+                }
+
+                tutupSemuaOverlay();
+                tampilkanToast("Pembayaran dikonfirmasi! Silakan lampirkan foto bukti di WhatsApp.");
+                window.open(buatLinkWA(teksWA), "_blank", "noopener");
+            });
+        }
+
+        function bukaGerbangPembayaranQRIS(dataTransaksi) {
+            transaksiTertundaQRIS = dataTransaksi;
+            fileBuktiTerpilih = null;
+
+            const inputBuktiEl = document.getElementById("input-file-bukti-qris");
+            const wadahPratinjauEl = document.getElementById("wadah-pratinjau-bukti");
+            const cekKonfirmasiEl = document.getElementById("cek-konfirmasi-qris");
+            const btnKirimWaEl = document.getElementById("btn-konfirmasi-kirim-wa");
+
+            if (inputBuktiEl) inputBuktiEl.value = "";
+            if (wadahPratinjauEl) wadahPratinjauEl.hidden = true;
+            if (cekKonfirmasiEl) cekKonfirmasiEl.checked = false;
+            if (btnKirimWaEl) btnKirimWaEl.disabled = true;
+
+            document.getElementById("qris-nominal-tampil").textContent = formatRupiah(dataTransaksi.total);
+
+            const rincianEl = document.getElementById("qris-rincian-pesanan");
+            rincianEl.innerHTML = "";
+            rincianEl.appendChild(buatEl("div", "", "Pemesan: " + dataTransaksi.nama + " • Jam Ambil: " + dataTransaksi.jamAmbil));
+            rincianEl.appendChild(buatEl("strong", "", "Pesanan (" + dataTransaksi.jumlah + " Cup): " + dataTransaksi.varian));
+
+            document.getElementById("drawer-keranjang").classList.remove("aktif");
+            document.getElementById("modal-nota").classList.remove("aktif");
+            document.getElementById("modal-riwayat").classList.remove("aktif");
+
+            document.getElementById("latar-drawer").classList.add("aktif");
+            document.getElementById("modal-qris").classList.add("aktif");
+            document.body.classList.add("kunci-scroll");
+        }
+
+        // ====== 6. AUTO-ROLLING HERO CAROUSEL ======
+        function inisialisasiHeroCarousel() {
+            const kunciVarian = Object.keys(produk);
+            let indeksSlide = 1;
+            let timerRolling = null;
+            let sentuhAwalX = 0;
+
+            const imgEl = document.getElementById("hero-slide-img");
+            const lencanaEl = document.getElementById("hero-slide-lencana");
+            const namaEl = document.getElementById("hero-slide-nama");
+            const taglineEl = document.getElementById("hero-slide-tagline");
+            const hargaEl = document.getElementById("hero-slide-harga");
+            const linkImgEl = document.getElementById("hero-slide-link");
+            const linkInfoEl = document.getElementById("hero-slide-info-link");
+            const wadahDots = document.getElementById("hero-indikator-dots");
+            const kartuCarousel = document.getElementById("hero-carousel-kartu");
+
+            if (!imgEl || !wadahDots) return;
+
+            kunciVarian.forEach(function (_, idx) {
+                const dot = buatEl("button", "hero-dot" + (idx === indeksSlide ? " aktif" : ""));
+                dot.type = "button";
+                dot.setAttribute("aria-label", "Pilih slide " + (idx + 1));
+                dot.addEventListener("click", function () {
+                    tampilkanSlide(idx);
+                    mulaiUlangTimer();
+                });
+                wadahDots.appendChild(dot);
+            });
+
+            function tampilkanSlide(idxBaru) {
+                indeksSlide = (idxBaru + kunciVarian.length) % kunciVarian.length;
+                const kunci = kunciVarian[indeksSlide];
+                const item = produk[kunci];
+
+                imgEl.classList.add("sedang-berganti");
+
+                setTimeout(function () {
+                    imgEl.src = item.gambar;
+                    imgEl.alt = item.nama;
+                    lencanaEl.textContent = item.lencana || "Menu Segar";
+                    namaEl.textContent = item.nama;
+                    taglineEl.textContent = item.tagline;
+                    hargaEl.textContent = formatRupiah(item.harga);
+                    linkImgEl.href = "?produk=" + kunci;
+                    linkInfoEl.href = "?produk=" + kunci;
+
+                    const semuaDot = wadahDots.querySelectorAll(".hero-dot");
+                    semuaDot.forEach(function (d, i) {
+                        if (i === indeksSlide) {
+                            d.classList.add("aktif");
+                        } else {
+                            d.classList.remove("aktif");
+                        }
+                    });
+
+                    imgEl.classList.remove("sedang-berganti");
+                }, 220);
+            }
+
+            function mulaiTimer() {
+                timerRolling = setInterval(function () {
+                    tampilkanSlide(indeksSlide + 1);
+                }, 3500);
+            }
+
+            function hentikanTimer() {
+                if (timerRolling) clearInterval(timerRolling);
+            }
+
+            function mulaiUlangTimer() {
+                hentikanTimer();
+                mulaiTimer();
+            }
+
+            document.getElementById("hero-sebelumnya").addEventListener("click", function () {
+                tampilkanSlide(indeksSlide - 1);
+                mulaiUlangTimer();
+            });
+
+            document.getElementById("hero-selanjutnya").addEventListener("click", function () {
+                tampilkanSlide(indeksSlide + 1);
+                mulaiUlangTimer();
+            });
+
+            kartuCarousel.addEventListener("touchstart", function (e) {
+                sentuhAwalX = e.changedTouches[0].screenX;
+                hentikanTimer();
+            }, { passive: true });
+
+            kartuCarousel.addEventListener("touchend", function (e) {
+                const sentuhAkhirX = e.changedTouches[0].screenX;
+                const selisih = sentuhAkhirX - sentuhAwalX;
+                if (Math.abs(selisih) > 40) {
+                    if (selisih < 0) {
+                        tampilkanSlide(indeksSlide + 1);
+                    } else {
+                        tampilkanSlide(indeksSlide - 1);
+                    }
+                }
+                mulaiTimer();
+            }, { passive: true });
+
+            kartuCarousel.addEventListener("mouseenter", hentikanTimer);
+            kartuCarousel.addEventListener("mouseleave", mulaiTimer);
+
+            mulaiTimer();
+        }
+
+        // ====== 7. LOGIKA KERANJANG ======
+        function tambahKeKeranjang(kunciProduk, jumlahTambah, esPilihan, manisPilihan) {
+            if (!produk[kunciProduk]) return;
+            const qty = Number(jumlahTambah) || 1;
+            const es = esPilihan || "Normal Ice";
+            const manis = manisPilihan || "Normal Sweet";
+
+            const indeksAda = keranjang.findIndex(function (it) {
+                return it.idProduk === kunciProduk && it.es === es && it.manis === manis;
+            });
+
+            if (indeksAda !== -1) {
+                keranjang[indeksAda].qty += qty;
+            } else {
+                keranjang.push({
+                    uid: buatUidItem(),
+                    idProduk: kunciProduk,
+                    qty: qty,
+                    es: es,
+                    manis: manis
+                });
+            }
+
+            simpanKeranjangKeStorage();
+            perbaruiUIKeranjang();
+
+            const lencana = document.getElementById("lencana-keranjang");
+            lencana.classList.add("memantul");
+            setTimeout(function () {
+                lencana.classList.remove("memantul");
+            }, 250);
+
+            tampilkanToast(qty + " cup " + produk[kunciProduk].nama + " masuk keranjang");
+        }
+
+        function ubahKuantitasKeranjang(uid, delta) {
+            const idx = keranjang.findIndex(function (it) {
+                return it.uid === uid;
+            });
+            if (idx === -1) return;
+
+            keranjang[idx].qty += delta;
+            if (keranjang[idx].qty <= 0) {
+                keranjang.splice(idx, 1);
+            }
+            simpanKeranjangKeStorage();
+            perbaruiUIKeranjang();
+        }
+
+        function pisahkanSatuCupDiKeranjang(uid) {
+            const idx = keranjang.findIndex(function (it) {
+                return it.uid === uid;
+            });
+            if (idx === -1 || keranjang[idx].qty <= 1) return;
+
+            const itemAsal = keranjang[idx];
+            itemAsal.qty -= 1;
+
+            keranjang.splice(idx + 1, 0, {
+                uid: buatUidItem(),
+                idProduk: itemAsal.idProduk,
+                qty: 1,
+                es: itemAsal.es,
+                manis: itemAsal.manis
+            });
+
+            simpanKeranjangKeStorage();
+            perbaruiUIKeranjang();
+            tampilkanToast("1 cup dipisahkan agar bisa diatur beda takaran es/gula");
+        }
+
+        function ubahTakaranItemKeranjang(uid, jenis, nilaiBaru) {
+            const item = keranjang.find(function (it) {
+                return it.uid === uid;
+            });
+            if (!item) return;
+
+            if (jenis === "es") item.es = nilaiBaru;
+            if (jenis === "manis") item.manis = nilaiBaru;
+
+            simpanKeranjangKeStorage();
+            perbaruiRingkasanAngkaKeranjang();
+        }
+
+        function hapusItemKeranjang(uid) {
+            const idx = keranjang.findIndex(function (it) {
+                return it.uid === uid;
+            });
+            if (idx !== -1) {
+                keranjang.splice(idx, 1);
+                simpanKeranjangKeStorage();
+                perbaruiUIKeranjang();
+                tampilkanToast("Item dihapus dari keranjang");
+            }
+        }
+
+        function kosongkanKeranjang() {
+            keranjang = [];
+            kodePromoAktif = "";
+            simpanKeranjangKeStorage();
+            perbaruiUIKeranjang();
+            tampilkanToast("Keranjang belanja dikosongkan");
+        }
+
+        function formatCatatanEsManis(es, manis) {
+            return (es || "Normal Ice") + ", " + (manis || "Normal Sweet");
+        }
+
+        function hitungStatistikKeranjang() {
+            let totalCup = 0;
+            let subtotalHarga = 0;
+            const daftarVarian = [];
+            const daftarItemLengkap = [];
+
+            keranjang.forEach(function (entry) {
+                const item = produk[entry.idProduk];
+                if (!item || entry.qty <= 0) return;
+
+                const qty = entry.qty;
+                totalCup += qty;
+                subtotalHarga += item.harga * qty;
+
+                const catatan = formatCatatanEsManis(entry.es, entry.manis);
+                const labelNama = item.nama + " [" + catatan + "]";
+
+                if (keranjang.length === 1) {
+                    daftarVarian.push(labelNama);
+                } else {
+                    daftarVarian.push(labelNama + " (" + qty + ")");
+                }
+
+                daftarItemLengkap.push({
+                    uid: entry.uid,
+                    idProduk: entry.idProduk,
+                    nama: item.nama,
+                    es: entry.es || "Normal Ice",
+                    manis: entry.manis || "Normal Sweet",
+                    catatan: catatan,
+                    harga: item.harga,
+                    qty: qty,
+                    gambar: item.gambar
+                });
+            });
+
+            let nominalDiskon = 0;
+            const infoVoucher = DAFTAR_VOUCHER[kodePromoAktif];
+            if (infoVoucher && totalCup >= (infoVoucher.minCup || 1)) {
+                if (infoVoucher.tipe === "persen") {
+                    nominalDiskon = Math.round(subtotalHarga * (infoVoucher.nilai / 100));
+                } else {
+                    nominalDiskon = infoVoucher.nilai;
+                }
+            }
+
+            const totalAkhir = Math.max(0, subtotalHarga - nominalDiskon);
+
+            return {
+                jumlahBaris: daftarItemLengkap.length,
+                totalCup: totalCup,
+                subtotalHarga: subtotalHarga,
+                nominalDiskon: nominalDiskon,
+                totalHarga: totalAkhir,
+                teksVarianGabungan: daftarVarian.join(", "),
+                daftarItemLengkap: daftarItemLengkap
+            };
+        }
+
+        function perbaruiRingkasanAngkaKeranjang() {
+            const stats = hitungStatistikKeranjang();
+            document.getElementById("lencana-keranjang").textContent = stats.totalCup;
+            document.getElementById("ringkasan-cup").textContent = stats.totalCup + " Cup";
+            document.getElementById("ringkasan-subtotal").textContent = formatRupiah(stats.subtotalHarga);
+
+            const barMobile = document.getElementById("bar-keranjang-bawah-mobile");
+            const badgeMobile = document.getElementById("badge-cup-mobile");
+            const hargaMobile = document.getElementById("harga-bar-mobile");
+
+            if (stats.totalCup > 0) {
+                barMobile.classList.add("ada-isi");
+                badgeMobile.textContent = stats.totalCup + " Cup";
+                hargaMobile.textContent = formatRupiah(stats.totalHarga);
+            } else {
+                barMobile.classList.remove("ada-isi");
+            }
+
+            const barisDiskonEl = document.getElementById("baris-diskon-ringkasan");
+            const statusPromoEl = document.getElementById("status-promo-teks");
+
+            if (stats.nominalDiskon > 0) {
+                barisDiskonEl.hidden = false;
+                document.getElementById("ringkasan-diskon").textContent = "- " + formatRupiah(stats.nominalDiskon);
+                statusPromoEl.hidden = false;
+                statusPromoEl.textContent = "✓ Voucher " + kodePromoAktif + " aktif (Potongan " + formatRupiah(stats.nominalDiskon) + ")";
+            } else {
+                barisDiskonEl.hidden = true;
+                statusPromoEl.hidden = true;
+            }
+
+            document.getElementById("ringkasan-harga").textContent = formatRupiah(stats.totalHarga);
+        }
+
+        function perbaruiUIKeranjang() {
+            const stats = hitungStatistikKeranjang();
+            const badan = document.getElementById("badan-keranjang");
+            const kaki = document.getElementById("kaki-keranjang");
+
+            badan.innerHTML = "";
+            perbaruiRingkasanAngkaKeranjang();
+
+            if (stats.jumlahBaris === 0) {
+                kaki.hidden = true;
+                const kosong = buatEl("div", "keranjang-kosong");
+                kosong.appendChild(buatEl("div", "ikon-keranjang-kosong", "🥥"));
+                kosong.appendChild(buatEl("h3", "", "Keranjang Anda Masih Kosong"));
+                kosong.appendChild(buatEl("p", "", "Silakan pilih varian minuman Kokownut Segar untuk mulai memesan."));
+                const btnMulai = buatEl("button", "btn-primer", "Lihat Menu Varian");
+                btnMulai.type = "button";
+                btnMulai.addEventListener("click", tutupSemuaOverlay);
+                kosong.appendChild(btnMulai);
+                badan.appendChild(kosong);
+                return;
+            }
+
+            kaki.hidden = false;
+
+            const barisAtas = buatEl("div", "baris-kosongkan-keranjang");
+            barisAtas.appendChild(buatEl("span", "", "Atur takaran es & kemanisan langsung di bawah ini:"));
+            const btnKosong = buatEl("button", "btn-kosongkan", "Kosongkan");
+            btnKosong.type = "button";
+            btnKosong.addEventListener("click", kosongkanKeranjang);
+            barisAtas.appendChild(btnKosong);
+            badan.appendChild(barisAtas);
+
+            const daftarEl = buatEl("div", "daftar-item-keranjang");
+
+            stats.daftarItemLengkap.forEach(function (item) {
+                const kartuItem = buatEl("div", "item-keranjang");
+                const bagianAtas = buatEl("div", "item-keranjang-atas");
+
+                const img = buatEl("img", "img-item-keranjang");
+                img.src = item.gambar;
+                img.alt = item.nama;
+                bagianAtas.appendChild(img);
+
+                const info = buatEl("div", "info-item-keranjang");
+                info.appendChild(buatEl("h4", "", item.nama));
+                info.appendChild(buatEl("span", "harga-satuan-keranjang", formatRupiah(item.harga) + " / cup"));
+
+                const barisQty = buatEl("div", "baris-qty-dan-pisah");
+                const kontrolQty = buatEl("div", "kontrol-qty-keranjang");
+
+                const btnMin = buatEl("button", "btn-qty-kecil", "−");
+                btnMin.type = "button";
+                btnMin.addEventListener("click", function () {
+                    ubahKuantitasKeranjang(item.uid, -1);
+                });
+
+                const angkaQty = buatEl("span", "angka-qty-kecil", String(item.qty));
+
+                const btnPlus = buatEl("button", "btn-qty-kecil", "+");
+                btnPlus.type = "button";
+                btnPlus.addEventListener("click", function () {
+                    ubahKuantitasKeranjang(item.uid, 1);
+                });
+
+                kontrolQty.appendChild(btnMin);
+                kontrolQty.appendChild(angkaQty);
+                kontrolQty.appendChild(btnPlus);
+                barisQty.appendChild(kontrolQty);
+
+                if (item.qty > 1) {
+                    const btnPisah = buatEl("button", "btn-pisah-cup", "Pisahkan 1 Cup");
+                    btnPisah.type = "button";
+                    btnPisah.addEventListener("click", function () {
+                        pisahkanSatuCupDiKeranjang(item.uid);
+                    });
+                    barisQty.appendChild(btnPisah);
+                }
+
+                info.appendChild(barisQty);
+                bagianAtas.appendChild(info);
+
+                const kanan = buatEl("div", "kanan-item-keranjang");
+                kanan.appendChild(buatEl("span", "subtotal-item-keranjang", formatRupiah(item.harga * item.qty)));
+
+                const btnHapus = buatEl("button", "btn-hapus-item", "Hapus");
+                btnHapus.type = "button";
+                btnHapus.addEventListener("click", function () {
+                    hapusItemKeranjang(item.uid);
+                });
+                kanan.appendChild(btnHapus);
+
+                bagianAtas.appendChild(kanan);
+                kartuItem.appendChild(bagianAtas);
+
+                const barisKustom = buatEl("div", "baris-kustom-keranjang");
+
+                const grupEs = buatEl("div", "grup-kustom-mini");
+                grupEs.appendChild(buatEl("label", "", "Takaran Es Batu"));
+                const selEs = buatEl("select", "select-kustom-mini");
+                OPSI_ES.forEach(function (opsi) {
+                    const o = buatEl("option", "", opsi);
+                    o.value = opsi;
+                    if (opsi === item.es) o.selected = true;
+                    selEs.appendChild(o);
+                });
+                selEs.addEventListener("change", function (e) {
+                    ubahTakaranItemKeranjang(item.uid, "es", e.target.value);
+                });
+                grupEs.appendChild(selEs);
+
+                const grupManis = buatEl("div", "grup-kustom-mini");
+                grupManis.appendChild(buatEl("label", "", "Tingkat Kemanisan"));
+                const selManis = buatEl("select", "select-kustom-mini");
+                OPSI_MANIS.forEach(function (opsi) {
+                    const o = buatEl("option", "", opsi);
+                    o.value = opsi;
+                    if (opsi === item.manis) o.selected = true;
+                    selManis.appendChild(o);
+                });
+                selManis.addEventListener("change", function (e) {
+                    ubahTakaranItemKeranjang(item.uid, "manis", e.target.value);
+                });
+                grupManis.appendChild(selManis);
+
+                barisKustom.appendChild(grupEs);
+                barisKustom.appendChild(grupManis);
+                kartuItem.appendChild(barisKustom);
+
+                daftarEl.appendChild(kartuItem);
+            });
+
+            badan.appendChild(daftarEl);
+        }
+
+        // ====== 8. MANAJEMEN RIWAYAT PEMBELIAN PRIBADI (TERKUNCI TOKEN PERANGKAT) ======
+        function muatDaftarRiwayatPribadi() {
+            try {
+                const data = JSON.parse(localStorage.getItem(KUNCI_STORAGE_RIWAYAT) || "[]");
+                if (!Array.isArray(data)) return [];
+                return data.filter(function (item) {
+                    return item && item.deviceToken === tokenPerangkatPribadi;
+                });
+            } catch (err) {
+                return [];
+            }
+        }
+
+        function simpanKeRiwayatPribadi(dataPesanan) {
+            try {
+                const lama = muatDaftarRiwayatPribadi();
+                lama.unshift({
+                    deviceToken: tokenPerangkatPribadi,
+                    idOrder: dataPesanan.idOrder,
+                    waktu: dataPesanan.waktu,
+                    nama: dataPesanan.nama,
+                    varian: dataPesanan.varian,
+                    jumlah: dataPesanan.jumlah,
+                    jamAmbil: dataPesanan.jamAmbil,
+                    total: dataPesanan.total
+                });
+                localStorage.setItem(KUNCI_STORAGE_RIWAYAT, JSON.stringify(lama.slice(0, 12)));
+                perbaruiTampilanRiwayatPembelian();
+            } catch (err) {}
+        }
+
+        function hapusSemuaRiwayatPribadi() {
+            try {
+                localStorage.removeItem(KUNCI_STORAGE_RIWAYAT);
+                perbaruiTampilanRiwayatPembelian();
+                tampilkanToast("Riwayat pembelian pribadi Anda telah dibersihkan");
+            } catch (err) {}
+        }
+
+        function buatElemenKartuRiwayat(r) {
+            const kartu = buatEl("div", "kartu-riwayat-item");
+
+            const kepala = buatEl("div", "kepala-riwayat-item");
+            kepala.appendChild(buatEl("span", "id-order-lencana", "#" + (r.idOrder || "KKW-ORDER")));
+            kepala.appendChild(buatEl("span", "", r.waktu));
+            kartu.appendChild(kepala);
+
+            kartu.appendChild(buatEl("div", "nama-pemesan-riwayat", "Pemesan: " + r.nama));
+            kartu.appendChild(buatEl("div", "detail-riwayat-item", r.varian + " (" + r.jumlah + " Cup)"));
+
+            if (r.jamAmbil) {
+                kartu.appendChild(buatEl("span", "jam-ambil-riwayat", "🕒 Jam Ambil: " + r.jamAmbil));
+            }
+
+            const kaki = buatEl("div", "kaki-riwayat-item");
+            kaki.appendChild(buatEl("span", "total-riwayat-item", formatRupiah(r.total)));
+
+            const btnUlang = buatEl("button", "btn-pesan-ulang", "Pesan Ulang via QRIS");
+            btnUlang.type = "button";
+            btnUlang.addEventListener("click", function () {
+                bukaGerbangPembayaranQRIS({
+                    sumber: "riwayat",
+                    nama: r.nama,
+                    varian: r.varian,
+                    jumlah: r.jumlah,
+                    jamAmbil: r.jamAmbil || ambilJamTersimpan(),
+                    total: r.total
+                });
+            });
+            kaki.appendChild(btnUlang);
+
+            kartu.appendChild(kaki);
+            return kartu;
+        }
+
+        function perbaruiTampilanRiwayatPembelian() {
+            const daftar = muatDaftarRiwayatPribadi();
+            const lencanaNav = document.getElementById("lencana-riwayat");
+            const linkNavRiwayat = document.getElementById("nav-link-riwayat");
+            const pillMobileRiwayat = document.getElementById("pill-mobile-riwayat");
+            const seksiBeranda = document.getElementById("seksi-riwayat-pembelian");
+            const gridBeranda = document.getElementById("grid-riwayat-beranda");
+            const wadahModal = document.getElementById("isi-riwayat");
+
+            if (lencanaNav) lencanaNav.textContent = daftar.length;
+
+            if (daftar.length > 0) {
+                if (seksiBeranda) seksiBeranda.hidden = false;
+                if (linkNavRiwayat) linkNavRiwayat.hidden = false;
+                if (pillMobileRiwayat) pillMobileRiwayat.hidden = false;
+                if (gridBeranda) {
+                    gridBeranda.innerHTML = "";
+                    daftar.forEach(function (r) {
+                        gridBeranda.appendChild(buatElemenKartuRiwayat(r));
+                    });
+                }
+            } else {
+                if (seksiBeranda) seksiBeranda.hidden = true;
+                if (linkNavRiwayat) linkNavRiwayat.hidden = true;
+                if (pillMobileRiwayat) pillMobileRiwayat.hidden = true;
+            }
+
+            if (wadahModal) {
+                wadahModal.innerHTML = "";
+                const infoPrivasi = buatEl(
+                    "div",
+                    "qris-rincian-mini",
+                    "🔒 Privasi Terjamin: Data riwayat di bawah ini hanya tersimpan di browser perangkat Anda sendiri dan tidak dapat dilihat oleh orang lain."
+                );
+                wadahModal.appendChild(infoPrivasi);
+
+                if (daftar.length === 0) {
+                    const kosong = buatEl("div", "keranjang-kosong");
+                    kosong.appendChild(buatEl("h3", "", "Belum Ada Riwayat Pembelian"));
+                    kosong.appendChild(buatEl("p", "", "Pesanan yang telah Anda bayar via QRIS dan kirim ke WhatsApp akan tercatat otomatis di perangkat ini."));
+                    wadahModal.appendChild(kosong);
+                } else {
+                    daftar.forEach(function (r) {
+                        wadahModal.appendChild(buatElemenKartuRiwayat(r));
+                    });
+                }
+            }
+        }
+
+        // ====== 9. KONTROL OVERLAY & NOTA DIGITAL ======
+        function bukaDrawerKeranjang() {
+            document.getElementById("latar-drawer").classList.add("aktif");
+            document.getElementById("drawer-keranjang").classList.add("aktif");
+            document.body.classList.add("kunci-scroll");
+        }
+
+        function tutupSemuaOverlay() {
+            document.getElementById("latar-drawer").classList.remove("aktif");
+            document.getElementById("drawer-keranjang").classList.remove("aktif");
+            document.getElementById("modal-riwayat").classList.remove("aktif");
+            document.getElementById("modal-nota").classList.remove("aktif");
+            document.getElementById("modal-qris").classList.remove("aktif");
+            document.body.classList.remove("kunci-scroll");
+        }
+
+        function bukaModalRiwayat() {
+            perbaruiTampilanRiwayatPembelian();
+            document.getElementById("latar-drawer").classList.add("aktif");
+            document.getElementById("modal-riwayat").classList.add("aktif");
+            document.body.classList.add("kunci-scroll");
+        }
+
+        function bukaModalNota() {
+            const stats = hitungStatistikKeranjang();
+            if (stats.jumlahBaris === 0) return;
+
+            const inputNamaKeranjang = document.getElementById("input-nama-keranjang");
+            const selectJamKeranjang = document.getElementById("select-jam-keranjang");
+            const namaPelanggan = inputNamaKeranjang.value.trim() || "Pelanggan Kokownut";
+            const jamAmbil = selectJamKeranjang ? selectJamKeranjang.value : ambilJamTersimpan();
+            const kodeRef = "KKW-" + Math.floor(100000 + Math.random() * 900000);
+            const waktuSkrg = new Date().toLocaleString("id-ID", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit"
+            });
+
+            const kertas = document.getElementById("wadah-kertas-nota");
+            kertas.innerHTML = "";
+
+            const kepala = buatEl("div", "nota-tengah");
+            kepala.appendChild(buatEl("strong", "", "KOKOWNUT SEGAR INDONESIA"));
+            kepala.appendChild(buatEl("div", "", "No. Ref: #" + kodeRef));
+            kepala.appendChild(buatEl("div", "", waktuSkrg));
+            kertas.appendChild(kepala);
+
+            const barisNama = buatEl("div", "nota-baris");
+            barisNama.appendChild(buatEl("span", "", "Nama Pemesan:"));
+            barisNama.appendChild(buatEl("strong", "", namaPelanggan));
+            kertas.appendChild(barisNama);
+
+            const barisJam = buatEl("div", "nota-baris");
+            barisJam.appendChild(buatEl("span", "", "Jam Pengambilan:"));
+            barisJam.appendChild(buatEl("strong", "", jamAmbil));
+            kertas.appendChild(barisJam);
+
+            const barisMetode = buatEl("div", "nota-baris");
+            barisMetode.appendChild(buatEl("span", "", "Metode Bayar:"));
+            barisMetode.appendChild(buatEl("strong", "", "QRIS"));
+            kertas.appendChild(barisMetode);
+
+            stats.daftarItemLengkap.forEach(function (item) {
+                const b = buatEl("div", "nota-baris");
+                const label = item.qty + "x " + item.nama + " (" + item.catatan + ")";
+                b.appendChild(buatEl("span", "", label));
+                b.appendChild(buatEl("span", "", formatRupiah(item.harga * item.qty)));
+                kertas.appendChild(b);
+            });
+
+            if (stats.nominalDiskon > 0) {
+                const bDiskon = buatEl("div", "nota-baris");
+                bDiskon.appendChild(buatEl("span", "", "Voucher (" + kodePromoAktif + "):"));
+                bDiskon.appendChild(buatEl("span", "", "- " + formatRupiah(stats.nominalDiskon)));
+                kertas.appendChild(bDiskon);
+            }
+
+            const bTotal = buatEl("div", "nota-baris nota-total");
+            bTotal.appendChild(buatEl("span", "", "TOTAL QRIS (" + stats.totalCup + " Cup)"));
+            bTotal.appendChild(buatEl("span", "", formatRupiah(stats.totalHarga)));
+            kertas.appendChild(bTotal);
+
+            document.getElementById("drawer-keranjang").classList.remove("aktif");
+            document.getElementById("modal-nota").classList.add("aktif");
+        }
+
+        // ====== 10. RENDER KATALOG ======
+        function renderKatalog() {
+            const gridProduk = document.getElementById("grid-produk");
+            if (!gridProduk) return;
+            gridProduk.innerHTML = "";
+
+            let daftarKunci = Object.keys(produk).filter(function (kunci) {
+                const p = produk[kunci];
+                const cocokKategori = kategoriAktif === "semua" || p.kategori === kategoriAktif;
+                const teksGabungan = (p.nama + " " + p.tagline + " " + p.deskripsi).toLowerCase();
+                const cocokCari = kataKunciCari === "" || teksGabungan.indexOf(kataKunciCari.toLowerCase()) !== -1;
+                return cocokKategori && cocokCari;
+            });
+
+            if (urutanAktif === "termurah") {
+                daftarKunci.sort(function (a, b) {
+                    return produk[a].harga - produk[b].harga;
+                });
+            } else if (urutanAktif === "termahal") {
+                daftarKunci.sort(function (a, b) {
+                    return produk[b].harga - produk[a].harga;
+                });
+            } else if (urutanAktif === "nama") {
+                daftarKunci.sort(function (a, b) {
+                    return produk[a].nama.localeCompare(produk[b].nama);
+                });
+            }
+
+            if (daftarKunci.length === 0) {
+                const kosong = buatEl("div", "tidak-ditemukan");
+                kosong.appendChild(buatEl("h3", "", "Varian tidak ditemukan"));
+                kosong.appendChild(buatEl("p", "", "Coba kata kunci atau filter kategori lain."));
+                gridProduk.appendChild(kosong);
+                return;
+            }
+
+            daftarKunci.forEach(function (kunci) {
+                const p = produk[kunci];
+                const kartu = buatEl("div", "kartu-produk");
+
+                const bungkusImg = buatEl("a", "bungkus-img");
+                bungkusImg.href = "?produk=" + kunci;
+
+                const img = buatEl("img", "produk-img");
+                img.src = p.gambar;
+                img.alt = p.nama;
+                img.loading = "lazy";
+                bungkusImg.appendChild(img);
+
+                if (p.lencana) {
+                    bungkusImg.appendChild(buatEl("span", "lencana-kartu", p.lencana));
+                }
+                if (p.nutrisi && p.nutrisi.kalori) {
+                    bungkusImg.appendChild(buatEl("span", "lencana-kalori", p.nutrisi.kalori));
+                }
+                kartu.appendChild(bungkusImg);
+
+                const isi = buatEl("div", "isi-kartu");
+                const barisJudul = buatEl("div", "baris-judul-kartu");
+
+                const linkJudul = buatEl("a", "nama-produk", p.nama);
+                linkJudul.href = "?produk=" + kunci;
+                barisJudul.appendChild(linkJudul);
+                barisJudul.appendChild(buatEl("span", "harga-kartu", formatRupiah(p.harga)));
+                isi.appendChild(barisJudul);
+
+                isi.appendChild(buatEl("p", "tagline-kartu", p.tagline));
+
+                if (p.nutrisi) {
+                    const meta = buatEl("div", "meta-nutrisi-kartu");
+                    meta.appendChild(buatEl("span", "chip-nutrisi", p.nutrisi.volume));
+                    meta.appendChild(buatEl("span", "chip-nutrisi", p.nutrisi.utama));
+                    meta.appendChild(buatEl("span", "chip-nutrisi", p.nutrisi.karakter));
+                    isi.appendChild(meta);
+                }
+
+                const grupAksi = buatEl("div", "aksi-kartu-grup");
+
+                const btnDetail = buatEl("a", "btn-detail-kartu", "Lihat Detail");
+                btnDetail.href = "?produk=" + kunci;
+
+                const btnTambah = buatEl("button", "btn-tambah-keranjang-cepat", "+ Keranjang");
+                btnTambah.type = "button";
+                btnTambah.addEventListener("click", function () {
+                    tambahKeKeranjang(kunci, 1, "Normal Ice", "Normal Sweet");
+                });
+
+                grupAksi.appendChild(btnDetail);
+                grupAksi.appendChild(btnTambah);
+                isi.appendChild(grupAksi);
+
+                kartu.appendChild(isi);
+                gridProduk.appendChild(kartu);
+            });
+        }
+
+        // ====== 11. EVENT LISTENERS GLOBAL ======
+        const inputNamaKeranjangEl = document.getElementById("input-nama-keranjang");
+        const selectJamKeranjangEl = document.getElementById("select-jam-keranjang");
+        const errorNamaKeranjangEl = document.getElementById("error-nama-keranjang");
+
+        inputNamaKeranjangEl.value = ambilNamaTersimpan();
+        isiDropdownJam(selectJamKeranjangEl);
+
+        inputNamaKeranjangEl.addEventListener("input", function () {
+            if (inputNamaKeranjangEl.value.trim() !== "") {
+                inputNamaKeranjangEl.classList.remove("input-error");
+                errorNamaKeranjangEl.style.display = "none";
+                simpanNamaPelanggan(inputNamaKeranjangEl.value.trim());
+            }
+        });
+
+        selectJamKeranjangEl.addEventListener("change", function () {
+            simpanJamPengambilan(selectJamKeranjangEl.value);
+        });
+
+        document.getElementById("btn-terapkan-promo").addEventListener("click", function () {
+            const kodeInput = document.getElementById("input-kode-promo").value.trim().toUpperCase();
+            if (!kodeInput) {
+                tampilkanToast("Masukkan kode voucher terlebih dahulu");
+                return;
+            }
+            const infoVoucher = DAFTAR_VOUCHER[kodeInput];
+            if (!infoVoucher) {
+                kodePromoAktif = "";
+                perbaruiRingkasanAngkaKeranjang();
+                tampilkanToast("Belum ada kode voucher yang aktif saat ini");
+                return;
+            }
+            kodePromoAktif = kodeInput;
+            perbaruiRingkasanAngkaKeranjang();
+            tampilkanToast("Voucher " + kodeInput + " berhasil diterapkan!");
+        });
+
+        function prosesKeGerbangQRISDariKeranjang() {
+            const stats = hitungStatistikKeranjang();
+            if (stats.jumlahBaris === 0) return;
+
+            const namaPelanggan = inputNamaKeranjangEl.value.trim();
+            if (namaPelanggan === "") {
+                tutupSemuaOverlay();
+                bukaDrawerKeranjang();
+                inputNamaKeranjangEl.classList.add("input-error");
+                errorNamaKeranjangEl.style.display = "block";
+                inputNamaKeranjangEl.focus();
+                return;
+            }
+
+            const jamPilihan = selectJamKeranjangEl.value;
+            simpanNamaPelanggan(namaPelanggan);
+            simpanJamPengambilan(jamPilihan);
+
+            bukaGerbangPembayaranQRIS({
+                sumber: "keranjang",
+                nama: namaPelanggan,
+                varian: stats.teksVarianGabungan,
+                jumlah: stats.totalCup,
+                jamAmbil: jamPilihan,
+                total: stats.totalHarga
+            });
+        }
+
+        document.getElementById("btn-checkout-keranjang").addEventListener("click", prosesKeGerbangQRISDariKeranjang);
+        document.getElementById("btn-lanjut-qris-nota").addEventListener("click", prosesKeGerbangQRISDariKeranjang);
+        document.getElementById("btn-lihat-nota").addEventListener("click", bukaModalNota);
+
+        document.getElementById("btn-buka-keranjang").addEventListener("click", bukaDrawerKeranjang);
+        document.getElementById("btn-buka-keranjang-bawah").addEventListener("click", bukaDrawerKeranjang);
+        document.getElementById("btn-hero-buka-keranjang").addEventListener("click", bukaDrawerKeranjang);
+        document.getElementById("btn-tutup-keranjang").addEventListener("click", tutupSemuaOverlay);
+        document.getElementById("btn-tutup-riwayat").addEventListener("click", tutupSemuaOverlay);
+        document.getElementById("btn-tutup-nota").addEventListener("click", tutupSemuaOverlay);
+        document.getElementById("btn-tutup-qris").addEventListener("click", tutupSemuaOverlay);
+        document.getElementById("latar-drawer").addEventListener("click", tutupSemuaOverlay);
+        document.getElementById("btn-buka-riwayat").addEventListener("click", bukaModalRiwayat);
+        document.getElementById("btn-hapus-riwayat-beranda").addEventListener("click", hapusSemuaRiwayatPribadi);
+
+        document.querySelectorAll(".tombol-filter").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                document.querySelectorAll(".tombol-filter").forEach(function (b) {
+                    b.classList.remove("aktif");
+                });
+                btn.classList.add("aktif");
+                kategoriAktif = btn.getAttribute("data-kategori") || "semua";
+                renderKatalog();
+            });
+        });
+
+        document.getElementById("input-cari-produk").addEventListener("input", function (e) {
+            kataKunciCari = e.target.value;
+            renderKatalog();
+        });
+
+        document.getElementById("pilih-urutan-produk").addEventListener("change", function (e) {
+            urutanAktif = e.target.value;
+            renderKatalog();
+        });
+
+        document.querySelectorAll(".tombol-faq").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                btn.closest(".item-faq").classList.toggle("terbuka");
+            });
+        });
+
+        window.addEventListener("scroll", function () {
+            const nav = document.getElementById("navbar");
+            if (window.scrollY > 10) {
+                nav.classList.add("tergulir");
+            } else {
+                nav.classList.remove("tergulir");
+            }
+        });
+
+        // ====== 12. INISIALISASI & ROUTING HALAMAN DETAIL (?produk=...) ======
+        const konten = document.getElementById("konten");
+        const id = new URLSearchParams(window.location.search).get("produk");
+        const item = Object.prototype.hasOwnProperty.call(produk, id) ? produk[id] : undefined;
+
+        inisialisasiModalQRIS();
+        inisialisasiHeroCarousel();
+        renderKatalog();
+        perbaruiUIKeranjang();
+        perbaruiTampilanRiwayatPembelian();
+
+        if (id !== null) {
+            document.getElementById("beranda").hidden = true;
+            document.getElementById("detail").hidden = false;
+            window.scrollTo(0, 0);
+
+            if (!item) {
+                document.title = "Produk tidak ditemukan - Kokownut Segar";
+                const kosong = buatEl("div", "tidak-ditemukan");
+                kosong.appendChild(buatEl("h1", "detail-nama", "Produk Tidak Ditemukan"));
+                kosong.appendChild(buatEl("p", "detail-deskripsi", "Silakan kembali ke halaman utama dan pilih salah satu menu Kokownut Segar."));
+                konten.appendChild(kosong);
+            } else {
+                document.title = item.nama + " — Kokownut Segar";
+                document.getElementById("breadcrumb-teks").innerHTML = "Beranda / Katalog / <strong>" + item.nama + "</strong>";
+
+                const wrapper = buatEl("div", "detail-wrapper");
+
+                const kolomKiri = buatEl("div", "detail-kiri");
+                const imgBox = buatEl("div", "detail-img-container");
+                const img = buatEl("img", "detail-img");
+                img.src = item.gambar;
+                img.alt = item.nama;
+                imgBox.appendChild(img);
+                kolomKiri.appendChild(imgBox);
+
+                if (item.nutrisi) {
+                    const kotakNutrisi = buatEl("div", "kotak-nutrisi-detail");
+                    kotakNutrisi.appendChild(buatEl("div", "judul-nutrisi", "Informasi Takaran & Karakter Sajian"));
+                    const gridN = buatEl("div", "grid-nutrisi");
+
+                    [
+                        { label: "Ukuran Cup", nilai: item.nutrisi.volume },
+                        { label: "Estimasi Energi", nilai: item.nutrisi.kalori },
+                        { label: "Kandungan Utama", nilai: item.nutrisi.utama },
+                        { label: "Profil Rasa", nilai: item.nutrisi.karakter }
+                    ].forEach(function (n) {
+                        const kotakItem = buatEl("div", "item-nutrisi");
+                        kotakItem.appendChild(buatEl("strong", "", n.nilai));
+                        kotakItem.appendChild(buatEl("span", "", n.label));
+                        gridN.appendChild(kotakItem);
+                    });
+
+                    kotakNutrisi.appendChild(gridN);
+                    kolomKiri.appendChild(kotakNutrisi);
+                }
+
+                wrapper.appendChild(kolomKiri);
+
+                const teks = buatEl("div", "detail-teks");
+                if (item.lencana) {
+                    teks.appendChild(buatEl("span", "detail-lencana", item.lencana));
+                }
+                teks.appendChild(buatEl("h1", "detail-nama", item.nama));
+                teks.appendChild(buatEl("p", "detail-tagline", item.tagline));
+
+                const hargaEl = buatEl("div", "detail-harga", formatRupiah(item.harga) + " ");
+                hargaEl.appendChild(buatEl("span", "", "/ cup (350 ml)"));
+                teks.appendChild(hargaEl);
+
+                teks.appendChild(buatEl("p", "detail-deskripsi", item.deskripsi));
+
+                const daftar = buatEl("ul", "detail-sorotan");
+                item.sorotan.forEach(function (s) {
+                    daftar.appendChild(buatEl("li", "", s));
+                });
+                teks.appendChild(daftar);
+
+                let jumlahCup = 1;
+                const kartuForm = buatEl("div", "kartu-form-pesan");
+
+                const kepalaForm = buatEl("div", "kepala-form-pesan");
+                kepalaForm.appendChild(buatEl("span", "judul-form-pesan", "Formulir Pemesanan & Kustomisasi"));
+                kepalaForm.appendChild(buatEl("span", "sub-form-pesan", "📲 Pembayaran QRIS"));
+                kartuForm.appendChild(kepalaForm);
+
+                const gridNamaJam = buatEl("div", "grid-kustomisasi");
+
+                const grupNama = buatEl("div", "grup-form");
+                const labelNama = buatEl("label", "label-form", "Nama Pemesan");
+                labelNama.setAttribute("for", "input-nama-pelanggan");
+                const inputNama = buatEl("input", "input-nama");
+                inputNama.type = "text";
+                inputNama.id = "input-nama-pelanggan";
+                inputNama.placeholder = "Masukkan nama Anda...";
+                inputNama.value = ambilNamaTersimpan();
+                grupNama.appendChild(labelNama);
+                grupNama.appendChild(inputNama);
+
+                const grupJamDetail = buatEl("div", "grup-form");
+                grupJamDetail.appendChild(buatEl("label", "label-form", "Estimasi Jam Pengambilan"));
+                const selectJamDetail = buatEl("select", "select-kustom");
+                isiDropdownJam(selectJamDetail);
+                grupJamDetail.appendChild(selectJamDetail);
+
+                gridNamaJam.appendChild(grupNama);
+                gridNamaJam.appendChild(grupJamDetail);
+                kartuForm.appendChild(gridNamaJam);
+
+                const pesanError = buatEl("span", "teks-error", "Mohon isi nama Anda terlebih dahulu sebelum lanjut ke pembayaran QRIS.");
+                kartuForm.appendChild(pesanError);
+
+                const gridKustom = buatEl("div", "grid-kustomisasi");
+
+                const grupEs = buatEl("div", "grup-form");
+                grupEs.appendChild(buatEl("label", "label-form", "Takaran Es Batu"));
+                const selectEs = buatEl("select", "select-kustom");
+                OPSI_ES.forEach(function (opt) {
+                    const o = buatEl("option", "", opt);
+                    o.value = opt;
+                    selectEs.appendChild(o);
+                });
+                grupEs.appendChild(selectEs);
+
+                const grupManis = buatEl("div", "grup-form");
+                grupManis.appendChild(buatEl("label", "label-form", "Tingkat Kemanisan"));
+                const selectManis = buatEl("select", "select-kustom");
+                OPSI_MANIS.forEach(function (opt) {
+                    const o = buatEl("option", "", opt);
+                    o.value = opt;
+                    selectManis.appendChild(o);
+                });
+                grupManis.appendChild(selectManis);
+
+                gridKustom.appendChild(grupEs);
+                gridKustom.appendChild(grupManis);
+                kartuForm.appendChild(gridKustom);
+
+                const barisKuantitas = buatEl("div", "baris-kuantitas-total");
+
+                const grupJumlah = buatEl("div", "grup-form");
+                grupJumlah.appendChild(buatEl("span", "label-form", "Jumlah Cup"));
+                const pengatur = buatEl("div", "pengatur-jumlah");
+                const btnKurang = buatEl("button", "tombol-jml", "−");
+                btnKurang.type = "button";
+                const inputJml = buatEl("input", "input-jml");
+                inputJml.type = "text";
+                inputJml.value = "1";
+                inputJml.readOnly = true;
+                const btnTambah = buatEl("button", "tombol-jml", "+");
+                btnTambah.type = "button";
+
+                pengatur.appendChild(btnKurang);
+                pengatur.appendChild(inputJml);
+                pengatur.appendChild(btnTambah);
+                grupJumlah.appendChild(pengatur);
+
+                const kotakTotal = buatEl("div", "kotak-total-harga");
+                kotakTotal.appendChild(buatEl("span", "label-total", "Total Tagihan QRIS"));
+                const nominalTotal = buatEl("span", "nominal-total", formatRupiah(item.harga));
+                kotakTotal.appendChild(nominalTotal);
+
+                barisKuantitas.appendChild(grupJumlah);
+                barisKuantitas.appendChild(kotakTotal);
+                kartuForm.appendChild(barisKuantitas);
+
+                const grupTombol = buatEl("div", "grup-tombol-detail");
+                const tombolKeranjangDetail = buatEl("button", "tombol-masuk-keranjang", "+ Tambah ke Keranjang");
+                tombolKeranjangDetail.type = "button";
+                const tombolBeli = buatEl("button", "tombol-beli-langsung", "Bayar QRIS & Pesan Langsung");
+                tombolBeli.type = "button";
+
+                grupTombol.appendChild(tombolKeranjangDetail);
+                grupTombol.appendChild(tombolBeli);
+                kartuForm.appendChild(grupTombol);
+
+                function ambilNamaVarianLengkap() {
+                    const catatan = formatCatatanEsManis(selectEs.value, selectManis.value);
+                    return item.nama + " [" + catatan + "]";
+                }
+
+                function perbaruiStateDetail() {
+                    const totalNominal = item.harga * jumlahCup;
+                    nominalTotal.textContent = formatRupiah(totalNominal);
+                }
+
+                inputNama.addEventListener("input", function () {
+                    if (inputNama.value.trim() !== "") {
+                        inputNama.classList.remove("input-error");
+                        pesanError.style.display = "none";
+                        simpanNamaPelanggan(inputNama.value.trim());
+                        inputNamaKeranjangEl.value = inputNama.value.trim();
+                    }
+                });
+
+                selectJamDetail.addEventListener("change", function () {
+                    simpanJamPengambilan(selectJamDetail.value);
+                    selectJamKeranjangEl.value = selectJamDetail.value;
+                });
+
+                btnKurang.addEventListener("click", function () {
+                    if (jumlahCup > 1) {
+                        jumlahCup--;
+                        inputJml.value = jumlahCup;
+                        perbaruiStateDetail();
+                    }
+                });
+
+                btnTambah.addEventListener("click", function () {
+                    jumlahCup++;
+                    inputJml.value = jumlahCup;
+                    perbaruiStateDetail();
+                });
+
+                tombolKeranjangDetail.addEventListener("click", function () {
+                    if (inputNama.value.trim() !== "") {
+                        simpanNamaPelanggan(inputNama.value.trim());
+                        inputNamaKeranjangEl.value = inputNama.value.trim();
+                    }
+                    simpanJamPengambilan(selectJamDetail.value);
+                    selectJamKeranjangEl.value = selectJamDetail.value;
+                    tambahKeKeranjang(id, jumlahCup, selectEs.value, selectManis.value);
+                    bukaDrawerKeranjang();
+                });
+
+                tombolBeli.addEventListener("click", function (e) {
+                    const namaBersih = inputNama.value.trim();
+                    if (namaBersih === "") {
+                        if (e) e.preventDefault();
+                        inputNama.classList.add("input-error");
+                        pesanError.style.display = "block";
+                        inputNama.focus();
+                        return;
+                    }
+                    simpanNamaPelanggan(namaBersih);
+                    inputNamaKeranjangEl.value = namaBersih;
+                    simpanJamPengambilan(selectJamDetail.value);
+                    selectJamKeranjangEl.value = selectJamDetail.value;
+
+                    const totalNominal = item.harga * jumlahCup;
+                    const varianLengkap = ambilNamaVarianLengkap();
+
+                    bukaGerbangPembayaranQRIS({
+                        sumber: "detail",
+                        nama: namaBersih,
+                        varian: varianLengkap,
+                        jumlah: jumlahCup,
+                        jamAmbil: selectJamDetail.value,
+                        total: totalNominal
+                    });
+                });
+
+                perbaruiStateDetail();
+                teks.appendChild(kartuForm);
+                wrapper.appendChild(teks);
+                konten.appendChild(wrapper);
+
+                const lain = buatEl("div", "varian-lain");
+                lain.appendChild(buatEl("h2", "", "Coba Varian Lainnya"));
+                const daftarLain = buatEl("div", "daftar-pilihan-lain");
+
+                Object.keys(produk).forEach(function (kunci) {
+                    if (kunci === id) return;
+                    const pLain = produk[kunci];
+                    const a = buatEl("a", "");
+                    a.href = "?produk=" + kunci;
+                    a.textContent = pLain.nama + " • " + formatRupiah(pLain.harga);
+                    daftarLain.appendChild(a);
+                });
+
+                lain.appendChild(daftarLain);
+                konten.appendChild(lain);
+            }
+        }
+    </script>
+
+</body>
+</html>
