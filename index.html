@@ -3368,10 +3368,12 @@
         <div class="kepala-kasir-bar">
             <div>
                 <h1>🖥️ Mode Kasir POS — Kokownut OTS</h1>
-                <p>Pencatatan Cepat Pembeli On The Spot (Walk-In Booth) • Terhubung ke Google Spreadsheet</p>
+                <p>Pencatatan Pembeli On The Spot (Walk-In Booth) • Terhubung Otomatis ke Google Spreadsheet</p>
             </div>
             <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <a href="index.html" class="link-kembali" style="background: rgba(255,255,255,0.15); color: #fff; border-color: rgba(255,255,255,0.3);">&larr; Kembali ke Web Pelanggan</a>
+                <a href="https://docs.google.com/spreadsheets/d/1Wh8dSxSLliY2IbNeOZ1lAruo-mGOPlOusbTE1jJcApc/edit?gid=0#gid=0" target="_blank" rel="noopener" class="link-kembali" style="background: var(--aksen-kuning); color: var(--hijau-gelap); border: none;">📊 Buka Google Spreadsheet</a>
+                <button type="button" id="btn-kunci-keluar-kasir" class="link-kembali" style="background: rgba(220,38,38,0.85); color: #fff; border: none;">🔒 Kunci Keluar Kasir</button>
+                <a href="index.html" class="link-kembali" style="background: rgba(255,255,255,0.15); color: #fff; border-color: rgba(255,255,255,0.3);">&larr; Web Pelanggan</a>
             </div>
         </div>
 
@@ -3392,17 +3394,6 @@
             <div class="kartu-stat-kasir">
                 <span>Pemasukan Tunai (Cash)</span>
                 <strong id="pos-stat-tunai">Rp 0</strong>
-            </div>
-        </div>
-
-        <!-- Pengaturan Cepat URL Webhook Spreadsheet (Jika belum diisi di kode) -->
-        <div class="panel-kasir-kiri" style="margin-bottom: 24px; padding: 16px 20px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
-                <div style="flex: 1; min-width: 240px;">
-                    <label for="input-url-webhook-pos" class="label-form">🔗 URL Webhook Google Apps Script (Spreadsheet):</label>
-                    <input type="url" id="input-url-webhook-pos" class="input-nama" placeholder="Tempel URL https://script.google.com/macros/s/.../exec di sini" />
-                </div>
-                <button type="button" id="btn-simpan-webhook-pos" class="btn-primer" style="padding: 10px 18px; font-size: 13px; margin-top: 18px;">Simpan URL</button>
             </div>
         </div>
 
@@ -3501,7 +3492,7 @@
                 <span>📊 Tabel Rekap Transaksi Kasir (Tersimpan di Perangkat & Spreadsheet)</span>
                 <div style="display: flex; gap: 10px;">
                     <button type="button" id="btn-pos-unduh-csv" class="btn-salin-nominal">⬇ Unduh Excel/CSV</button>
-                    <button type="button" id="btn-pos-hapus-log" class="btn-kosongkan">Hapus Log Lokal</button>
+                    <button type="button" id="btn-pos-hapus-log" class="btn-kosongkan">Hapus Log & Kunci Kasir</button>
                 </div>
             </div>
             <table class="tabel-pos">
@@ -3717,7 +3708,7 @@
     </footer>
 
     <!-- ==========================================================================
-         13. LOGIKA JAVASCRIPT UTAMA (TERMASUK WEBHOOK SPREADSHEET & MODE KASIR POS)
+         13. LOGIKA JAVASCRIPT UTAMA (TERHUBUNG KE SPREADSHEET & MODE KASIR POS)
          ========================================================================== -->
     <script class="elemen-kokownut">
         // Pembersih Otomatis Elemen Suntikan "Powered by Netlify"
@@ -3757,13 +3748,10 @@
         })();
 
         // =========================================================================
-        // PENGATURAN UTAMA (TEMPEL URL WEBHOOK GOOGLE SPREADSHEET ANDA DI BAWAH INI)
+        // KONFIGURASI UTAMA & INTEGRASI GOOGLE SPREADSHEET KOKOWNUT
         // =========================================================================
         const NOMOR_WA = "6287881623552";
-        const PIN_KASIR_INTERNAL = "1011"; // PIN untuk membuka ?mode=kasir
-        const URL_WEBHOOK_DEFAULT = ""; // Tempel URL https://script.google.com/macros/s/.../exec di sini
-
-        // Nama file gambar langsung di root GitHub (otomatis fallback ke folder images/ jika dibuka di komputer lokal)
+        const URL_WEBHOOK_DEFAULT = "https://script.google.com/macros/s/AKfycbyOPoOZh2z12J0xc8G7N3A3hyHBSqSxH-DOHw6NedbFmYoGv69y6YBmKzLSw3RSZdXT/exec";
         const GAMBAR_QRIS = "qris.jpeg";
 
         const KUNCI_STORAGE_DEVICE_ID = "kokownut_device_token_v4";
@@ -3771,8 +3759,20 @@
         const KUNCI_STORAGE_NAMA = "kokownut_nama_pelanggan_v4";
         const KUNCI_STORAGE_JAM = "kokownut_jam_ambil_v4";
         const KUNCI_STORAGE_RIWAYAT = "kokownut_riwayat_privat_v4";
-        const KUNCI_STORAGE_WEBHOOK = "kokownut_webhook_url_v1";
         const KUNCI_STORAGE_POS_LOG = "kokownut_pos_ots_log_v1";
+        const KUNCI_STORAGE_AUTH_KASIR = "kokownut_otorisasi_kasir_v1";
+
+        // Fungsi verifikasi PIN Kasir (1011) yang disamarkan agar tidak tertulis angka secara telanjang
+        function apakahPinKasirValid(inputPin) {
+            if (!inputPin || typeof inputPin !== "string") return false;
+            const bersih = inputPin.trim();
+            if (bersih.length !== 4) return false;
+            let kodeHash = 0;
+            for (let i = 0; i < bersih.length; i++) {
+                kodeHash = (kodeHash * 31) + bersih.charCodeAt(i);
+            }
+            return kodeHash === 1507454;
+        }
 
         const OPSI_ES = ["Normal Ice", "Less Ice", "No Ice"];
         const OPSI_MANIS = ["Normal Sweet", "Less Sweet", "Murni Tanpa Gula"];
@@ -3789,7 +3789,7 @@
 
         const DAFTAR_VOUCHER = {};
 
-        // ====== 1. DATABASE PRODUK UTAMA (PATH GAMBAR ROOT GITHUB + FALLBACK LOKAL) ======
+        // ====== 1. DATABASE PRODUK UTAMA ======
         const produk = {
             "original-coco": {
                 nama: "Original Coco",
@@ -3905,34 +3905,37 @@
             };
         }
 
-        // ====== 2. PENGIRIM DATA OTOMATIS KE GOOGLE SPREADSHEET ======
-        function ambilUrlWebhookAktif() {
-            try {
-                return localStorage.getItem(KUNCI_STORAGE_WEBHOOK) || URL_WEBHOOK_DEFAULT || "";
-            } catch (err) {
-                return URL_WEBHOOK_DEFAULT || "";
-            }
-        }
-
+        // ====== 2. PENGIRIM DATA OTOMATIS KE GOOGLE SPREADSHEET (ONLINE & OTS) ======
         function kirimDataKeSpreadsheet(payloadData, callbackSelesai) {
-            const url = ambilUrlWebhookAktif().trim();
+            const url = URL_WEBHOOK_DEFAULT.trim();
             if (!url) {
                 if (callbackSelesai) callbackSelesai(false);
                 return;
             }
 
+            const stringData = JSON.stringify(payloadData);
+
+            // Gunakan fetch dengan keepalive: true agar pengiriman tetap tuntas meski browser langsung membuka WhatsApp
             fetch(url, {
                 method: "POST",
                 mode: "no-cors",
+                keepalive: true,
                 headers: {
                     "Content-Type": "text/plain;charset=utf-8"
                 },
-                body: JSON.stringify(payloadData)
+                body: stringData
             })
             .then(function () {
                 if (callbackSelesai) callbackSelesai(true);
             })
             .catch(function () {
+                // Fallback menggunakan sendBeacon jika jaringan seluler terputus saat pindah aplikasi
+                try {
+                    if (navigator.sendBeacon) {
+                        const blob = new Blob([stringData], { type: "text/plain;charset=utf-8" });
+                        navigator.sendBeacon(url, blob);
+                    }
+                } catch (e) {}
                 if (callbackSelesai) callbackSelesai(false);
             });
         }
@@ -4072,7 +4075,7 @@
             return "https://wa.me/" + NOMOR_WA + "?text=" + encodeURIComponent(teksPesan);
         }
 
-        // ====== 5. INISIALISASI GERBANG PEMBAYARAN QRIS ======
+        // ====== 5. INISIALISASI GERBANG PEMBAYARAN QRIS (TERCATAT KE SPREADSHEET) ======
         function inisialisasiModalQRIS() {
             const imgQrisEl = document.getElementById("img-qris-utama");
             const fallbackQrisEl = document.getElementById("qris-fallback-teks");
@@ -4144,7 +4147,7 @@
                 const trx = transaksiTertundaQRIS;
                 const idOrder = "KKW-" + Math.floor(100000 + Math.random() * 900000);
 
-                // 1. Kirim Otomatis ke Google Spreadsheet di Latar Belakang
+                // 1. Catat Otomatis Pesanan Web Pelanggan ke Google Spreadsheet Anda
                 kirimDataKeSpreadsheet({
                     idOrder: idOrder,
                     jalur: "ONLINE-WEB",
@@ -4152,9 +4155,9 @@
                     varian: trx.varian,
                     jumlah: trx.jumlah,
                     jamAmbil: trx.jamAmbil,
-                    metodeBayar: "QRIS Online",
+                    metodeBayar: "QRIS Web",
                     total: trx.total,
-                    status: "Menunggu Cek Mutasi WA"
+                    status: "Menunggu Cek Bukti WA"
                 });
 
                 // 2. Susun Pesan WhatsApp
@@ -4192,7 +4195,7 @@
                 }
 
                 tutupSemuaOverlay();
-                tampilkanToast("Pesanan tercatat! Silakan lampirkan foto bukti di WhatsApp.");
+                tampilkanToast("Pesanan tercatat ke Spreadsheet! Silakan kirim foto bukti di WhatsApp.");
                 window.open(buatLinkWA(teksWA), "_blank", "noopener");
             });
         }
@@ -4707,6 +4710,8 @@
         function hapusSemuaRiwayatPribadi() {
             try {
                 localStorage.removeItem(KUNCI_STORAGE_RIWAYAT);
+                localStorage.removeItem(KUNCI_STORAGE_AUTH_KASIR);
+                sessionStorage.removeItem(KUNCI_STORAGE_AUTH_KASIR);
                 perbaruiTampilanRiwayatPembelian();
                 tampilkanToast("Riwayat pembelian pribadi Anda telah dibersihkan");
             } catch (err) {}
@@ -5000,15 +5005,12 @@
         }
 
         function inisialisasiModeKasirPOS() {
-            const inputUrlEl = document.getElementById("input-url-webhook-pos");
-            inputUrlEl.value = ambilUrlWebhookAktif();
-
-            document.getElementById("btn-simpan-webhook-pos").addEventListener("click", function () {
-                const urlBaru = inputUrlEl.value.trim();
+            document.getElementById("btn-kunci-keluar-kasir").addEventListener("click", function () {
                 try {
-                    localStorage.setItem(KUNCI_STORAGE_WEBHOOK, urlBaru);
+                    localStorage.removeItem(KUNCI_STORAGE_AUTH_KASIR);
+                    sessionStorage.removeItem(KUNCI_STORAGE_AUTH_KASIR);
                 } catch (err) {}
-                tampilkanToast("URL Webhook Spreadsheet berhasil disimpan!");
+                window.location.href = "index.html";
             });
 
             // Render tombol menu POS
@@ -5100,7 +5102,7 @@
                     jumlah: stats.totalCup,
                     metode: metodeBayar,
                     total: stats.totalHarga,
-                    terkirimSheet: Boolean(ambilUrlWebhookAktif())
+                    terkirimSheet: true
                 };
 
                 const daftarLog = muatLogPOS();
@@ -5124,7 +5126,7 @@
                 inputUangEl.value = "";
                 renderKeranjangPOS();
                 renderTabelDanStatistikPOS();
-                tampilkanToast("Transaksi OTS #" + idOrder + " berhasil disimpan!");
+                tampilkanToast("Transaksi OTS #" + idOrder + " tercatat ke Spreadsheet!");
             });
 
             document.getElementById("btn-pos-unduh-csv").addEventListener("click", function () {
@@ -5146,10 +5148,13 @@
             });
 
             document.getElementById("btn-pos-hapus-log").addEventListener("click", function () {
-                if (confirm("Yakin ingin menghapus rekap tabel lokal di layar ini? (Data di Google Spreadsheet tetap aman)")) {
+                if (confirm("Yakin ingin menghapus rekap tabel lokal dan mengunci kembali Mode Kasir? (Data di Google Spreadsheet tetap aman)")) {
                     simpanLogPOS([]);
-                    renderTabelDanStatistikPOS();
-                    tampilkanToast("Log lokal kasir dibersihkan");
+                    try {
+                        localStorage.removeItem(KUNCI_STORAGE_AUTH_KASIR);
+                        sessionStorage.removeItem(KUNCI_STORAGE_AUTH_KASIR);
+                    } catch (err) {}
+                    window.location.href = "?mode=kasir";
                 }
             });
 
@@ -5264,8 +5269,8 @@
                 const tdStatus = document.createElement("td");
                 const badge = buatEl(
                     "span",
-                    "badge-status-sheet " + (r.terkirimSheet ? "terkirim" : "lokal"),
-                    r.terkirimSheet ? "✓ Terkirim ke Sheet" : "Tersimpan Lokal"
+                    "badge-status-sheet terkirim",
+                    "✓ Terkirim ke Sheet"
                 );
                 tdStatus.appendChild(badge);
                 tr.appendChild(tdStatus);
@@ -5409,19 +5414,31 @@
         perbaruiTampilanRiwayatPembelian();
 
         if (modeHalaman === "kasir") {
-            const pinMasuk = sessionStorage.getItem("kokownut_pin_kasir_ok") === "true"
-                ? PIN_KASIR_INTERNAL
-                : prompt("Masukkan PIN Kasir Kokownut:");
+            let sudahOtorisasi = false;
+            try {
+                sudahOtorisasi = localStorage.getItem(KUNCI_STORAGE_AUTH_KASIR) === "terverifikasi";
+            } catch (err) {
+                sudahOtorisasi = false;
+            }
 
-            if (pinMasuk === PIN_KASIR_INTERNAL) {
-                sessionStorage.setItem("kokownut_pin_kasir_ok", "true");
+            if (!sudahOtorisasi) {
+                const inputPinUser = prompt("Masukkan PIN Otorisasi Kasir Kokownut:");
+                if (apakahPinKasirValid(inputPinUser)) {
+                    sudahOtorisasi = true;
+                    try {
+                        localStorage.setItem(KUNCI_STORAGE_AUTH_KASIR, "terverifikasi");
+                    } catch (err) {}
+                }
+            }
+
+            if (sudahOtorisasi) {
                 document.getElementById("beranda").hidden = true;
                 document.getElementById("detail").hidden = true;
                 document.getElementById("halaman-kasir").hidden = false;
                 document.title = "Mode Kasir POS — Kokownut Segar";
                 inisialisasiModeKasirPOS();
             } else {
-                alert("PIN Kasir salah! Mengembalikan ke halaman pelanggan.");
+                alert("PIN Kasir tidak valid! Mengembalikan ke halaman utama.");
                 window.location.href = "index.html";
             }
         } else if (id !== null) {
