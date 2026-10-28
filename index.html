@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta name="description" content="Kokownut Segar - Minuman Air Kelapa Murni dengan Ekstrak Buah Tropis Asli. Pembayaran Praktis via QRIS. Hadir di Bazaar Politeknik Negeri Jakarta 10-11 November.">
     <meta name="theme-color" content="#163818">
-    <title>Kokownut Segar — Official Web Store (Pembayaran QRIS)</title>
+    <title>Kokownut Segar — Official Web Store & POS Kasir</title>
 
     <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
     <link rel="preconnect" href="https://fonts.googleapis.com" class="elemen-kokownut">
@@ -534,7 +534,6 @@
             font-weight: 500;
         }
 
-        /* Carousel Rolling di Kanan Hero */
         .hero-visual {
             position: relative;
             display: flex;
@@ -2088,7 +2087,6 @@
             padding-top: 2px;
         }
 
-        /* Nama Pemesan & Jam Ambil Tetap 2 Kolom Sejajar agar Hemat Ruang Vertikal */
         .grid-form-checkout-keranjang {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -2360,7 +2358,216 @@
         }
 
         /* ==========================================================================
-           11. STICKY BOTTOM CART BAR KHUSUS SMARTPHONE (Z-INDEX TERTINGGI)
+           11. MODE KASIR POS (UNTUK PEMBELI ON THE SPOT / WALK-IN BOOTH)
+           ========================================================================== */
+        .halaman-kasir-pos {
+            width: 100%;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 24px 20px 80px 20px;
+        }
+
+        .kepala-kasir-bar {
+            background: linear-gradient(135deg, var(--hijau-gelap), var(--hijau-utama));
+            color: var(--putih);
+            padding: 20px 24px;
+            border-radius: var(--radius-besar);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+            box-shadow: var(--bayangan-halus);
+        }
+
+        .kepala-kasir-bar h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            margin-bottom: 4px;
+        }
+
+        .kepala-kasir-bar p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .statistik-kasir-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+
+        .kartu-stat-kasir {
+            background-color: var(--putih);
+            border: 1px solid var(--abu-garis);
+            border-radius: var(--radius-sedang);
+            padding: 16px 18px;
+            box-shadow: var(--bayangan-kecil);
+        }
+
+        .kartu-stat-kasir span {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--teks-sekunder);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .kartu-stat-kasir strong {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--hijau-tua);
+        }
+
+        .layout-utama-kasir {
+            display: grid;
+            grid-template-columns: 1.25fr 0.95fr;
+            gap: 24px;
+            align-items: start;
+        }
+
+        .panel-kasir-kiri,
+        .panel-kasir-kanan {
+            background-color: var(--putih);
+            border: 1px solid var(--abu-garis);
+            border-radius: var(--radius-besar);
+            padding: 22px;
+            box-shadow: var(--bayangan-halus);
+        }
+
+        .judul-panel-kasir {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--hijau-tua);
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--abu-garis);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .grid-tombol-menu-pos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .btn-item-pos {
+            background-color: var(--krem-latar);
+            border: 1.5px solid var(--abu-garis);
+            border-radius: var(--radius-sedang);
+            padding: 12px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            transition: all var(--transisi-cepat);
+        }
+
+        .btn-item-pos:hover {
+            border-color: var(--hijau-utama);
+            background-color: var(--hijau-muda);
+            transform: translateY(-2px);
+        }
+
+        .btn-item-pos strong {
+            font-size: 15px;
+            color: var(--hijau-tua);
+        }
+
+        .btn-item-pos span {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--hijau-segar);
+        }
+
+        .kotak-kalkulator-tunai {
+            background-color: var(--hijau-pudar);
+            border: 1px solid #c5dec5;
+            border-radius: var(--radius-kecil);
+            padding: 12px;
+            margin-top: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .baris-nominal-cepat {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .btn-uang-cepat {
+            background-color: var(--putih);
+            border: 1px solid var(--abu-garis);
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--hijau-utama);
+        }
+
+        .btn-uang-cepat:hover {
+            background-color: var(--hijau-utama);
+            color: var(--putih);
+        }
+
+        .tabel-log-pos-wrapper {
+            margin-top: 28px;
+            background-color: var(--putih);
+            border: 1px solid var(--abu-garis);
+            border-radius: var(--radius-besar);
+            padding: 22px;
+            box-shadow: var(--bayangan-halus);
+            overflow-x: auto;
+        }
+
+        .tabel-pos {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            min-width: 600px;
+        }
+
+        .tabel-pos th,
+        .tabel-pos td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--abu-garis);
+        }
+
+        .tabel-pos th {
+            background-color: var(--hijau-pudar);
+            color: var(--hijau-tua);
+            font-weight: 800;
+        }
+
+        .badge-status-sheet {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: var(--radius-penuh);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .badge-status-sheet.terkirim {
+            background-color: var(--hijau-muda);
+            color: var(--hijau-utama);
+        }
+
+        .badge-status-sheet.lokal {
+            background-color: var(--aksen-kuning-muda);
+            color: #92400e;
+        }
+
+        /* ==========================================================================
+           12. STICKY BOTTOM CART BAR KHUSUS SMARTPHONE (Z-INDEX TERTINGGI)
            ========================================================================== */
         .bar-keranjang-bawah-mobile {
             display: none;
@@ -2440,7 +2647,7 @@
         }
 
         /* ==========================================================================
-           12. NOTA DIGITAL, TOAST & FOOTER
+           13. NOTA DIGITAL, TOAST & FOOTER
            ========================================================================== */
         .kertas-nota {
             background-color: #fffef9;
@@ -2570,13 +2777,14 @@
         }
 
         /* ==========================================================================
-           13. RESPONSIVE BREAKPOINTS (TABLET & SMARTPHONE)
+           14. RESPONSIVE BREAKPOINTS (TABLET & SMARTPHONE)
            ========================================================================== */
         @media (max-width: 960px) {
             .hero-isi,
-            .kartu-bazaar-pnj {
+            .kartu-bazaar-pnj,
+            .layout-utama-kasir {
                 grid-template-columns: 1fr;
-                gap: 28px;
+                gap: 24px;
             }
 
             .hero-isi {
@@ -2813,7 +3021,6 @@
                 grid-template-columns: 1fr;
             }
 
-            /* Pertahankan 2 Kolom Sejajar pada Form Nama & Jam di Keranjang Mobile agar Hemat Ruang */
             .grid-form-checkout-keranjang {
                 grid-template-columns: 1fr 1fr;
                 gap: 8px;
@@ -2896,7 +3103,7 @@
         </div>
     </nav>
 
-    <!-- ====== 3. HALAMAN UTAMA (BERANDA) ====== -->
+    <!-- ====== 3. HALAMAN UTAMA (BERANDA PELANGGAN) ====== -->
     <div id="beranda" class="elemen-kokownut">
         <header class="hero">
             <div class="hero-isi">
@@ -2936,7 +3143,7 @@
                             <span id="hero-slide-lencana" class="hero-lencana-varian">Signature Tropis</span>
                             <button type="button" id="hero-sebelumnya" class="hero-nav-panah hero-panah-kiri" aria-label="Varian Sebelumnya">&lsaquo;</button>
                             <a id="hero-slide-link" href="?produk=coco-passion">
-                                <img id="hero-slide-img" class="hero-kartu-img" src="coco-passion.jpeg" alt="Coco Passion" />
+                                <img id="hero-slide-img" class="hero-kartu-img" src="coco-passion.jpeg" data-fallback="images/coco-passion.jpeg" alt="Coco Passion" />
                             </a>
                             <button type="button" id="hero-selanjutnya" class="hero-nav-panah hero-panah-kanan" aria-label="Varian Selanjutnya">&rsaquo;</button>
                         </div>
@@ -3141,16 +3348,6 @@
                         Kami menyediakan pilihan waktu pengambilan dengan rentang 1 jam (mulai pukul <strong>08:00</strong> hingga <strong>15:00</strong>). Tim kami meracik pesanan mendekati jam pengambilan Anda agar kesegaran air kelapa tetap terjaga.
                     </div>
                 </div>
-
-                <div class="item-faq">
-                    <button type="button" class="tombol-faq">
-                        <span>Bagaimana cara menggunakan kode voucher di keranjang?</span>
-                        <span class="ikon-faq">+</span>
-                    </button>
-                    <div class="jawaban-faq">
-                        Saat Kokownut mengadakan promo khusus, kode voucher resmi akan diumumkan. Anda cukup mengetikkan kode tersebut pada kolom voucher di dalam <strong>Keranjang</strong> lalu menekan tombol <strong>Pakai</strong> sebelum melanjutkan ke pembayaran QRIS.
-                    </div>
-                </div>
             </div>
         </section>
     </div>
@@ -3166,7 +3363,167 @@
     </div>
     <!-- ====== AKHIR HALAMAN DETAIL ====== -->
 
-    <!-- ====== 5. DRAWER KERANJANG BELANJA & CHECKOUT ====== -->
+    <!-- ====== 5. HALAMAN MODE KASIR POS (?mode=kasir UNTUK TRANSAKSI ON THE SPOT) ====== -->
+    <div id="halaman-kasir" class="halaman-kasir-pos elemen-kokownut" hidden>
+        <div class="kepala-kasir-bar">
+            <div>
+                <h1>🖥️ Mode Kasir POS — Kokownut OTS</h1>
+                <p>Pencatatan Cepat Pembeli On The Spot (Walk-In Booth) • Terhubung ke Google Spreadsheet</p>
+            </div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <a href="index.html" class="link-kembali" style="background: rgba(255,255,255,0.15); color: #fff; border-color: rgba(255,255,255,0.3);">&larr; Kembali ke Web Pelanggan</a>
+            </div>
+        </div>
+
+        <!-- Ringkasan Omzet Kasir Hari Ini -->
+        <div class="statistik-kasir-grid">
+            <div class="kartu-stat-kasir">
+                <span>Transaksi OTS Hari Ini</span>
+                <strong id="pos-stat-transaksi">0 Order</strong>
+            </div>
+            <div class="kartu-stat-kasir">
+                <span>Total Cup Terjual (OTS)</span>
+                <strong id="pos-stat-cup">0 Cup</strong>
+            </div>
+            <div class="kartu-stat-kasir">
+                <span>Pemasukan QRIS Booth</span>
+                <strong id="pos-stat-qris">Rp 0</strong>
+            </div>
+            <div class="kartu-stat-kasir">
+                <span>Pemasukan Tunai (Cash)</span>
+                <strong id="pos-stat-tunai">Rp 0</strong>
+            </div>
+        </div>
+
+        <!-- Pengaturan Cepat URL Webhook Spreadsheet (Jika belum diisi di kode) -->
+        <div class="panel-kasir-kiri" style="margin-bottom: 24px; padding: 16px 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                <div style="flex: 1; min-width: 240px;">
+                    <label for="input-url-webhook-pos" class="label-form">🔗 URL Webhook Google Apps Script (Spreadsheet):</label>
+                    <input type="url" id="input-url-webhook-pos" class="input-nama" placeholder="Tempel URL https://script.google.com/macros/s/.../exec di sini" />
+                </div>
+                <button type="button" id="btn-simpan-webhook-pos" class="btn-primer" style="padding: 10px 18px; font-size: 13px; margin-top: 18px;">Simpan URL</button>
+            </div>
+        </div>
+
+        <div class="layout-utama-kasir">
+            <!-- Kiri: Tombol Cepat Pilih Varian -->
+            <div class="panel-kasir-kiri">
+                <div class="judul-panel-kasir">
+                    <span>1. Ketuk Menu untuk Menambahkan</span>
+                    <span style="font-size: 12px; color: var(--hijau-segar);">Otomatis Masuk Daftar Kanan</span>
+                </div>
+
+                <div class="grid-kustomisasi" style="margin-bottom: 14px;">
+                    <div class="grup-form">
+                        <label for="pos-default-es" class="label-form">Takaran Es Default Saat Ketuk Menu</label>
+                        <select id="pos-default-es" class="select-kustom">
+                            <option value="Normal Ice">Normal Ice</option>
+                            <option value="Less Ice">Less Ice</option>
+                            <option value="No Ice">No Ice</option>
+                        </select>
+                    </div>
+                    <div class="grup-form">
+                        <label for="pos-default-manis" class="label-form">Tingkat Manis Default Saat Ketuk Menu</label>
+                        <select id="pos-default-manis" class="select-kustom">
+                            <option value="Normal Sweet">Normal Sweet</option>
+                            <option value="Less Sweet">Less Sweet</option>
+                            <option value="Murni Tanpa Gula">Murni Tanpa Gula</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="pos-grid-menu" class="grid-tombol-menu-pos"></div>
+            </div>
+
+            <!-- Kanan: Rincian Pesanan OTS & Kalkulator Pembayaran -->
+            <div class="panel-kasir-kanan">
+                <div class="judul-panel-kasir">
+                    <span>2. Rincian Transaksi OTS</span>
+                    <button type="button" id="btn-pos-reset" class="btn-kosongkan">Reset</button>
+                </div>
+
+                <div id="pos-daftar-item" class="daftar-item-keranjang" style="max-height: 260px; overflow-y: auto; margin-bottom: 14px;"></div>
+
+                <div class="ringkasan-checkout" style="margin-bottom: 12px;">
+                    <div class="baris-ringkasan">
+                        <span>Total Cup</span>
+                        <strong id="pos-total-cup">0 Cup</strong>
+                    </div>
+                    <div class="baris-ringkasan total-akhir">
+                        <span>Total Bayar</span>
+                        <span id="pos-total-harga">Rp 0</span>
+                    </div>
+                </div>
+
+                <div class="grid-kustomisasi" style="margin-bottom: 12px;">
+                    <div class="grup-form">
+                        <label for="pos-input-nama" class="label-form">Nama Pembeli / Catatan (Opsional)</label>
+                        <input type="text" id="pos-input-nama" class="input-nama" placeholder="Misal: Pelanggan OTS / Andi" />
+                    </div>
+                    <div class="grup-form">
+                        <label for="pos-metode-bayar" class="label-form">Metode Pembayaran OTS</label>
+                        <select id="pos-metode-bayar" class="select-kustom">
+                            <option value="QRIS OTS">📲 QRIS Booth (Scan di Meja)</option>
+                            <option value="TUNAI">💵 Tunai (Cash)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Kalkulator Kembalian Tunai (Muncul Jika Pilih TUNAI) -->
+                <div id="pos-kalkulator-tunai" class="kotak-kalkulator-tunai" hidden>
+                    <div class="grup-form">
+                        <label for="pos-uang-diterima" class="label-form">Uang Tunai Diterima (Rp)</label>
+                        <input type="number" id="pos-uang-diterima" class="input-nama" placeholder="Masukkan nominal uang..." />
+                    </div>
+                    <div class="baris-nominal-cepat">
+                        <button type="button" class="btn-uang-cepat" data-uang="pas">Uang Pas</button>
+                        <button type="button" class="btn-uang-cepat" data-uang="10000">10.000</button>
+                        <button type="button" class="btn-uang-cepat" data-uang="20000">20.000</button>
+                        <button type="button" class="btn-uang-cepat" data-uang="50000">50.000</button>
+                        <button type="button" class="btn-uang-cepat" data-uang="100000">100.000</button>
+                    </div>
+                    <div class="baris-ringkasan total-akhir" style="padding-top: 6px; border-top: 1px dashed #b5d0b5;">
+                        <span>Kembalian:</span>
+                        <span id="pos-nominal-kembalian" style="color: var(--hijau-utama);">Rp 0</span>
+                    </div>
+                </div>
+
+                <button type="button" id="btn-pos-simpan-lunas" class="tombol-kirim-wa-qris" style="margin-top: 14px;">
+                    <span>✓ Simpan Transaksi OTS & Kirim ke Spreadsheet</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Tabel Rekap Penjualan Kasir OTS -->
+        <div class="tabel-log-pos-wrapper">
+            <div class="judul-panel-kasir">
+                <span>📊 Tabel Rekap Transaksi Kasir (Tersimpan di Perangkat & Spreadsheet)</span>
+                <div style="display: flex; gap: 10px;">
+                    <button type="button" id="btn-pos-unduh-csv" class="btn-salin-nominal">⬇ Unduh Excel/CSV</button>
+                    <button type="button" id="btn-pos-hapus-log" class="btn-kosongkan">Hapus Log Lokal</button>
+                </div>
+            </div>
+            <table class="tabel-pos">
+                <thead>
+                    <tr>
+                        <th>Waktu</th>
+                        <th>ID Order</th>
+                        <th>Pembeli</th>
+                        <th>Rincian Varian</th>
+                        <th>Cup</th>
+                        <th>Metode</th>
+                        <th>Total</th>
+                        <th>Status Spreadsheet</th>
+                    </tr>
+                </thead>
+                <tbody id="pos-tabel-body"></tbody>
+            </table>
+        </div>
+    </div>
+    <!-- ====== AKHIR HALAMAN MODE KASIR POS ====== -->
+
+    <!-- ====== 6. DRAWER KERANJANG BELANJA & CHECKOUT ====== -->
     <div id="latar-drawer" class="latar-gelap-drawer elemen-kokownut"></div>
 
     <aside id="drawer-keranjang" class="drawer-keranjang elemen-kokownut" aria-label="Keranjang Belanja">
@@ -3225,7 +3582,7 @@
         </div>
     </aside>
 
-    <!-- ====== 6. MODAL GERBANG PEMBAYARAN QRIS ====== -->
+    <!-- ====== 7. MODAL GERBANG PEMBAYARAN QRIS ====== -->
     <div id="modal-qris" class="modal-umum elemen-kokownut" role="dialog" aria-label="Pembayaran QRIS Kokownut">
         <div class="drawer-kepala">
             <h2>📲 Pembayaran QRIS Kokownut</h2>
@@ -3249,10 +3606,10 @@
 
             <!-- Bingkai Gambar QRIS Anda -->
             <div class="qris-bingkai-gambar">
-                <img id="img-qris-utama" class="qris-img-tampil" src="qris.jpeg" alt="QRIS Kokownut Segar" />
+                <img id="img-qris-utama" class="qris-img-tampil" src="qris.jpeg" data-fallback="images/qris.jpeg" alt="QRIS Kokownut Segar" />
                 <div id="qris-fallback-teks" class="qris-placeholder-info" hidden>
-                    <strong>Gambar QRIS Belum Dimasukkan</strong><br>
-                    Simpan gambar QRIS Anda di folder <code>qris.jpeg</code> agar tampil otomatis di sini.
+                    <strong>Gambar QRIS Belum Ditemukan</strong><br>
+                    Pastikan file <code>qris.jpeg</code> sudah ter-upload di GitHub Anda.
                 </div>
                 <a id="link-unduh-qris" href="qris.jpeg" download="QRIS-Kokownut-Segar.jpeg" class="btn-unduh-qris">
                     ⬇ Unduh Gambar QRIS (Untuk Pengguna HP)
@@ -3286,7 +3643,7 @@
         </div>
     </div>
 
-    <!-- ====== 7. STICKY BOTTOM CART BAR KHUSUS SMARTPHONE ====== -->
+    <!-- ====== 8. STICKY BOTTOM CART BAR KHUSUS SMARTPHONE ====== -->
     <div id="bar-keranjang-bawah-mobile" class="bar-keranjang-bawah-mobile elemen-kokownut">
         <button type="button" id="btn-buka-keranjang-bawah" class="tombol-bar-keranjang-mobile">
             <div class="info-kiri-bar-mobile">
@@ -3303,7 +3660,7 @@
         </button>
     </div>
 
-    <!-- ====== 8. MODAL RIWAYAT PEMBELIAN PRIBADI ====== -->
+    <!-- ====== 9. MODAL RIWAYAT PEMBELIAN PRIBADI ====== -->
     <div id="modal-riwayat" class="modal-umum elemen-kokownut" role="dialog" aria-label="Riwayat Pembelian Saya">
         <div class="drawer-kepala">
             <h2>🔒 Riwayat Pembelian Saya</h2>
@@ -3312,7 +3669,7 @@
         <div id="isi-riwayat" class="isi-modal"></div>
     </div>
 
-    <!-- ====== 9. MODAL NOTA / STRUK DIGITAL ====== -->
+    <!-- ====== 10. MODAL NOTA / STRUK DIGITAL ====== -->
     <div id="modal-nota" class="modal-umum elemen-kokownut" role="dialog" aria-label="Nota Pesanan">
         <div class="drawer-kepala">
             <h2>Struk Ringkasan Pesanan</h2>
@@ -3324,10 +3681,10 @@
         </div>
     </div>
 
-    <!-- ====== 10. WADAH TOAST NOTIFIKASI ====== -->
+    <!-- ====== 11. WADAH TOAST NOTIFIKASI ====== -->
     <div id="wadah-toast" class="wadah-toast elemen-kokownut"></div>
 
-    <!-- ====== 11. FOOTER ====== -->
+    <!-- ====== 12. FOOTER ====== -->
     <footer class="elemen-kokownut">
         <div class="footer-grid">
             <div>
@@ -3345,11 +3702,11 @@
                 </ul>
             </div>
             <div class="footer-kolom">
-                <h4>Ketentuan Pemesanan</h4>
+                <h4>Ketentuan & Internal</h4>
                 <ul>
                     <li><a href="#faq">Khusus Pembayaran QRIS</a></li>
                     <li><a href="#info-bazaar">Lokasi Bazaar PNJ</a></li>
-                    <li><a href="#faq">Bantuan & FAQ</a></li>
+                    <li><a href="?mode=kasir">🔐 Mode Kasir (POS Booth)</a></li>
                 </ul>
             </div>
         </div>
@@ -3360,13 +3717,12 @@
     </footer>
 
     <!-- ==========================================================================
-         12. LOGIKA JAVASCRIPT UTAMA + PEMBERSIH OTOMATIS BADGE NETLIFY
+         13. LOGIKA JAVASCRIPT UTAMA (TERMASUK WEBHOOK SPREADSHEET & MODE KASIR POS)
          ========================================================================== -->
     <script class="elemen-kokownut">
         // Pembersih Otomatis Elemen Suntikan "Powered by Netlify"
         (function bersihkanBadgeEksternal() {
             function sapuElemenLuar() {
-                // 1. Hapus semua anak langsung dari <body> yang bukan milik Kokownut
                 Array.from(document.body.children).forEach(function (el) {
                     const tag = el.tagName ? el.tagName.toLowerCase() : "";
                     if (tag === "script" || tag === "style") return;
@@ -3378,7 +3734,6 @@
                     }
                 });
 
-                // 2. Cari tautan atau elemen yang mengandung teks "Powered by Netlify"
                 document.querySelectorAll("a, div, aside, iframe, span").forEach(function (node) {
                     if (node.classList && node.classList.contains("elemen-kokownut")) return;
                     if (node.closest && node.closest(".elemen-kokownut")) return;
@@ -3401,9 +3756,14 @@
             pengamat.observe(document.documentElement, { childList: true, subtree: true });
         })();
 
+        // =========================================================================
+        // PENGATURAN UTAMA (TEMPEL URL WEBHOOK GOOGLE SPREADSHEET ANDA DI BAWAH INI)
+        // =========================================================================
         const NOMOR_WA = "6287881623552";
+        const PIN_KASIR_INTERNAL = "1011"; // PIN untuk membuka ?mode=kasir
+        const URL_WEBHOOK_DEFAULT = ""; // Tempel URL https://script.google.com/macros/s/.../exec di sini
 
-        // GANTI NAMA FILE GAMBAR QRIS ANDA DI BARIS INI JIKA PERLU:
+        // Nama file gambar langsung di root GitHub (otomatis fallback ke folder images/ jika dibuka di komputer lokal)
         const GAMBAR_QRIS = "qris.jpeg";
 
         const KUNCI_STORAGE_DEVICE_ID = "kokownut_device_token_v4";
@@ -3411,6 +3771,8 @@
         const KUNCI_STORAGE_NAMA = "kokownut_nama_pelanggan_v4";
         const KUNCI_STORAGE_JAM = "kokownut_jam_ambil_v4";
         const KUNCI_STORAGE_RIWAYAT = "kokownut_riwayat_privat_v4";
+        const KUNCI_STORAGE_WEBHOOK = "kokownut_webhook_url_v1";
+        const KUNCI_STORAGE_POS_LOG = "kokownut_pos_ots_log_v1";
 
         const OPSI_ES = ["Normal Ice", "Less Ice", "No Ice"];
         const OPSI_MANIS = ["Normal Sweet", "Less Sweet", "Murni Tanpa Gula"];
@@ -3427,7 +3789,7 @@
 
         const DAFTAR_VOUCHER = {};
 
-        // ====== 1. DATABASE PRODUK UTAMA ======
+        // ====== 1. DATABASE PRODUK UTAMA (PATH GAMBAR ROOT GITHUB + FALLBACK LOKAL) ======
         const produk = {
             "original-coco": {
                 nama: "Original Coco",
@@ -3531,7 +3893,51 @@
             }
         };
 
-        // ====== 2. STATE APLIKASI & ISOLASI PERANGKAT ======
+        // Fungsi Pintar Penyesuai Path Gambar (Mendukung Root GitHub & Folder Lokal images/)
+        function pasangGambarPintar(imgEl, namaFile) {
+            if (!imgEl || !namaFile) return;
+            const namaBersih = namaFile.replace(/^images\//, "");
+            imgEl.src = namaBersih;
+            imgEl.onerror = function () {
+                if (imgEl.src.indexOf("images/" + namaBersih) === -1) {
+                    imgEl.src = "images/" + namaBersih;
+                }
+            };
+        }
+
+        // ====== 2. PENGIRIM DATA OTOMATIS KE GOOGLE SPREADSHEET ======
+        function ambilUrlWebhookAktif() {
+            try {
+                return localStorage.getItem(KUNCI_STORAGE_WEBHOOK) || URL_WEBHOOK_DEFAULT || "";
+            } catch (err) {
+                return URL_WEBHOOK_DEFAULT || "";
+            }
+        }
+
+        function kirimDataKeSpreadsheet(payloadData, callbackSelesai) {
+            const url = ambilUrlWebhookAktif().trim();
+            if (!url) {
+                if (callbackSelesai) callbackSelesai(false);
+                return;
+            }
+
+            fetch(url, {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "text/plain;charset=utf-8"
+                },
+                body: JSON.stringify(payloadData)
+            })
+            .then(function () {
+                if (callbackSelesai) callbackSelesai(true);
+            })
+            .catch(function () {
+                if (callbackSelesai) callbackSelesai(false);
+            });
+        }
+
+        // ====== 3. STATE APLIKASI & ISOLASI PERANGKAT ======
         const tokenPerangkatPribadi = dapatkanAtauBuatTokenPerangkat();
         let keranjang = muatKeranjangDariStorage();
         let kodePromoAktif = "";
@@ -3542,7 +3948,6 @@
         let transaksiTertundaQRIS = null;
         let fileBuktiTerpilih = null;
 
-        // ====== 3. FUNGSI UTILITAS & TOKEN PRIVASI ======
         function dapatkanAtauBuatTokenPerangkat() {
             try {
                 let token = localStorage.getItem(KUNCI_STORAGE_DEVICE_ID);
@@ -3646,7 +4051,7 @@
             }, 2600);
         }
 
-        // ====== 4. FORMAT PESAN WHATSAPP RESMI (KHUSUS PEMBAYARAN QRIS) ======
+        // ====== 4. FORMAT PESAN WHATSAPP RESMI ======
         function susunTeksPesanWA(namaPelanggan, teksVarian, totalJumlahCup, totalHargaNominal, jamPengambilan, idOrderRef) {
             const namaBersih = (namaPelanggan || "").trim() || "-";
             const jamBersih = jamPengambilan || ambilJamTersimpan();
@@ -3684,8 +4089,13 @@
             linkUnduhQrisEl.href = GAMBAR_QRIS;
 
             imgQrisEl.addEventListener("error", function () {
-                imgQrisEl.hidden = true;
-                fallbackQrisEl.hidden = false;
+                if (imgQrisEl.src.indexOf("images/" + GAMBAR_QRIS) === -1) {
+                    imgQrisEl.src = "images/" + GAMBAR_QRIS;
+                    linkUnduhQrisEl.href = "images/" + GAMBAR_QRIS;
+                } else {
+                    imgQrisEl.hidden = true;
+                    fallbackQrisEl.hidden = false;
+                }
             });
 
             imgQrisEl.addEventListener("load", function () {
@@ -3734,6 +4144,20 @@
                 const trx = transaksiTertundaQRIS;
                 const idOrder = "KKW-" + Math.floor(100000 + Math.random() * 900000);
 
+                // 1. Kirim Otomatis ke Google Spreadsheet di Latar Belakang
+                kirimDataKeSpreadsheet({
+                    idOrder: idOrder,
+                    jalur: "ONLINE-WEB",
+                    nama: trx.nama,
+                    varian: trx.varian,
+                    jumlah: trx.jumlah,
+                    jamAmbil: trx.jamAmbil,
+                    metodeBayar: "QRIS Online",
+                    total: trx.total,
+                    status: "Menunggu Cek Mutasi WA"
+                });
+
+                // 2. Susun Pesan WhatsApp
                 const teksWA = susunTeksPesanWA(
                     trx.nama,
                     trx.varian,
@@ -3743,6 +4167,7 @@
                     idOrder
                 );
 
+                // 3. Simpan ke Riwayat Pribadi Perangkat Pembeli
                 simpanKeRiwayatPribadi({
                     idOrder: idOrder,
                     waktu: new Date().toLocaleDateString("id-ID", {
@@ -3767,7 +4192,7 @@
                 }
 
                 tutupSemuaOverlay();
-                tampilkanToast("Pembayaran dikonfirmasi! Silakan lampirkan foto bukti di WhatsApp.");
+                tampilkanToast("Pesanan tercatat! Silakan lampirkan foto bukti di WhatsApp.");
                 window.open(buatLinkWA(teksWA), "_blank", "noopener");
             });
         }
@@ -3821,6 +4246,8 @@
 
             if (!imgEl || !wadahDots) return;
 
+            pasangGambarPintar(imgEl, produk[kunciVarian[indeksSlide]].gambar);
+
             kunciVarian.forEach(function (_, idx) {
                 const dot = buatEl("button", "hero-dot" + (idx === indeksSlide ? " aktif" : ""));
                 dot.type = "button";
@@ -3840,7 +4267,7 @@
                 imgEl.classList.add("sedang-berganti");
 
                 setTimeout(function () {
-                    imgEl.src = item.gambar;
+                    pasangGambarPintar(imgEl, item.gambar);
                     imgEl.alt = item.nama;
                     lencanaEl.textContent = item.lencana || "Menu Segar";
                     namaEl.textContent = item.nama;
@@ -3911,7 +4338,7 @@
             mulaiTimer();
         }
 
-        // ====== 7. LOGIKA KERANJANG ======
+        // ====== 7. LOGIKA KERANJANG PELANGGAN ======
         function tambahKeKeranjang(kunciProduk, jumlahTambah, esPilihan, manisPilihan) {
             if (!produk[kunciProduk]) return;
             const qty = Number(jumlahTambah) || 1;
@@ -4151,7 +4578,7 @@
                 const bagianAtas = buatEl("div", "item-keranjang-atas");
 
                 const img = buatEl("img", "img-item-keranjang");
-                img.src = item.gambar;
+                pasangGambarPintar(img, item.gambar);
                 img.alt = item.nama;
                 bagianAtas.appendChild(img);
 
@@ -4502,7 +4929,7 @@
                 bungkusImg.href = "?produk=" + kunci;
 
                 const img = buatEl("img", "produk-img");
-                img.src = p.gambar;
+                pasangGambarPintar(img, p.gambar);
                 img.alt = p.nama;
                 img.loading = "lazy";
                 bungkusImg.appendChild(img);
@@ -4554,7 +4981,304 @@
             });
         }
 
-        // ====== 11. EVENT LISTENERS GLOBAL ======
+        // ====== 11. SISTEM MODE KASIR POS (ON THE SPOT / WALK-IN) ======
+        let keranjangPOS = [];
+
+        function muatLogPOS() {
+            try {
+                const d = JSON.parse(localStorage.getItem(KUNCI_STORAGE_POS_LOG) || "[]");
+                return Array.isArray(d) ? d : [];
+            } catch (err) {
+                return [];
+            }
+        }
+
+        function simpanLogPOS(daftar) {
+            try {
+                localStorage.setItem(KUNCI_STORAGE_POS_LOG, JSON.stringify(daftar));
+            } catch (err) {}
+        }
+
+        function inisialisasiModeKasirPOS() {
+            const inputUrlEl = document.getElementById("input-url-webhook-pos");
+            inputUrlEl.value = ambilUrlWebhookAktif();
+
+            document.getElementById("btn-simpan-webhook-pos").addEventListener("click", function () {
+                const urlBaru = inputUrlEl.value.trim();
+                try {
+                    localStorage.setItem(KUNCI_STORAGE_WEBHOOK, urlBaru);
+                } catch (err) {}
+                tampilkanToast("URL Webhook Spreadsheet berhasil disimpan!");
+            });
+
+            // Render tombol menu POS
+            const gridMenuPOS = document.getElementById("pos-grid-menu");
+            gridMenuPOS.innerHTML = "";
+            Object.keys(produk).forEach(function (kunci) {
+                const p = produk[kunci];
+                const btn = buatEl("button", "btn-item-pos");
+                btn.type = "button";
+                btn.appendChild(buatEl("strong", "", p.nama));
+                btn.appendChild(buatEl("span", "", formatRupiah(p.harga)));
+                btn.addEventListener("click", function () {
+                    const esDef = document.getElementById("pos-default-es").value;
+                    const manisDef = document.getElementById("pos-default-manis").value;
+                    const ada = keranjangPOS.find(function (it) {
+                        return it.idProduk === kunci && it.es === esDef && it.manis === manisDef;
+                    });
+                    if (ada) {
+                        ada.qty += 1;
+                    } else {
+                        keranjangPOS.push({
+                            uid: buatUidItem(),
+                            idProduk: kunci,
+                            nama: p.nama,
+                            harga: p.harga,
+                            qty: 1,
+                            es: esDef,
+                            manis: manisDef
+                        });
+                    }
+                    renderKeranjangPOS();
+                });
+                gridMenuPOS.appendChild(btn);
+            });
+
+            const selectMetodeEl = document.getElementById("pos-metode-bayar");
+            const kotakTunaiEl = document.getElementById("pos-kalkulator-tunai");
+            const inputUangEl = document.getElementById("pos-uang-diterima");
+
+            selectMetodeEl.addEventListener("change", function () {
+                kotakTunaiEl.hidden = selectMetodeEl.value !== "TUNAI";
+                hitungKembalianPOS();
+            });
+
+            inputUangEl.addEventListener("input", hitungKembalianPOS);
+
+            document.querySelectorAll(".btn-uang-cepat").forEach(function (b) {
+                b.addEventListener("click", function () {
+                    const nilai = b.getAttribute("data-uang");
+                    const totalTagihan = hitungTotalPOS().totalHarga;
+                    if (nilai === "pas") {
+                        inputUangEl.value = totalTagihan;
+                    } else {
+                        inputUangEl.value = Number(nilai);
+                    }
+                    hitungKembalianPOS();
+                });
+            });
+
+            document.getElementById("btn-pos-reset").addEventListener("click", function () {
+                keranjangPOS = [];
+                document.getElementById("pos-input-nama").value = "";
+                inputUangEl.value = "";
+                renderKeranjangPOS();
+            });
+
+            document.getElementById("btn-pos-simpan-lunas").addEventListener("click", function () {
+                const stats = hitungTotalPOS();
+                if (stats.totalCup === 0) {
+                    tampilkanToast("Pilih minimal 1 menu terlebih dahulu!");
+                    return;
+                }
+
+                const namaPembeli = document.getElementById("pos-input-nama").value.trim() || "Walk-in OTS";
+                const metodeBayar = selectMetodeEl.value;
+                const idOrder = "OTS-" + Math.floor(100000 + Math.random() * 900000);
+                const waktuSekarang = new Date().toLocaleString("id-ID", {
+                    day: "2-digit",
+                    month: "short",
+                    hour: "2-digit",
+                    minute: "2-digit"
+                });
+
+                const itemRekapBaru = {
+                    idOrder: idOrder,
+                    waktu: waktuSekarang,
+                    nama: namaPembeli,
+                    varian: stats.teksVarian,
+                    jumlah: stats.totalCup,
+                    metode: metodeBayar,
+                    total: stats.totalHarga,
+                    terkirimSheet: Boolean(ambilUrlWebhookAktif())
+                };
+
+                const daftarLog = muatLogPOS();
+                daftarLog.unshift(itemRekapBaru);
+                simpanLogPOS(daftarLog);
+
+                kirimDataKeSpreadsheet({
+                    idOrder: idOrder,
+                    jalur: "KASIR-OTS",
+                    nama: namaPembeli,
+                    varian: stats.teksVarian,
+                    jumlah: stats.totalCup,
+                    jamAmbil: "Langsung (On The Spot)",
+                    metodeBayar: metodeBayar,
+                    total: stats.totalHarga,
+                    status: "LUNAS (OTS)"
+                });
+
+                keranjangPOS = [];
+                document.getElementById("pos-input-nama").value = "";
+                inputUangEl.value = "";
+                renderKeranjangPOS();
+                renderTabelDanStatistikPOS();
+                tampilkanToast("Transaksi OTS #" + idOrder + " berhasil disimpan!");
+            });
+
+            document.getElementById("btn-pos-unduh-csv").addEventListener("click", function () {
+                const log = muatLogPOS();
+                if (log.length === 0) {
+                    tampilkanToast("Belum ada data transaksi kasir untuk diunduh");
+                    return;
+                }
+                let csv = "Waktu,ID Order,Nama Pembeli,Rincian Varian,Jumlah Cup,Metode Bayar,Total Harga\n";
+                log.forEach(function (r) {
+                    csv += '"' + r.waktu + '","' + r.idOrder + '","' + r.nama + '","' + r.varian + '",' + r.jumlah + ',"' + r.metode + '",' + r.total + "\n";
+                });
+                const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = "Rekap-Kasir-Kokownut.csv";
+                a.click();
+            });
+
+            document.getElementById("btn-pos-hapus-log").addEventListener("click", function () {
+                if (confirm("Yakin ingin menghapus rekap tabel lokal di layar ini? (Data di Google Spreadsheet tetap aman)")) {
+                    simpanLogPOS([]);
+                    renderTabelDanStatistikPOS();
+                    tampilkanToast("Log lokal kasir dibersihkan");
+                }
+            });
+
+            renderKeranjangPOS();
+            renderTabelDanStatistikPOS();
+        }
+
+        function hitungTotalPOS() {
+            let totalCup = 0;
+            let totalHarga = 0;
+            const rincian = [];
+            keranjangPOS.forEach(function (it) {
+                totalCup += it.qty;
+                totalHarga += it.harga * it.qty;
+                rincian.push(it.nama + " [" + it.es + ", " + it.manis + "] (" + it.qty + ")");
+            });
+            return {
+                totalCup: totalCup,
+                totalHarga: totalHarga,
+                teksVarian: rincian.join(", ")
+            };
+        }
+
+        function hitungKembalianPOS() {
+            const total = hitungTotalPOS().totalHarga;
+            const diterima = Number(document.getElementById("pos-uang-diterima").value) || 0;
+            const kembali = diterima - total;
+            const el = document.getElementById("pos-nominal-kembalian");
+            if (diterima === 0) {
+                el.textContent = "Rp 0";
+            } else if (kembali < 0) {
+                el.textContent = "Kurang " + formatRupiah(Math.abs(kembali));
+            } else {
+                el.textContent = formatRupiah(kembali);
+            }
+        }
+
+        function renderKeranjangPOS() {
+            const wadah = document.getElementById("pos-daftar-item");
+            wadah.innerHTML = "";
+            const stats = hitungTotalPOS();
+
+            document.getElementById("pos-total-cup").textContent = stats.totalCup + " Cup";
+            document.getElementById("pos-total-harga").textContent = formatRupiah(stats.totalHarga);
+            hitungKembalianPOS();
+
+            if (keranjangPOS.length === 0) {
+                wadah.appendChild(buatEl("div", "qris-rincian-mini", "Belum ada item dipilih. Ketuk tombol menu di sebelah kiri."));
+                return;
+            }
+
+            keranjangPOS.forEach(function (it, idx) {
+                const baris = buatEl("div", "item-keranjang");
+                const atas = buatEl("div", "baris-kuantitas-total");
+
+                const info = buatEl("div", "");
+                info.appendChild(buatEl("strong", "", it.nama + " (" + formatRupiah(it.harga) + ")"));
+                info.appendChild(buatEl("div", "harga-satuan-keranjang", it.es + " • " + it.manis));
+                atas.appendChild(info);
+
+                const kontrol = buatEl("div", "kontrol-qty-keranjang");
+                const bMin = buatEl("button", "btn-qty-kecil", "−");
+                bMin.type = "button";
+                bMin.addEventListener("click", function () {
+                    it.qty -= 1;
+                    if (it.qty <= 0) keranjangPOS.splice(idx, 1);
+                    renderKeranjangPOS();
+                });
+                const bPlus = buatEl("button", "btn-qty-kecil", "+");
+                bPlus.type = "button";
+                bPlus.addEventListener("click", function () {
+                    it.qty += 1;
+                    renderKeranjangPOS();
+                });
+                kontrol.appendChild(bMin);
+                kontrol.appendChild(buatEl("span", "angka-qty-kecil", String(it.qty)));
+                kontrol.appendChild(bPlus);
+                atas.appendChild(kontrol);
+
+                baris.appendChild(atas);
+                wadah.appendChild(baris);
+            });
+        }
+
+        function renderTabelDanStatistikPOS() {
+            const log = muatLogPOS();
+            let jmlOrder = log.length;
+            let jmlCup = 0;
+            let omzetQRIS = 0;
+            let omzetTunai = 0;
+
+            const tbody = document.getElementById("pos-tabel-body");
+            tbody.innerHTML = "";
+
+            log.forEach(function (r) {
+                jmlCup += Number(r.jumlah) || 0;
+                if (r.metode === "TUNAI") {
+                    omzetTunai += Number(r.total) || 0;
+                } else {
+                    omzetQRIS += Number(r.total) || 0;
+                }
+
+                const tr = document.createElement("tr");
+                tr.appendChild(buatEl("td", "", r.waktu));
+                tr.appendChild(buatEl("td", "", r.idOrder));
+                tr.appendChild(buatEl("td", "", r.nama));
+                tr.appendChild(buatEl("td", "", r.varian));
+                tr.appendChild(buatEl("td", "", String(r.jumlah)));
+                tr.appendChild(buatEl("td", "", r.metode));
+                tr.appendChild(buatEl("td", "", formatRupiah(r.total)));
+
+                const tdStatus = document.createElement("td");
+                const badge = buatEl(
+                    "span",
+                    "badge-status-sheet " + (r.terkirimSheet ? "terkirim" : "lokal"),
+                    r.terkirimSheet ? "✓ Terkirim ke Sheet" : "Tersimpan Lokal"
+                );
+                tdStatus.appendChild(badge);
+                tr.appendChild(tdStatus);
+                tbody.appendChild(tr);
+            });
+
+            document.getElementById("pos-stat-transaksi").textContent = jmlOrder + " Order";
+            document.getElementById("pos-stat-cup").textContent = jmlCup + " Cup";
+            document.getElementById("pos-stat-qris").textContent = formatRupiah(omzetQRIS);
+            document.getElementById("pos-stat-tunai").textContent = formatRupiah(omzetTunai);
+        }
+
+        // ====== 12. EVENT LISTENERS GLOBAL ======
         const inputNamaKeranjangEl = document.getElementById("input-nama-keranjang");
         const selectJamKeranjangEl = document.getElementById("select-jam-keranjang");
         const errorNamaKeranjangEl = document.getElementById("error-nama-keranjang");
@@ -4671,9 +5395,11 @@
             }
         });
 
-        // ====== 12. INISIALISASI & ROUTING HALAMAN DETAIL (?produk=...) ======
+        // ====== 13. INISIALISASI & ROUTING (?mode=kasir ATAU ?produk=...) ======
         const konten = document.getElementById("konten");
-        const id = new URLSearchParams(window.location.search).get("produk");
+        const paramsURL = new URLSearchParams(window.location.search);
+        const id = paramsURL.get("produk");
+        const modeHalaman = paramsURL.get("mode");
         const item = Object.prototype.hasOwnProperty.call(produk, id) ? produk[id] : undefined;
 
         inisialisasiModalQRIS();
@@ -4682,7 +5408,23 @@
         perbaruiUIKeranjang();
         perbaruiTampilanRiwayatPembelian();
 
-        if (id !== null) {
+        if (modeHalaman === "kasir") {
+            const pinMasuk = sessionStorage.getItem("kokownut_pin_kasir_ok") === "true"
+                ? PIN_KASIR_INTERNAL
+                : prompt("Masukkan PIN Kasir Kokownut (Default: 1011):");
+
+            if (pinMasuk === PIN_KASIR_INTERNAL) {
+                sessionStorage.setItem("kokownut_pin_kasir_ok", "true");
+                document.getElementById("beranda").hidden = true;
+                document.getElementById("detail").hidden = true;
+                document.getElementById("halaman-kasir").hidden = false;
+                document.title = "Mode Kasir POS — Kokownut Segar";
+                inisialisasiModeKasirPOS();
+            } else {
+                alert("PIN Kasir salah! Mengembalikan ke halaman pelanggan.");
+                window.location.href = "index.html";
+            }
+        } else if (id !== null) {
             document.getElementById("beranda").hidden = true;
             document.getElementById("detail").hidden = false;
             window.scrollTo(0, 0);
@@ -4702,7 +5444,7 @@
                 const kolomKiri = buatEl("div", "detail-kiri");
                 const imgBox = buatEl("div", "detail-img-container");
                 const img = buatEl("img", "detail-img");
-                img.src = item.gambar;
+                pasangGambarPintar(img, item.gambar);
                 img.alt = item.nama;
                 imgBox.appendChild(img);
                 kolomKiri.appendChild(imgBox);
