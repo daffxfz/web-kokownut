@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta name="description" content="Kokownut Segar - Minuman Air Kelapa Murni dengan Ekstrak Buah Tropis Asli. Pembayaran Praktis via QRIS. Hadir di Bazaar Politeknik Negeri Jakarta 10-11 November.">
     <meta name="theme-color" content="#163818">
-    <title>Kokownut Segar — Official Web Store & POS Kasir</title>
+    <title>Kokownut — Official Web Store</title>
 
     <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
     <link rel="preconnect" href="https://fonts.googleapis.com" class="elemen-kokownut">
@@ -3260,7 +3260,7 @@
                 <div class="kepala-seksi">
                     <div>
                         <span class="sub-label-seksi">Komitmen Kualitas</span>
-                        <h2>Mengapa Kokownut Segar Berbeda?</h2>
+                        <h2>Mengapa Kokownut Segarnya Berbeda?</h2>
                     </div>
                 </div>
 
@@ -3703,7 +3703,7 @@
         </div>
         <div class="footer-bawah">
             <div>&copy; 2026 Kokownut Indonesia. All Rights Reserved.</div>
-            <div>Official QRIS Web Store Kokownut Segar</div>
+            <div>Official Web Store Kokownut</div>
         </div>
     </footer>
 
@@ -4555,7 +4555,7 @@
                 const kosong = buatEl("div", "keranjang-kosong");
                 kosong.appendChild(buatEl("div", "ikon-keranjang-kosong", "🥥"));
                 kosong.appendChild(buatEl("h3", "", "Keranjang Anda Masih Kosong"));
-                kosong.appendChild(buatEl("p", "", "Silakan pilih varian minuman Kokownut Segar untuk mulai memesan."));
+                kosong.appendChild(buatEl("p", "", "Silakan pilih varian minuman Kokownut untuk mulai memesan."));
                 const btnMulai = buatEl("button", "btn-primer", "Lihat Menu Varian");
                 btnMulai.type = "button";
                 btnMulai.addEventListener("click", tutupSemuaOverlay);
@@ -4846,7 +4846,7 @@
             kertas.innerHTML = "";
 
             const kepala = buatEl("div", "nota-tengah");
-            kepala.appendChild(buatEl("strong", "", "KOKOWNUT SEGAR INDONESIA"));
+            kepala.appendChild(buatEl("strong", "", "KOKOWNUT INDONESIA"));
             kepala.appendChild(buatEl("div", "", "No. Ref: #" + kodeRef));
             kepala.appendChild(buatEl("div", "", waktuSkrg));
             kertas.appendChild(kepala);
@@ -5435,7 +5435,7 @@
                 document.getElementById("beranda").hidden = true;
                 document.getElementById("detail").hidden = true;
                 document.getElementById("halaman-kasir").hidden = false;
-                document.title = "Mode Kasir POS — Kokownut Segar";
+                document.title = "Mode Kasir POS — Kokownut";
                 inisialisasiModeKasirPOS();
             } else {
                 alert("PIN Kasir tidak valid! Mengembalikan ke halaman utama.");
@@ -5447,7 +5447,7 @@
             window.scrollTo(0, 0);
 
             if (!item) {
-                document.title = "Produk tidak ditemukan - Kokownut Segar";
+                document.title = "Produk tidak ditemukan - Kokownut";
                 const kosong = buatEl("div", "tidak-ditemukan");
                 kosong.appendChild(buatEl("h1", "detail-nama", "Produk Tidak Ditemukan"));
                 kosong.appendChild(buatEl("p", "detail-deskripsi", "Silakan kembali ke halaman utama dan pilih salah satu menu Kokownut Segar."));
