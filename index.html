@@ -5411,7 +5411,7 @@
         if (modeHalaman === "kasir") {
             const pinMasuk = sessionStorage.getItem("kokownut_pin_kasir_ok") === "true"
                 ? PIN_KASIR_INTERNAL
-                : prompt("Masukkan PIN Kasir Kokownut (Default: 1011):");
+                : prompt("Masukkan PIN Kasir Kokownut:");
 
             if (pinMasuk === PIN_KASIR_INTERNAL) {
                 sessionStorage.setItem("kokownut_pin_kasir_ok", "true");
