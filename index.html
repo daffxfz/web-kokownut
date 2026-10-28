@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta name="description" content="Kokownut Segar - Minuman Air Kelapa Murni dengan Ekstrak Buah Tropis Asli. Pembayaran Praktis via QRIS. Hadir di Bazaar Politeknik Negeri Jakarta 10-11 November.">
     <meta name="theme-color" content="#163818">
-    <title>Kokownut Segar — Official Web Store (Pembayaran QRIS)</title>
+    <title>Kokownut Segar — Official Web Store & POS Kasir</title>
 
     <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
     <link rel="preconnect" href="https://fonts.googleapis.com" class="elemen-kokownut">
@@ -534,7 +534,6 @@
             font-weight: 500;
         }
 
-        /* Carousel Rolling di Kanan Hero */
         .hero-visual {
             position: relative;
             display: flex;
@@ -2088,7 +2087,6 @@
             padding-top: 2px;
         }
 
-        /* Nama Pemesan & Jam Ambil Tetap 2 Kolom Sejajar agar Hemat Ruang Vertikal */
         .grid-form-checkout-keranjang {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -2360,7 +2358,216 @@
         }
 
         /* ==========================================================================
-           11. STICKY BOTTOM CART BAR KHUSUS SMARTPHONE (Z-INDEX TERTINGGI)
+           11. MODE KASIR POS (UNTUK PEMBELI ON THE SPOT / WALK-IN BOOTH)
+           ========================================================================== */
+        .halaman-kasir-pos {
+            width: 100%;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 24px 20px 80px 20px;
+        }
+
+        .kepala-kasir-bar {
+            background: linear-gradient(135deg, var(--hijau-gelap), var(--hijau-utama));
+            color: var(--putih);
+            padding: 20px 24px;
+            border-radius: var(--radius-besar);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+            box-shadow: var(--bayangan-halus);
+        }
+
+        .kepala-kasir-bar h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            margin-bottom: 4px;
+        }
+
+        .kepala-kasir-bar p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .statistik-kasir-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+
+        .kartu-stat-kasir {
+            background-color: var(--putih);
+            border: 1px solid var(--abu-garis);
+            border-radius: var(--radius-sedang);
+            padding: 16px 18px;
+            box-shadow: var(--bayangan-kecil);
+        }
+
+        .kartu-stat-kasir span {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--teks-sekunder);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .kartu-stat-kasir strong {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--hijau-tua);
+        }
+
+        .layout-utama-kasir {
+            display: grid;
+            grid-template-columns: 1.25fr 0.95fr;
+            gap: 24px;
+            align-items: start;
+        }
+
+        .panel-kasir-kiri,
+        .panel-kasir-kanan {
+            background-color: var(--putih);
+            border: 1px solid var(--abu-garis);
+            border-radius: var(--radius-besar);
+            padding: 22px;
+            box-shadow: var(--bayangan-halus);
+        }
+
+        .judul-panel-kasir {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--hijau-tua);
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--abu-garis);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .grid-tombol-menu-pos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .btn-item-pos {
+            background-color: var(--krem-latar);
+            border: 1.5px solid var(--abu-garis);
+            border-radius: var(--radius-sedang);
+            padding: 12px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            transition: all var(--transisi-cepat);
+        }
+
+        .btn-item-pos:hover {
+            border-color: var(--hijau-utama);
+            background-color: var(--hijau-muda);
+            transform: translateY(-2px);
+        }
+
+        .btn-item-pos strong {
+            font-size: 15px;
+            color: var(--hijau-tua);
+        }
+
+        .btn-item-pos span {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--hijau-segar);
+        }
+
+        .kotak-kalkulator-tunai {
+            background-color: var(--hijau-pudar);
+            border: 1px solid #c5dec5;
+            border-radius: var(--radius-kecil);
+            padding: 12px;
+            margin-top: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .baris-nominal-cepat {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .btn-uang-cepat {
+            background-color: var(--putih);
+            border: 1px solid var(--abu-garis);
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--hijau-utama);
+        }
+
+        .btn-uang-cepat:hover {
+            background-color: var(--hijau-utama);
+            color: var(--putih);
+        }
+
+        .tabel-log-pos-wrapper {
+            margin-top: 28px;
+            background-color: var(--putih);
+            border: 1px solid var(--abu-garis);
+            border-radius: var(--radius-besar);
+            padding: 22px;
+            box-shadow: var(--bayangan-halus);
+            overflow-x: auto;
+        }
+
+        .tabel-pos {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            min-width: 600px;
+        }
+
+        .tabel-pos th,
+        .tabel-pos td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--abu-garis);
+        }
+
+        .tabel-pos th {
+            background-color: var(--hijau-pudar);
+            color: var(--hijau-tua);
+            font-weight: 800;
+        }
+
+        .badge-status-sheet {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: var(--radius-penuh);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .badge-status-sheet.terkirim {
+            background-color: var(--hijau-muda);
+            color: var(--hijau-utama);
+        }
+
+        .badge-status-sheet.lokal {
+            background-color: var(--aksen-kuning-muda);
+            color: #92400e;
+        }
+
+        /* ==========================================================================
+           12. STICKY BOTTOM CART BAR KHUSUS SMARTPHONE (Z-INDEX TERTINGGI)
            ========================================================================== */
         .bar-keranjang-bawah-mobile {
             display: none;
@@ -2440,7 +2647,7 @@
         }
 
         /* ==========================================================================
-           12. NOTA DIGITAL, TOAST & FOOTER
+           13. NOTA DIGITAL, TOAST & FOOTER
            ========================================================================== */
         .kertas-nota {
             background-color: #fffef9;
@@ -2570,13 +2777,14 @@
         }
 
         /* ==========================================================================
-           13. RESPONSIVE BREAKPOINTS (TABLET & SMARTPHONE)
+           14. RESPONSIVE BREAKPOINTS (TABLET & SMARTPHONE)
            ========================================================================== */
         @media (max-width: 960px) {
             .hero-isi,
-            .kartu-bazaar-pnj {
+            .kartu-bazaar-pnj,
+            .layout-utama-kasir {
                 grid-template-columns: 1fr;
-                gap: 28px;
+                gap: 24px;
             }
 
             .hero-isi {
@@ -2813,7 +3021,6 @@
                 grid-template-columns: 1fr;
             }
 
-            /* Pertahankan 2 Kolom Sejajar pada Form Nama & Jam di Keranjang Mobile agar Hemat Ruang */
             .grid-form-checkout-keranjang {
                 grid-template-columns: 1fr 1fr;
                 gap: 8px;
@@ -2896,7 +3103,7 @@
         </div>
     </nav>
 
-    <!-- ====== 3. HALAMAN UTAMA (BERANDA) ====== -->
+    <!-- ====== 3. HALAMAN UTAMA (BERANDA PELANGGAN) ====== -->
     <div id="beranda" class="elemen-kokownut">
         <header class="hero">
             <div class="hero-isi">
@@ -2936,7 +3143,7 @@
                             <span id="hero-slide-lencana" class="hero-lencana-varian">Signature Tropis</span>
                             <button type="button" id="hero-sebelumnya" class="hero-nav-panah hero-panah-kiri" aria-label="Varian Sebelumnya">&lsaquo;</button>
                             <a id="hero-slide-link" href="?produk=coco-passion">
-                                <img id="hero-slide-img" class="hero-kartu-img" src="coco-passion.jpeg" alt="Coco Passion" />
+                                <img id="hero-slide-img" class="hero-kartu-img" src="coco-passion.jpeg" data-fallback="images/coco-passion.jpeg" alt="Coco Passion" />
                             </a>
                             <button type="button" id="hero-selanjutnya" class="hero-nav-panah hero-panah-kanan" aria-label="Varian Selanjutnya">&rsaquo;</button>
                         </div>
@@ -3025,1927 +3232,3 @@
                         <option value="termurah">Harga: Rendah ke Tinggi</option>
                         <option value="termahal">Harga: Tinggi ke Rendah</option>
                         <option value="nama">Nama: A - Z</option>
-                    </select>
-                </div>
-            </div>
-
-            <div id="grid-produk" class="container-produk"></div>
-        </section>
-
-        <!-- Seksi Riwayat Pembelian Pribadi -->
-        <section id="seksi-riwayat-pembelian" class="seksi-riwayat-pembelian" hidden>
-            <div class="kotak-riwayat-utama">
-                <div class="kepala-riwayat-utama">
-                    <div>
-                        <div class="lencana-privasi-riwayat">🔒 Tersimpan Privat di Perangkat Anda</div>
-                        <h2>Riwayat Pembelian Saya</h2>
-                        <p>Riwayat ini hanya tersimpan di browser perangkat Anda sendiri dan tidak dapat dilihat oleh pelanggan lain.</p>
-                    </div>
-                    <button type="button" id="btn-hapus-riwayat-beranda" class="btn-hapus-semua-riwayat">Bersihkan Riwayat</button>
-                </div>
-                <div id="grid-riwayat-beranda" class="grid-riwayat-beranda"></div>
-            </div>
-        </section>
-
-        <!-- Seksi Keunggulan -->
-        <section id="keunggulan" class="seksi-keunggulan">
-            <div class="kontainer-lebar">
-                <div class="kepala-seksi">
-                    <div>
-                        <span class="sub-label-seksi">Komitmen Kualitas</span>
-                        <h2>Mengapa Kokownut Segar Berbeda?</h2>
-                    </div>
-                </div>
-
-                <div class="grid-keunggulan">
-                    <div class="kartu-keunggulan">
-                        <div class="ikon-keunggulan">🥥</div>
-                        <h3>Air Kelapa Segar Pilihan</h3>
-                        <p>Menggunakan air kelapa asli yang kaya mineral dan elektrolit untuk mengembalikan kesegaran tubuh secara cepat.</p>
-                    </div>
-                    <div class="kartu-keunggulan">
-                        <div class="ikon-keunggulan">🍍</div>
-                        <h3>100% Ekstrak Buah Asli</h3>
-                        <p>Dipadukan dengan sari buah markisa, semangka, nanas, dan sitrus tropis asli tanpa perisa buatan.</p>
-                    </div>
-                    <div class="kartu-keunggulan">
-                        <div class="ikon-keunggulan">📲</div>
-                        <h3>Transaksi Cepat via QRIS</h3>
-                        <p>Mendukung pembayaran QRIS dari seluruh aplikasi m-Banking dan e-Wallet untuk memastikan pesanan Anda terjamin.</p>
-                    </div>
-                    <div class="kartu-keunggulan">
-                        <div class="ikon-keunggulan">🕒</div>
-                        <h3>Jadwal Pengambilan Terukur</h3>
-                        <p>Pilih estimasi jam pengambilan agar minuman tetap dingin saat Anda ambil.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Seksi FAQ -->
-        <section id="faq" class="seksi-faq">
-            <div class="kepala-seksi">
-                <div>
-                    <span class="sub-label-seksi">Pusat Informasi</span>
-                    <h2>Pertanyaan yang Sering Diajukan (FAQ)</h2>
-                </div>
-            </div>
-
-            <div class="daftar-faq">
-                <div class="item-faq terbuka">
-                    <button type="button" class="tombol-faq">
-                        <span>Bagaimana alur pemesanan dan pembayaran QRIS di website ini?</span>
-                        <span class="ikon-faq">+</span>
-                    </button>
-                    <div class="jawaban-faq">
-                        Website ini khusus melayani pemesanan dengan pembayaran <strong>QRIS</strong>. Setelah Anda memilih menu, mengatur takaran es/manis, serta mengisi nama dan jam pengambilan, layar <strong>Pembayaran QRIS</strong> akan muncul. Silakan scan atau unduh gambar QRIS, lakukan pembayaran sesuai total tagihan, unggah bukti screenshot pembayaran pada kolom yang tersedia, lalu klik <strong>Kirim Pesanan ke WhatsApp</strong>.
-                    </div>
-                </div>
-
-                <div class="item-faq">
-                    <button type="button" class="tombol-faq">
-                        <span>Apakah Riwayat Pembelian saya bisa dilihat oleh orang lain yang membuka web ini?</span>
-                        <span class="ikon-faq">+</span>
-                    </button>
-                    <div class="jawaban-faq">
-                        <strong>Tidak bisa.</strong> Fitur Riwayat Pembelian menggunakan penyimpanan lokal terisolasi pada browser smartphone/perangkat Anda masing-masing. Pelanggan lain yang mengakses website ini dari perangkat mereka sama sekali tidak dapat melihat daftar pesanan maupun nama Anda.
-                    </div>
-                </div>
-
-                <div class="item-faq">
-                    <button type="button" class="tombol-faq">
-                        <span>Di mana lokasi booth Kokownut saat Bazaar Politeknik Negeri Jakarta?</span>
-                        <span class="ikon-faq">+</span>
-                    </button>
-                    <div class="jawaban-faq">
-                        Kokownut hadir di Bazaar Politeknik Negeri Jakarta pada tanggal <strong>10–11 November</strong>, berlokasi di <strong>Parkiran Mobil Samping Lapangan Spirit</strong>.
-                    </div>
-                </div>
-
-                <div class="item-faq">
-                    <button type="button" class="tombol-faq">
-                        <span>Apakah saya bisa memilih takaran es dan kemanisan langsung di Keranjang?</span>
-                        <span class="ikon-faq">+</span>
-                    </button>
-                    <div class="jawaban-faq">
-                        Bisa! Cukup klik tombol <strong>+ Keranjang</strong> di halaman utama. Saat membuka panel <strong>Keranjang</strong>, setiap item dilengkapi pilihan <strong>Takaran Es Batu</strong> dan <strong>Tingkat Kemanisan</strong>. Jika membeli lebih dari 1 cup pada varian yang sama dan ingin takaran berbeda, klik tombol <strong>Pisahkan 1 Cup</strong> di dalam keranjang.
-                    </div>
-                </div>
-
-                <div class="item-faq">
-                    <button type="button" class="tombol-faq">
-                        <span>Bagaimana aturan Estimasi Jam Pengambilan pesanan?</span>
-                        <span class="ikon-faq">+</span>
-                    </button>
-                    <div class="jawaban-faq">
-                        Kami menyediakan pilihan waktu pengambilan dengan rentang 1 jam (mulai pukul <strong>08:00</strong> hingga <strong>15:00</strong>). Tim kami meracik pesanan mendekati jam pengambilan Anda agar kesegaran air kelapa tetap terjaga.
-                    </div>
-                </div>
-
-                <div class="item-faq">
-                    <button type="button" class="tombol-faq">
-                        <span>Bagaimana cara menggunakan kode voucher di keranjang?</span>
-                        <span class="ikon-faq">+</span>
-                    </button>
-                    <div class="jawaban-faq">
-                        Saat Kokownut mengadakan promo khusus, kode voucher resmi akan diumumkan. Anda cukup mengetikkan kode tersebut pada kolom voucher di dalam <strong>Keranjang</strong> lalu menekan tombol <strong>Pakai</strong> sebelum melanjutkan ke pembayaran QRIS.
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-    <!-- ====== AKHIR HALAMAN UTAMA ====== -->
-
-    <!-- ====== 4. HALAMAN DETAIL PRODUK ====== -->
-    <div id="detail" class="konten-detail elemen-kokownut" hidden>
-        <div class="bar-atas">
-            <a href="index.html" class="link-kembali">&larr; Kembali ke semua produk</a>
-            <div id="breadcrumb-teks" class="breadcrumb-detail">Beranda / Katalog / <strong>Detail Produk</strong></div>
-        </div>
-        <main id="konten"></main>
-    </div>
-    <!-- ====== AKHIR HALAMAN DETAIL ====== -->
-
-    <!-- ====== 5. DRAWER KERANJANG BELANJA & CHECKOUT ====== -->
-    <div id="latar-drawer" class="latar-gelap-drawer elemen-kokownut"></div>
-
-    <aside id="drawer-keranjang" class="drawer-keranjang elemen-kokownut" aria-label="Keranjang Belanja">
-        <div class="drawer-kepala">
-            <h2>
-                <span>🛒</span>
-                <span>Keranjang Pesanan</span>
-            </h2>
-            <button type="button" id="btn-tutup-keranjang" class="tombol-tutup-drawer" aria-label="Tutup Keranjang">&times;</button>
-        </div>
-
-        <div id="badan-keranjang" class="drawer-badan"></div>
-
-        <div id="kaki-keranjang" class="drawer-kaki" hidden>
-            <div class="kotak-promo-keranjang">
-                <input type="text" id="input-kode-promo" class="input-promo" placeholder="Masukkan kode voucher..." />
-                <button type="button" id="btn-terapkan-promo" class="btn-pakai-promo">Pakai</button>
-            </div>
-            <div id="status-promo-teks" class="info-promo-aktif" hidden></div>
-
-            <div class="ringkasan-checkout">
-                <div class="baris-ringkasan">
-                    <span>Total Jumlah Cup (<strong id="ringkasan-cup">0 Cup</strong>)</span>
-                    <span id="ringkasan-subtotal">Rp 0</span>
-                </div>
-                <div id="baris-diskon-ringkasan" class="baris-ringkasan" hidden>
-                    <span>Potongan Voucher</span>
-                    <strong id="ringkasan-diskon" style="color: var(--hijau-segar);">- Rp 0</strong>
-                </div>
-                <div class="baris-ringkasan total-akhir">
-                    <span>Total Tagihan QRIS</span>
-                    <span id="ringkasan-harga">Rp 0</span>
-                </div>
-            </div>
-
-            <div class="grid-form-checkout-keranjang">
-                <div class="grup-form">
-                    <label for="input-nama-keranjang" class="label-form">Nama Pemesan</label>
-                    <input type="text" id="input-nama-keranjang" class="input-nama" placeholder="Nama Anda..." autocomplete="name" />
-                </div>
-
-                <div class="grup-form">
-                    <label for="select-jam-keranjang" class="label-form">Estimasi Jam Ambil</label>
-                    <select id="select-jam-keranjang" class="select-kustom"></select>
-                </div>
-            </div>
-            <span id="error-nama-keranjang" class="teks-error">Mohon isi nama Anda terlebih dahulu sebelum lanjut ke pembayaran QRIS.</span>
-
-            <div class="grup-aksi-checkout">
-                <button type="button" id="btn-lihat-nota" class="tombol-cetak-nota">Lihat Nota</button>
-                <button type="button" id="btn-checkout-keranjang" class="tombol-checkout-wa">
-                    <span>Lanjut Bayar QRIS</span>
-                    <span>&rarr;</span>
-                </button>
-            </div>
-        </div>
-    </aside>
-
-    <!-- ====== 6. MODAL GERBANG PEMBAYARAN QRIS ====== -->
-    <div id="modal-qris" class="modal-umum elemen-kokownut" role="dialog" aria-label="Pembayaran QRIS Kokownut">
-        <div class="drawer-kepala">
-            <h2>📲 Pembayaran QRIS Kokownut</h2>
-            <button type="button" id="btn-tutup-qris" class="tombol-tutup-drawer" aria-label="Tutup QRIS">&times;</button>
-        </div>
-
-        <div class="isi-modal">
-            <div class="qris-banner-instruksi">
-                <strong>Penting:</strong> Pesanan hanya diproses bagi pelanggan yang telah menyelesaikan pembayaran QRIS. Silakan scan/unduh kode QRIS di bawah ini sesuai nominal tagihan.
-            </div>
-
-            <div class="qris-kotak-tagihan">
-                <div>
-                    <span class="label-total">Total yang Harus Dibayar</span>
-                    <div id="qris-nominal-tampil" class="qris-nominal-besar">Rp 0</div>
-                </div>
-                <button type="button" id="btn-salin-nominal-qris" class="btn-salin-nominal">Salin Nominal</button>
-            </div>
-
-            <div id="qris-rincian-pesanan" class="qris-rincian-mini"></div>
-
-            <!-- Bingkai Gambar QRIS Anda -->
-            <div class="qris-bingkai-gambar">
-                <img id="img-qris-utama" class="qris-img-tampil" src="qris.jpeg" alt="QRIS Kokownut Segar" />
-                <div id="qris-fallback-teks" class="qris-placeholder-info" hidden>
-                    <strong>Gambar QRIS Belum Dimasukkan</strong><br>
-                    Simpan gambar QRIS Anda di folder <code>qris.jpeg</code> agar tampil otomatis di sini.
-                </div>
-                <a id="link-unduh-qris" href="qris.jpeg" download="QRIS-Kokownut-Segar.jpeg" class="btn-unduh-qris">
-                    ⬇ Unduh Gambar QRIS (Untuk Pengguna HP)
-                </a>
-            </div>
-
-            <!-- Verifikasi Bukti Pembayaran Sebelum Tombol WhatsApp Terbuka -->
-            <div class="qris-kotak-bukti">
-                <span class="label-form">1. Unggah Screenshot Bukti Pembayaran QRIS (Wajib)</span>
-                <label for="input-file-bukti-qris" class="label-upload-bukti">
-                    <span>📤 Pilih Gambar Bukti Transfer dari Galeri</span>
-                    <span style="font-size: 11px; font-weight: 500; color: var(--teks-sekunder);">Format JPG / PNG / Screenshot m-Banking atau e-Wallet</span>
-                </label>
-                <input type="file" id="input-file-bukti-qris" accept="image/*" hidden />
-
-                <div id="wadah-pratinjau-bukti" class="pratinjau-bukti-wrapper" hidden>
-                    <img id="img-pratinjau-bukti" class="img-pratinjau-bukti" src="" alt="Pratinjau Bukti" />
-                    <div id="nama-file-bukti" class="info-file-bukti">bukti-transfer.jpg</div>
-                </div>
-
-                <label class="baris-centang-qris">
-                    <input type="checkbox" id="cek-konfirmasi-qris" />
-                    <span>Saya sudah membayar via QRIS sesuai nominal di atas dan siap melampirkan foto bukti transfer di chat WhatsApp.</span>
-                </label>
-            </div>
-
-            <button type="button" id="btn-konfirmasi-kirim-wa" class="tombol-kirim-wa-qris" disabled>
-                <span>Kirim Pesanan ke WhatsApp Sekarang</span>
-                <span>&rarr;</span>
-            </button>
-        </div>
-    </div>
-
-    <!-- ====== 7. STICKY BOTTOM CART BAR KHUSUS SMARTPHONE ====== -->
-    <div id="bar-keranjang-bawah-mobile" class="bar-keranjang-bawah-mobile elemen-kokownut">
-        <button type="button" id="btn-buka-keranjang-bawah" class="tombol-bar-keranjang-mobile">
-            <div class="info-kiri-bar-mobile">
-                <span id="badge-cup-mobile" class="badge-cup-bar-mobile">0 Cup</span>
-                <div class="teks-bar-mobile">
-                    <strong>Keranjang Belanja</strong>
-                    <span>Ketuk untuk atur es/manis & bayar QRIS</span>
-                </div>
-            </div>
-            <div class="harga-kanan-bar-mobile">
-                <span id="harga-bar-mobile">Rp 0</span>
-                <span>&rarr;</span>
-            </div>
-        </button>
-    </div>
-
-    <!-- ====== 8. MODAL RIWAYAT PEMBELIAN PRIBADI ====== -->
-    <div id="modal-riwayat" class="modal-umum elemen-kokownut" role="dialog" aria-label="Riwayat Pembelian Saya">
-        <div class="drawer-kepala">
-            <h2>🔒 Riwayat Pembelian Saya</h2>
-            <button type="button" id="btn-tutup-riwayat" class="tombol-tutup-drawer" aria-label="Tutup Riwayat">&times;</button>
-        </div>
-        <div id="isi-riwayat" class="isi-modal"></div>
-    </div>
-
-    <!-- ====== 9. MODAL NOTA / STRUK DIGITAL ====== -->
-    <div id="modal-nota" class="modal-umum elemen-kokownut" role="dialog" aria-label="Nota Pesanan">
-        <div class="drawer-kepala">
-            <h2>Struk Ringkasan Pesanan</h2>
-            <button type="button" id="btn-tutup-nota" class="tombol-tutup-drawer" aria-label="Tutup Nota">&times;</button>
-        </div>
-        <div class="isi-modal">
-            <div id="wadah-kertas-nota" class="kertas-nota"></div>
-            <button type="button" id="btn-lanjut-qris-nota" class="tombol-checkout-wa">Lanjut ke Pembayaran QRIS &rarr;</button>
-        </div>
-    </div>
-
-    <!-- ====== 10. WADAH TOAST NOTIFIKASI ====== -->
-    <div id="wadah-toast" class="wadah-toast elemen-kokownut"></div>
-
-    <!-- ====== 11. FOOTER ====== -->
-    <footer class="elemen-kokownut">
-        <div class="footer-grid">
-            <div>
-                <div class="footer-brand">Kokownut Segar.</div>
-                <p>Minuman air kelapa murni dengan perpaduan ekstrak buah tropis asli. Hadir di Bazaar Politeknik Negeri Jakarta (10–11 November) di Parkiran Mobil Samping Lapangan Spirit.</p>
-            </div>
-            <div class="footer-kolom">
-                <h4>Varian Menu</h4>
-                <ul>
-                    <li><a href="?produk=original-coco">Original Coco — Rp 8.000</a></li>
-                    <li><a href="?produk=cocomellon">Cocomellon — Rp 12.000</a></li>
-                    <li><a href="?produk=pinnacollada">Pinnacollada — Rp 12.000</a></li>
-                    <li><a href="?produk=coco-sunkissed">Coco Sunkissed — Rp 15.000</a></li>
-                    <li><a href="?produk=coco-passion">Coco Passion — Rp 18.000</a></li>
-                </ul>
-            </div>
-            <div class="footer-kolom">
-                <h4>Ketentuan Pemesanan</h4>
-                <ul>
-                    <li><a href="#faq">Khusus Pembayaran QRIS</a></li>
-                    <li><a href="#info-bazaar">Lokasi Bazaar PNJ</a></li>
-                    <li><a href="#faq">Bantuan & FAQ</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bawah">
-            <div>&copy; 2026 Kokownut Indonesia. All Rights Reserved.</div>
-            <div>Official QRIS Web Store Kokownut Segar</div>
-        </div>
-    </footer>
-
-    <!-- ==========================================================================
-         12. LOGIKA JAVASCRIPT UTAMA + PEMBERSIH OTOMATIS BADGE NETLIFY
-         ========================================================================== -->
-    <script class="elemen-kokownut">
-        // Pembersih Otomatis Elemen Suntikan "Powered by Netlify"
-        (function bersihkanBadgeEksternal() {
-            function sapuElemenLuar() {
-                // 1. Hapus semua anak langsung dari <body> yang bukan milik Kokownut
-                Array.from(document.body.children).forEach(function (el) {
-                    const tag = el.tagName ? el.tagName.toLowerCase() : "";
-                    if (tag === "script" || tag === "style") return;
-                    if (!el.classList.contains("elemen-kokownut")) {
-                        el.style.setProperty("display", "none", "important");
-                        el.style.setProperty("visibility", "hidden", "important");
-                        el.style.setProperty("pointer-events", "none", "important");
-                        el.remove();
-                    }
-                });
-
-                // 2. Cari tautan atau elemen yang mengandung teks "Powered by Netlify"
-                document.querySelectorAll("a, div, aside, iframe, span").forEach(function (node) {
-                    if (node.classList && node.classList.contains("elemen-kokownut")) return;
-                    if (node.closest && node.closest(".elemen-kokownut")) return;
-                    const teks = (node.textContent || "").toLowerCase();
-                    const href = (node.getAttribute && (node.getAttribute("href") || node.getAttribute("src"))) || "";
-                    if (teks.indexOf("powered by netlify") !== -1 || href.indexOf("netlify.com") !== -1) {
-                        node.style.setProperty("display", "none", "important");
-                        node.remove();
-                    }
-                });
-            }
-
-            sapuElemenLuar();
-            window.addEventListener("DOMContentLoaded", sapuElemenLuar);
-            window.addEventListener("load", sapuElemenLuar);
-
-            const pengamat = new MutationObserver(function () {
-                sapuElemenLuar();
-            });
-            pengamat.observe(document.documentElement, { childList: true, subtree: true });
-        })();
-
-        const NOMOR_WA = "6287881623552";
-
-        // GANTI NAMA FILE GAMBAR QRIS ANDA DI BARIS INI JIKA PERLU:
-        const GAMBAR_QRIS = "qris.jpeg";
-
-        const KUNCI_STORAGE_DEVICE_ID = "kokownut_device_token_v4";
-        const KUNCI_STORAGE_KERANJANG = "kokownut_keranjang_v4";
-        const KUNCI_STORAGE_NAMA = "kokownut_nama_pelanggan_v4";
-        const KUNCI_STORAGE_JAM = "kokownut_jam_ambil_v4";
-        const KUNCI_STORAGE_RIWAYAT = "kokownut_riwayat_privat_v4";
-
-        const OPSI_ES = ["Normal Ice", "Less Ice", "No Ice"];
-        const OPSI_MANIS = ["Normal Sweet", "Less Sweet", "Murni Tanpa Gula"];
-
-        const OPSI_JAM_PENGAMBILAN = [
-            "08:00 - 09:00",
-            "09:00 - 10:00",
-            "10:00 - 11:00",
-            "11:00 - 12:00",
-            "12:00 - 13:00",
-            "13:00 - 14:00",
-            "14:00 - 15:00"
-        ];
-
-        const DAFTAR_VOUCHER = {};
-
-        // ====== 1. DATABASE PRODUK UTAMA ======
-        const produk = {
-            "original-coco": {
-                nama: "Original Coco",
-                harga: 8000,
-                kategori: "klasik",
-                lencana: "Klasik Favorit",
-                gambar: "original-coco.jpeg",
-                tagline: "Kesegaran air kelapa murni, apa adanya.",
-                deskripsi: "Original Coco adalah varian paling klasik dari Kokownut Segar. Rasa manis alami air kelapa muda pilihan yang ringan, murni, dan menghidrasi tubuh secara optimal saat cuaca panas.",
-                nutrisi: {
-                    volume: "350 ml",
-                    kalori: "65 kkal",
-                    utama: "Elektrolit Tinggi",
-                    karakter: "Manis Alami"
-                },
-                sorotan: [
-                    "100% rasa khas air kelapa alami tanpa campuran",
-                    "Ringan, murni, dan cepat menghidrasi tubuh",
-                    "Pilihan klasik yang cocok untuk semua kalangan"
-                ]
-            },
-            "coco-passion": {
-                nama: "Coco Passion",
-                harga: 18000,
-                kategori: "segar-asam",
-                lencana: "Signature Tropis",
-                gambar: "coco-passion.jpeg",
-                tagline: "Segar manis kelapa berpadu asam markisa.",
-                deskripsi: "Coco Passion memadukan air kelapa murni dengan ekstrak buah markisa asli. Manis lembut kelapa bertemu sensasi asam segar markisa, menghasilkan profil rasa tropis yang kuat dan berkarakter.",
-                nutrisi: {
-                    volume: "350 ml",
-                    kalori: "95 kkal",
-                    utama: "Kaya Vitamin C",
-                    karakter: "Asam Manis Segar"
-                },
-                sorotan: [
-                    "Perpaduan air kelapa murni dan ekstrak markisa asli",
-                    "Sensasi segar dengan sentuhan asam tropis yang pas",
-                    "Varian premium untuk penyuka rasa buah yang tegas"
-                ]
-            },
-            "cocomellon": {
-                nama: "Cocomellon",
-                harga: 12000,
-                kategori: "manis-lembut",
-                lencana: "Paling Menyegarkan",
-                gambar: "cocomellon.jpeg",
-                tagline: "Manis lembut semangka, sejuk air kelapa.",
-                deskripsi: "Cocomellon menghadirkan kombinasi air kelapa dengan ekstrak buah semangka merah segar. Rasanya manis lembut, ringan di tenggorokan, dan sangat menyejukkan di siang hari.",
-                nutrisi: {
-                    volume: "350 ml",
-                    kalori: "80 kkal",
-                    utama: "Hidrasi Ganda",
-                    karakter: "Manis Sejuk"
-                },
-                sorotan: [
-                    "Perpaduan air kelapa dan ekstrak buah semangka segar",
-                    "Rasa manis lembut dan ringan di tenggorokan",
-                    "Sangat nikmat disajikan dalam kondisi dingin"
-                ]
-            },
-            "coco-sunkissed": {
-                nama: "Coco Sunkissed",
-                harga: 15000,
-                kategori: "segar-asam",
-                lencana: "Mood Booster",
-                gambar: "coco-sunkissed.jpeg",
-                tagline: "Hangat cerahnya buah tropis dalam setiap tegukan.",
-                deskripsi: "Coco Sunkissed memadukan air kelapa dengan ekstrak buah sitrus tropis yang memberi kesan cerah seperti sinar matahari. Rasanya segar, manis seimbang, dan membangkitkan semangat.",
-                nutrisi: {
-                    volume: "350 ml",
-                    kalori: "90 kkal",
-                    utama: "Vitamin C & Mineral",
-                    karakter: "Cerah Menyegarkan"
-                },
-                sorotan: [
-                    "Air kelapa dengan ekstrak buah sitrus tropis asli",
-                    "Profil rasa cerah, segar, dan manis seimbang",
-                    "Teman terbaik untuk menemani aktivitas siang hari"
-                ]
-            },
-            "pinnacollada": {
-                nama: "Pinnacollada",
-                harga: 12000,
-                kategori: "manis-lembut",
-                lencana: "Best Seller",
-                gambar: "pinnacollada.jpeg",
-                tagline: "Nanas dan kelapa, duet tropis yang klasik.",
-                deskripsi: "Pinnacollada memadukan air kelapa dengan ekstrak buah nanas madu pilihan, terinspirasi dari kombinasi mocktail klasik dunia. Manis, segar, dan menghadirkan suasana liburan tropis.",
-                nutrisi: {
-                    volume: "350 ml",
-                    kalori: "85 kkal",
-                    utama: "Bromelain & Mineral",
-                    karakter: "Manis Tropis"
-                },
-                sorotan: [
-                    "Perpaduan harmonis air kelapa dan ekstrak nanas",
-                    "Manis segar dengan sentuhan asam khas nanas",
-                    "Rasa mocktail tropis yang paling mudah disukai"
-                ]
-            }
-        };
-
-        // ====== 2. STATE APLIKASI & ISOLASI PERANGKAT ======
-        const tokenPerangkatPribadi = dapatkanAtauBuatTokenPerangkat();
-        let keranjang = muatKeranjangDariStorage();
-        let kodePromoAktif = "";
-        let kategoriAktif = "semua";
-        let kataKunciCari = "";
-        let urutanAktif = "default";
-
-        let transaksiTertundaQRIS = null;
-        let fileBuktiTerpilih = null;
-
-        // ====== 3. FUNGSI UTILITAS & TOKEN PRIVASI ======
-        function dapatkanAtauBuatTokenPerangkat() {
-            try {
-                let token = localStorage.getItem(KUNCI_STORAGE_DEVICE_ID);
-                if (!token) {
-                    token = "dev_" + Date.now().toString(36) + "_" + Math.random().toString(36).substring(2, 10);
-                    localStorage.setItem(KUNCI_STORAGE_DEVICE_ID, token);
-                }
-                return token;
-            } catch (err) {
-                return "dev_session_local";
-            }
-        }
-
-        function formatRupiah(angka) {
-            return "Rp " + Number(angka).toLocaleString("id-ID");
-        }
-
-        function buatEl(tag, kelas, teks) {
-            const el = document.createElement(tag);
-            if (kelas) el.className = kelas;
-            if (teks !== undefined) el.textContent = teks;
-            return el;
-        }
-
-        function buatUidItem() {
-            return "item_" + Date.now() + "_" + Math.floor(Math.random() * 10000);
-        }
-
-        function muatKeranjangDariStorage() {
-            try {
-                const data = localStorage.getItem(KUNCI_STORAGE_KERANJANG);
-                if (!data) return [];
-                const parsed = JSON.parse(data);
-                if (Array.isArray(parsed)) {
-                    return parsed.filter(function (it) {
-                        return it && produk[it.idProduk] && it.qty > 0;
-                    });
-                }
-                return [];
-            } catch (err) {
-                return [];
-            }
-        }
-
-        function simpanKeranjangKeStorage() {
-            try {
-                localStorage.setItem(KUNCI_STORAGE_KERANJANG, JSON.stringify(keranjang));
-            } catch (err) {}
-        }
-
-        function ambilNamaTersimpan() {
-            try {
-                return localStorage.getItem(KUNCI_STORAGE_NAMA) || "";
-            } catch (err) {
-                return "";
-            }
-        }
-
-        function simpanNamaPelanggan(nama) {
-            try {
-                localStorage.setItem(KUNCI_STORAGE_NAMA, nama);
-            } catch (err) {}
-        }
-
-        function ambilJamTersimpan() {
-            try {
-                const tersimpan = localStorage.getItem(KUNCI_STORAGE_JAM);
-                if (tersimpan && OPSI_JAM_PENGAMBILAN.indexOf(tersimpan) !== -1) {
-                    return tersimpan;
-                }
-                return OPSI_JAM_PENGAMBILAN[0];
-            } catch (err) {
-                return OPSI_JAM_PENGAMBILAN[0];
-            }
-        }
-
-        function simpanJamPengambilan(jam) {
-            try {
-                localStorage.setItem(KUNCI_STORAGE_JAM, jam);
-            } catch (err) {}
-        }
-
-        function isiDropdownJam(selectEl) {
-            if (!selectEl) return;
-            selectEl.innerHTML = "";
-            const jamAktif = ambilJamTersimpan();
-            OPSI_JAM_PENGAMBILAN.forEach(function (slot) {
-                const opt = buatEl("option", "", slot + " WIB");
-                opt.value = slot;
-                if (slot === jamAktif) opt.selected = true;
-                selectEl.appendChild(opt);
-            });
-        }
-
-        function tampilkanToast(pesan) {
-            const wadah = document.getElementById("wadah-toast");
-            const toast = buatEl("div", "toast-item", "✓ " + pesan);
-            wadah.appendChild(toast);
-            setTimeout(function () {
-                toast.remove();
-            }, 2600);
-        }
-
-        // ====== 4. FORMAT PESAN WHATSAPP RESMI (KHUSUS PEMBAYARAN QRIS) ======
-        function susunTeksPesanWA(namaPelanggan, teksVarian, totalJumlahCup, totalHargaNominal, jamPengambilan, idOrderRef) {
-            const namaBersih = (namaPelanggan || "").trim() || "-";
-            const jamBersih = jamPengambilan || ambilJamTersimpan();
-            const refBersih = idOrderRef ? " (#" + idOrderRef + ")" : "";
-            return (
-                "Halo Kokownut, saya ingin melakukan pemesanan" + refBersih + "\n\n" +
-                "Nama: " + namaBersih + "\n" +
-                "Varian: " + teksVarian + "\n" +
-                "Jumlah: " + totalJumlahCup + "\n" +
-                "Estimasi Jam Pengambilan: " + jamBersih + "\n" +
-                "Total Harga: " + formatRupiah(totalHargaNominal) + "\n" +
-                "Pembayaran: QRIS (Sudah Bayar - Bukti Terlampir)\n\n" +
-                "Terima Kasih"
-            );
-        }
-
-        function buatLinkWA(teksPesan) {
-            return "https://wa.me/" + NOMOR_WA + "?text=" + encodeURIComponent(teksPesan);
-        }
-
-        // ====== 5. INISIALISASI GERBANG PEMBAYARAN QRIS ======
-        function inisialisasiModalQRIS() {
-            const imgQrisEl = document.getElementById("img-qris-utama");
-            const fallbackQrisEl = document.getElementById("qris-fallback-teks");
-            const linkUnduhQrisEl = document.getElementById("link-unduh-qris");
-            const inputBuktiEl = document.getElementById("input-file-bukti-qris");
-            const wadahPratinjauEl = document.getElementById("wadah-pratinjau-bukti");
-            const imgPratinjauEl = document.getElementById("img-pratinjau-bukti");
-            const namaFileBuktiEl = document.getElementById("nama-file-bukti");
-            const cekKonfirmasiEl = document.getElementById("cek-konfirmasi-qris");
-            const btnKirimWaEl = document.getElementById("btn-konfirmasi-kirim-wa");
-            const btnSalinNominalEl = document.getElementById("btn-salin-nominal-qris");
-
-            imgQrisEl.src = GAMBAR_QRIS;
-            linkUnduhQrisEl.href = GAMBAR_QRIS;
-
-            imgQrisEl.addEventListener("error", function () {
-                imgQrisEl.hidden = true;
-                fallbackQrisEl.hidden = false;
-            });
-
-            imgQrisEl.addEventListener("load", function () {
-                imgQrisEl.hidden = false;
-                fallbackQrisEl.hidden = true;
-            });
-
-            function validasiKunciTombolWA() {
-                const syaratTerpenuhi = Boolean(fileBuktiTerpilih) && cekKonfirmasiEl.checked && Boolean(transaksiTertundaQRIS);
-                btnKirimWaEl.disabled = !syaratTerpenuhi;
-            }
-
-            inputBuktiEl.addEventListener("change", function (e) {
-                const file = e.target.files && e.target.files[0];
-                if (!file) {
-                    fileBuktiTerpilih = null;
-                    wadahPratinjauEl.hidden = true;
-                    validasiKunciTombolWA();
-                    return;
-                }
-                fileBuktiTerpilih = file;
-                namaFileBuktiEl.textContent = "Bukti siap: " + file.name;
-                const reader = new FileReader();
-                reader.onload = function (ev) {
-                    imgPratinjauEl.src = ev.target.result;
-                    wadahPratinjauEl.hidden = false;
-                };
-                reader.readAsDataURL(file);
-                validasiKunciTombolWA();
-            });
-
-            cekKonfirmasiEl.addEventListener("change", validasiKunciTombolWA);
-
-            btnSalinNominalEl.addEventListener("click", function () {
-                if (!transaksiTertundaQRIS) return;
-                const angkaMurni = String(transaksiTertundaQRIS.total);
-                if (navigator.clipboard && navigator.clipboard.writeText) {
-                    navigator.clipboard.writeText(angkaMurni);
-                }
-                tampilkanToast("Nominal " + formatRupiah(transaksiTertundaQRIS.total) + " disalin");
-            });
-
-            btnKirimWaEl.addEventListener("click", function () {
-                if (!transaksiTertundaQRIS || !fileBuktiTerpilih || !cekKonfirmasiEl.checked) return;
-
-                const trx = transaksiTertundaQRIS;
-                const idOrder = "KKW-" + Math.floor(100000 + Math.random() * 900000);
-
-                const teksWA = susunTeksPesanWA(
-                    trx.nama,
-                    trx.varian,
-                    trx.jumlah,
-                    trx.total,
-                    trx.jamAmbil,
-                    idOrder
-                );
-
-                simpanKeRiwayatPribadi({
-                    idOrder: idOrder,
-                    waktu: new Date().toLocaleDateString("id-ID", {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric",
-                        hour: "2-digit",
-                        minute: "2-digit"
-                    }),
-                    nama: trx.nama,
-                    varian: trx.varian,
-                    jumlah: trx.jumlah,
-                    jamAmbil: trx.jamAmbil,
-                    total: trx.total
-                });
-
-                if (trx.sumber === "keranjang") {
-                    keranjang = [];
-                    kodePromoAktif = "";
-                    simpanKeranjangKeStorage();
-                    perbaruiUIKeranjang();
-                }
-
-                tutupSemuaOverlay();
-                tampilkanToast("Pembayaran dikonfirmasi! Silakan lampirkan foto bukti di WhatsApp.");
-                window.open(buatLinkWA(teksWA), "_blank", "noopener");
-            });
-        }
-
-        function bukaGerbangPembayaranQRIS(dataTransaksi) {
-            transaksiTertundaQRIS = dataTransaksi;
-            fileBuktiTerpilih = null;
-
-            const inputBuktiEl = document.getElementById("input-file-bukti-qris");
-            const wadahPratinjauEl = document.getElementById("wadah-pratinjau-bukti");
-            const cekKonfirmasiEl = document.getElementById("cek-konfirmasi-qris");
-            const btnKirimWaEl = document.getElementById("btn-konfirmasi-kirim-wa");
-
-            if (inputBuktiEl) inputBuktiEl.value = "";
-            if (wadahPratinjauEl) wadahPratinjauEl.hidden = true;
-            if (cekKonfirmasiEl) cekKonfirmasiEl.checked = false;
-            if (btnKirimWaEl) btnKirimWaEl.disabled = true;
-
-            document.getElementById("qris-nominal-tampil").textContent = formatRupiah(dataTransaksi.total);
-
-            const rincianEl = document.getElementById("qris-rincian-pesanan");
-            rincianEl.innerHTML = "";
-            rincianEl.appendChild(buatEl("div", "", "Pemesan: " + dataTransaksi.nama + " • Jam Ambil: " + dataTransaksi.jamAmbil));
-            rincianEl.appendChild(buatEl("strong", "", "Pesanan (" + dataTransaksi.jumlah + " Cup): " + dataTransaksi.varian));
-
-            document.getElementById("drawer-keranjang").classList.remove("aktif");
-            document.getElementById("modal-nota").classList.remove("aktif");
-            document.getElementById("modal-riwayat").classList.remove("aktif");
-
-            document.getElementById("latar-drawer").classList.add("aktif");
-            document.getElementById("modal-qris").classList.add("aktif");
-            document.body.classList.add("kunci-scroll");
-        }
-
-        // ====== 6. AUTO-ROLLING HERO CAROUSEL ======
-        function inisialisasiHeroCarousel() {
-            const kunciVarian = Object.keys(produk);
-            let indeksSlide = 1;
-            let timerRolling = null;
-            let sentuhAwalX = 0;
-
-            const imgEl = document.getElementById("hero-slide-img");
-            const lencanaEl = document.getElementById("hero-slide-lencana");
-            const namaEl = document.getElementById("hero-slide-nama");
-            const taglineEl = document.getElementById("hero-slide-tagline");
-            const hargaEl = document.getElementById("hero-slide-harga");
-            const linkImgEl = document.getElementById("hero-slide-link");
-            const linkInfoEl = document.getElementById("hero-slide-info-link");
-            const wadahDots = document.getElementById("hero-indikator-dots");
-            const kartuCarousel = document.getElementById("hero-carousel-kartu");
-
-            if (!imgEl || !wadahDots) return;
-
-            kunciVarian.forEach(function (_, idx) {
-                const dot = buatEl("button", "hero-dot" + (idx === indeksSlide ? " aktif" : ""));
-                dot.type = "button";
-                dot.setAttribute("aria-label", "Pilih slide " + (idx + 1));
-                dot.addEventListener("click", function () {
-                    tampilkanSlide(idx);
-                    mulaiUlangTimer();
-                });
-                wadahDots.appendChild(dot);
-            });
-
-            function tampilkanSlide(idxBaru) {
-                indeksSlide = (idxBaru + kunciVarian.length) % kunciVarian.length;
-                const kunci = kunciVarian[indeksSlide];
-                const item = produk[kunci];
-
-                imgEl.classList.add("sedang-berganti");
-
-                setTimeout(function () {
-                    imgEl.src = item.gambar;
-                    imgEl.alt = item.nama;
-                    lencanaEl.textContent = item.lencana || "Menu Segar";
-                    namaEl.textContent = item.nama;
-                    taglineEl.textContent = item.tagline;
-                    hargaEl.textContent = formatRupiah(item.harga);
-                    linkImgEl.href = "?produk=" + kunci;
-                    linkInfoEl.href = "?produk=" + kunci;
-
-                    const semuaDot = wadahDots.querySelectorAll(".hero-dot");
-                    semuaDot.forEach(function (d, i) {
-                        if (i === indeksSlide) {
-                            d.classList.add("aktif");
-                        } else {
-                            d.classList.remove("aktif");
-                        }
-                    });
-
-                    imgEl.classList.remove("sedang-berganti");
-                }, 220);
-            }
-
-            function mulaiTimer() {
-                timerRolling = setInterval(function () {
-                    tampilkanSlide(indeksSlide + 1);
-                }, 3500);
-            }
-
-            function hentikanTimer() {
-                if (timerRolling) clearInterval(timerRolling);
-            }
-
-            function mulaiUlangTimer() {
-                hentikanTimer();
-                mulaiTimer();
-            }
-
-            document.getElementById("hero-sebelumnya").addEventListener("click", function () {
-                tampilkanSlide(indeksSlide - 1);
-                mulaiUlangTimer();
-            });
-
-            document.getElementById("hero-selanjutnya").addEventListener("click", function () {
-                tampilkanSlide(indeksSlide + 1);
-                mulaiUlangTimer();
-            });
-
-            kartuCarousel.addEventListener("touchstart", function (e) {
-                sentuhAwalX = e.changedTouches[0].screenX;
-                hentikanTimer();
-            }, { passive: true });
-
-            kartuCarousel.addEventListener("touchend", function (e) {
-                const sentuhAkhirX = e.changedTouches[0].screenX;
-                const selisih = sentuhAkhirX - sentuhAwalX;
-                if (Math.abs(selisih) > 40) {
-                    if (selisih < 0) {
-                        tampilkanSlide(indeksSlide + 1);
-                    } else {
-                        tampilkanSlide(indeksSlide - 1);
-                    }
-                }
-                mulaiTimer();
-            }, { passive: true });
-
-            kartuCarousel.addEventListener("mouseenter", hentikanTimer);
-            kartuCarousel.addEventListener("mouseleave", mulaiTimer);
-
-            mulaiTimer();
-        }
-
-        // ====== 7. LOGIKA KERANJANG ======
-        function tambahKeKeranjang(kunciProduk, jumlahTambah, esPilihan, manisPilihan) {
-            if (!produk[kunciProduk]) return;
-            const qty = Number(jumlahTambah) || 1;
-            const es = esPilihan || "Normal Ice";
-            const manis = manisPilihan || "Normal Sweet";
-
-            const indeksAda = keranjang.findIndex(function (it) {
-                return it.idProduk === kunciProduk && it.es === es && it.manis === manis;
-            });
-
-            if (indeksAda !== -1) {
-                keranjang[indeksAda].qty += qty;
-            } else {
-                keranjang.push({
-                    uid: buatUidItem(),
-                    idProduk: kunciProduk,
-                    qty: qty,
-                    es: es,
-                    manis: manis
-                });
-            }
-
-            simpanKeranjangKeStorage();
-            perbaruiUIKeranjang();
-
-            const lencana = document.getElementById("lencana-keranjang");
-            lencana.classList.add("memantul");
-            setTimeout(function () {
-                lencana.classList.remove("memantul");
-            }, 250);
-
-            tampilkanToast(qty + " cup " + produk[kunciProduk].nama + " masuk keranjang");
-        }
-
-        function ubahKuantitasKeranjang(uid, delta) {
-            const idx = keranjang.findIndex(function (it) {
-                return it.uid === uid;
-            });
-            if (idx === -1) return;
-
-            keranjang[idx].qty += delta;
-            if (keranjang[idx].qty <= 0) {
-                keranjang.splice(idx, 1);
-            }
-            simpanKeranjangKeStorage();
-            perbaruiUIKeranjang();
-        }
-
-        function pisahkanSatuCupDiKeranjang(uid) {
-            const idx = keranjang.findIndex(function (it) {
-                return it.uid === uid;
-            });
-            if (idx === -1 || keranjang[idx].qty <= 1) return;
-
-            const itemAsal = keranjang[idx];
-            itemAsal.qty -= 1;
-
-            keranjang.splice(idx + 1, 0, {
-                uid: buatUidItem(),
-                idProduk: itemAsal.idProduk,
-                qty: 1,
-                es: itemAsal.es,
-                manis: itemAsal.manis
-            });
-
-            simpanKeranjangKeStorage();
-            perbaruiUIKeranjang();
-            tampilkanToast("1 cup dipisahkan agar bisa diatur beda takaran es/gula");
-        }
-
-        function ubahTakaranItemKeranjang(uid, jenis, nilaiBaru) {
-            const item = keranjang.find(function (it) {
-                return it.uid === uid;
-            });
-            if (!item) return;
-
-            if (jenis === "es") item.es = nilaiBaru;
-            if (jenis === "manis") item.manis = nilaiBaru;
-
-            simpanKeranjangKeStorage();
-            perbaruiRingkasanAngkaKeranjang();
-        }
-
-        function hapusItemKeranjang(uid) {
-            const idx = keranjang.findIndex(function (it) {
-                return it.uid === uid;
-            });
-            if (idx !== -1) {
-                keranjang.splice(idx, 1);
-                simpanKeranjangKeStorage();
-                perbaruiUIKeranjang();
-                tampilkanToast("Item dihapus dari keranjang");
-            }
-        }
-
-        function kosongkanKeranjang() {
-            keranjang = [];
-            kodePromoAktif = "";
-            simpanKeranjangKeStorage();
-            perbaruiUIKeranjang();
-            tampilkanToast("Keranjang belanja dikosongkan");
-        }
-
-        function formatCatatanEsManis(es, manis) {
-            return (es || "Normal Ice") + ", " + (manis || "Normal Sweet");
-        }
-
-        function hitungStatistikKeranjang() {
-            let totalCup = 0;
-            let subtotalHarga = 0;
-            const daftarVarian = [];
-            const daftarItemLengkap = [];
-
-            keranjang.forEach(function (entry) {
-                const item = produk[entry.idProduk];
-                if (!item || entry.qty <= 0) return;
-
-                const qty = entry.qty;
-                totalCup += qty;
-                subtotalHarga += item.harga * qty;
-
-                const catatan = formatCatatanEsManis(entry.es, entry.manis);
-                const labelNama = item.nama + " [" + catatan + "]";
-
-                if (keranjang.length === 1) {
-                    daftarVarian.push(labelNama);
-                } else {
-                    daftarVarian.push(labelNama + " (" + qty + ")");
-                }
-
-                daftarItemLengkap.push({
-                    uid: entry.uid,
-                    idProduk: entry.idProduk,
-                    nama: item.nama,
-                    es: entry.es || "Normal Ice",
-                    manis: entry.manis || "Normal Sweet",
-                    catatan: catatan,
-                    harga: item.harga,
-                    qty: qty,
-                    gambar: item.gambar
-                });
-            });
-
-            let nominalDiskon = 0;
-            const infoVoucher = DAFTAR_VOUCHER[kodePromoAktif];
-            if (infoVoucher && totalCup >= (infoVoucher.minCup || 1)) {
-                if (infoVoucher.tipe === "persen") {
-                    nominalDiskon = Math.round(subtotalHarga * (infoVoucher.nilai / 100));
-                } else {
-                    nominalDiskon = infoVoucher.nilai;
-                }
-            }
-
-            const totalAkhir = Math.max(0, subtotalHarga - nominalDiskon);
-
-            return {
-                jumlahBaris: daftarItemLengkap.length,
-                totalCup: totalCup,
-                subtotalHarga: subtotalHarga,
-                nominalDiskon: nominalDiskon,
-                totalHarga: totalAkhir,
-                teksVarianGabungan: daftarVarian.join(", "),
-                daftarItemLengkap: daftarItemLengkap
-            };
-        }
-
-        function perbaruiRingkasanAngkaKeranjang() {
-            const stats = hitungStatistikKeranjang();
-            document.getElementById("lencana-keranjang").textContent = stats.totalCup;
-            document.getElementById("ringkasan-cup").textContent = stats.totalCup + " Cup";
-            document.getElementById("ringkasan-subtotal").textContent = formatRupiah(stats.subtotalHarga);
-
-            const barMobile = document.getElementById("bar-keranjang-bawah-mobile");
-            const badgeMobile = document.getElementById("badge-cup-mobile");
-            const hargaMobile = document.getElementById("harga-bar-mobile");
-
-            if (stats.totalCup > 0) {
-                barMobile.classList.add("ada-isi");
-                badgeMobile.textContent = stats.totalCup + " Cup";
-                hargaMobile.textContent = formatRupiah(stats.totalHarga);
-            } else {
-                barMobile.classList.remove("ada-isi");
-            }
-
-            const barisDiskonEl = document.getElementById("baris-diskon-ringkasan");
-            const statusPromoEl = document.getElementById("status-promo-teks");
-
-            if (stats.nominalDiskon > 0) {
-                barisDiskonEl.hidden = false;
-                document.getElementById("ringkasan-diskon").textContent = "- " + formatRupiah(stats.nominalDiskon);
-                statusPromoEl.hidden = false;
-                statusPromoEl.textContent = "✓ Voucher " + kodePromoAktif + " aktif (Potongan " + formatRupiah(stats.nominalDiskon) + ")";
-            } else {
-                barisDiskonEl.hidden = true;
-                statusPromoEl.hidden = true;
-            }
-
-            document.getElementById("ringkasan-harga").textContent = formatRupiah(stats.totalHarga);
-        }
-
-        function perbaruiUIKeranjang() {
-            const stats = hitungStatistikKeranjang();
-            const badan = document.getElementById("badan-keranjang");
-            const kaki = document.getElementById("kaki-keranjang");
-
-            badan.innerHTML = "";
-            perbaruiRingkasanAngkaKeranjang();
-
-            if (stats.jumlahBaris === 0) {
-                kaki.hidden = true;
-                const kosong = buatEl("div", "keranjang-kosong");
-                kosong.appendChild(buatEl("div", "ikon-keranjang-kosong", "🥥"));
-                kosong.appendChild(buatEl("h3", "", "Keranjang Anda Masih Kosong"));
-                kosong.appendChild(buatEl("p", "", "Silakan pilih varian minuman Kokownut Segar untuk mulai memesan."));
-                const btnMulai = buatEl("button", "btn-primer", "Lihat Menu Varian");
-                btnMulai.type = "button";
-                btnMulai.addEventListener("click", tutupSemuaOverlay);
-                kosong.appendChild(btnMulai);
-                badan.appendChild(kosong);
-                return;
-            }
-
-            kaki.hidden = false;
-
-            const barisAtas = buatEl("div", "baris-kosongkan-keranjang");
-            barisAtas.appendChild(buatEl("span", "", "Atur takaran es & kemanisan langsung di bawah ini:"));
-            const btnKosong = buatEl("button", "btn-kosongkan", "Kosongkan");
-            btnKosong.type = "button";
-            btnKosong.addEventListener("click", kosongkanKeranjang);
-            barisAtas.appendChild(btnKosong);
-            badan.appendChild(barisAtas);
-
-            const daftarEl = buatEl("div", "daftar-item-keranjang");
-
-            stats.daftarItemLengkap.forEach(function (item) {
-                const kartuItem = buatEl("div", "item-keranjang");
-                const bagianAtas = buatEl("div", "item-keranjang-atas");
-
-                const img = buatEl("img", "img-item-keranjang");
-                img.src = item.gambar;
-                img.alt = item.nama;
-                bagianAtas.appendChild(img);
-
-                const info = buatEl("div", "info-item-keranjang");
-                info.appendChild(buatEl("h4", "", item.nama));
-                info.appendChild(buatEl("span", "harga-satuan-keranjang", formatRupiah(item.harga) + " / cup"));
-
-                const barisQty = buatEl("div", "baris-qty-dan-pisah");
-                const kontrolQty = buatEl("div", "kontrol-qty-keranjang");
-
-                const btnMin = buatEl("button", "btn-qty-kecil", "−");
-                btnMin.type = "button";
-                btnMin.addEventListener("click", function () {
-                    ubahKuantitasKeranjang(item.uid, -1);
-                });
-
-                const angkaQty = buatEl("span", "angka-qty-kecil", String(item.qty));
-
-                const btnPlus = buatEl("button", "btn-qty-kecil", "+");
-                btnPlus.type = "button";
-                btnPlus.addEventListener("click", function () {
-                    ubahKuantitasKeranjang(item.uid, 1);
-                });
-
-                kontrolQty.appendChild(btnMin);
-                kontrolQty.appendChild(angkaQty);
-                kontrolQty.appendChild(btnPlus);
-                barisQty.appendChild(kontrolQty);
-
-                if (item.qty > 1) {
-                    const btnPisah = buatEl("button", "btn-pisah-cup", "Pisahkan 1 Cup");
-                    btnPisah.type = "button";
-                    btnPisah.addEventListener("click", function () {
-                        pisahkanSatuCupDiKeranjang(item.uid);
-                    });
-                    barisQty.appendChild(btnPisah);
-                }
-
-                info.appendChild(barisQty);
-                bagianAtas.appendChild(info);
-
-                const kanan = buatEl("div", "kanan-item-keranjang");
-                kanan.appendChild(buatEl("span", "subtotal-item-keranjang", formatRupiah(item.harga * item.qty)));
-
-                const btnHapus = buatEl("button", "btn-hapus-item", "Hapus");
-                btnHapus.type = "button";
-                btnHapus.addEventListener("click", function () {
-                    hapusItemKeranjang(item.uid);
-                });
-                kanan.appendChild(btnHapus);
-
-                bagianAtas.appendChild(kanan);
-                kartuItem.appendChild(bagianAtas);
-
-                const barisKustom = buatEl("div", "baris-kustom-keranjang");
-
-                const grupEs = buatEl("div", "grup-kustom-mini");
-                grupEs.appendChild(buatEl("label", "", "Takaran Es Batu"));
-                const selEs = buatEl("select", "select-kustom-mini");
-                OPSI_ES.forEach(function (opsi) {
-                    const o = buatEl("option", "", opsi);
-                    o.value = opsi;
-                    if (opsi === item.es) o.selected = true;
-                    selEs.appendChild(o);
-                });
-                selEs.addEventListener("change", function (e) {
-                    ubahTakaranItemKeranjang(item.uid, "es", e.target.value);
-                });
-                grupEs.appendChild(selEs);
-
-                const grupManis = buatEl("div", "grup-kustom-mini");
-                grupManis.appendChild(buatEl("label", "", "Tingkat Kemanisan"));
-                const selManis = buatEl("select", "select-kustom-mini");
-                OPSI_MANIS.forEach(function (opsi) {
-                    const o = buatEl("option", "", opsi);
-                    o.value = opsi;
-                    if (opsi === item.manis) o.selected = true;
-                    selManis.appendChild(o);
-                });
-                selManis.addEventListener("change", function (e) {
-                    ubahTakaranItemKeranjang(item.uid, "manis", e.target.value);
-                });
-                grupManis.appendChild(selManis);
-
-                barisKustom.appendChild(grupEs);
-                barisKustom.appendChild(grupManis);
-                kartuItem.appendChild(barisKustom);
-
-                daftarEl.appendChild(kartuItem);
-            });
-
-            badan.appendChild(daftarEl);
-        }
-
-        // ====== 8. MANAJEMEN RIWAYAT PEMBELIAN PRIBADI ======
-        function muatDaftarRiwayatPribadi() {
-            try {
-                const data = JSON.parse(localStorage.getItem(KUNCI_STORAGE_RIWAYAT) || "[]");
-                if (!Array.isArray(data)) return [];
-                return data.filter(function (item) {
-                    return item && item.deviceToken === tokenPerangkatPribadi;
-                });
-            } catch (err) {
-                return [];
-            }
-        }
-
-        function simpanKeRiwayatPribadi(dataPesanan) {
-            try {
-                const lama = muatDaftarRiwayatPribadi();
-                lama.unshift({
-                    deviceToken: tokenPerangkatPribadi,
-                    idOrder: dataPesanan.idOrder,
-                    waktu: dataPesanan.waktu,
-                    nama: dataPesanan.nama,
-                    varian: dataPesanan.varian,
-                    jumlah: dataPesanan.jumlah,
-                    jamAmbil: dataPesanan.jamAmbil,
-                    total: dataPesanan.total
-                });
-                localStorage.setItem(KUNCI_STORAGE_RIWAYAT, JSON.stringify(lama.slice(0, 12)));
-                perbaruiTampilanRiwayatPembelian();
-            } catch (err) {}
-        }
-
-        function hapusSemuaRiwayatPribadi() {
-            try {
-                localStorage.removeItem(KUNCI_STORAGE_RIWAYAT);
-                perbaruiTampilanRiwayatPembelian();
-                tampilkanToast("Riwayat pembelian pribadi Anda telah dibersihkan");
-            } catch (err) {}
-        }
-
-        function buatElemenKartuRiwayat(r) {
-            const kartu = buatEl("div", "kartu-riwayat-item");
-
-            const kepala = buatEl("div", "kepala-riwayat-item");
-            kepala.appendChild(buatEl("span", "id-order-lencana", "#" + (r.idOrder || "KKW-ORDER")));
-            kepala.appendChild(buatEl("span", "", r.waktu));
-            kartu.appendChild(kepala);
-
-            kartu.appendChild(buatEl("div", "nama-pemesan-riwayat", "Pemesan: " + r.nama));
-            kartu.appendChild(buatEl("div", "detail-riwayat-item", r.varian + " (" + r.jumlah + " Cup)"));
-
-            if (r.jamAmbil) {
-                kartu.appendChild(buatEl("span", "jam-ambil-riwayat", "🕒 Jam Ambil: " + r.jamAmbil));
-            }
-
-            const kaki = buatEl("div", "kaki-riwayat-item");
-            kaki.appendChild(buatEl("span", "total-riwayat-item", formatRupiah(r.total)));
-
-            const btnUlang = buatEl("button", "btn-pesan-ulang", "Pesan Ulang via QRIS");
-            btnUlang.type = "button";
-            btnUlang.addEventListener("click", function () {
-                bukaGerbangPembayaranQRIS({
-                    sumber: "riwayat",
-                    nama: r.nama,
-                    varian: r.varian,
-                    jumlah: r.jumlah,
-                    jamAmbil: r.jamAmbil || ambilJamTersimpan(),
-                    total: r.total
-                });
-            });
-            kaki.appendChild(btnUlang);
-
-            kartu.appendChild(kaki);
-            return kartu;
-        }
-
-        function perbaruiTampilanRiwayatPembelian() {
-            const daftar = muatDaftarRiwayatPribadi();
-            const lencanaNav = document.getElementById("lencana-riwayat");
-            const linkNavRiwayat = document.getElementById("nav-link-riwayat");
-            const pillMobileRiwayat = document.getElementById("pill-mobile-riwayat");
-            const seksiBeranda = document.getElementById("seksi-riwayat-pembelian");
-            const gridBeranda = document.getElementById("grid-riwayat-beranda");
-            const wadahModal = document.getElementById("isi-riwayat");
-
-            if (lencanaNav) lencanaNav.textContent = daftar.length;
-
-            if (daftar.length > 0) {
-                if (seksiBeranda) seksiBeranda.hidden = false;
-                if (linkNavRiwayat) linkNavRiwayat.hidden = false;
-                if (pillMobileRiwayat) pillMobileRiwayat.hidden = false;
-                if (gridBeranda) {
-                    gridBeranda.innerHTML = "";
-                    daftar.forEach(function (r) {
-                        gridBeranda.appendChild(buatElemenKartuRiwayat(r));
-                    });
-                }
-            } else {
-                if (seksiBeranda) seksiBeranda.hidden = true;
-                if (linkNavRiwayat) linkNavRiwayat.hidden = true;
-                if (pillMobileRiwayat) pillMobileRiwayat.hidden = true;
-            }
-
-            if (wadahModal) {
-                wadahModal.innerHTML = "";
-                const infoPrivasi = buatEl(
-                    "div",
-                    "qris-rincian-mini",
-                    "🔒 Privasi Terjamin: Data riwayat di bawah ini hanya tersimpan di browser perangkat Anda sendiri dan tidak dapat dilihat oleh orang lain."
-                );
-                wadahModal.appendChild(infoPrivasi);
-
-                if (daftar.length === 0) {
-                    const kosong = buatEl("div", "keranjang-kosong");
-                    kosong.appendChild(buatEl("h3", "", "Belum Ada Riwayat Pembelian"));
-                    kosong.appendChild(buatEl("p", "", "Pesanan yang telah Anda bayar via QRIS dan kirim ke WhatsApp akan tercatat otomatis di perangkat ini."));
-                    wadahModal.appendChild(kosong);
-                } else {
-                    daftar.forEach(function (r) {
-                        wadahModal.appendChild(buatElemenKartuRiwayat(r));
-                    });
-                }
-            }
-        }
-
-        // ====== 9. KONTROL OVERLAY & NOTA DIGITAL ======
-        function bukaDrawerKeranjang() {
-            document.getElementById("latar-drawer").classList.add("aktif");
-            document.getElementById("drawer-keranjang").classList.add("aktif");
-            document.body.classList.add("kunci-scroll");
-        }
-
-        function tutupSemuaOverlay() {
-            document.getElementById("latar-drawer").classList.remove("aktif");
-            document.getElementById("drawer-keranjang").classList.remove("aktif");
-            document.getElementById("modal-riwayat").classList.remove("aktif");
-            document.getElementById("modal-nota").classList.remove("aktif");
-            document.getElementById("modal-qris").classList.remove("aktif");
-            document.body.classList.remove("kunci-scroll");
-        }
-
-        function bukaModalRiwayat() {
-            perbaruiTampilanRiwayatPembelian();
-            document.getElementById("latar-drawer").classList.add("aktif");
-            document.getElementById("modal-riwayat").classList.add("aktif");
-            document.body.classList.add("kunci-scroll");
-        }
-
-        function bukaModalNota() {
-            const stats = hitungStatistikKeranjang();
-            if (stats.jumlahBaris === 0) return;
-
-            const inputNamaKeranjang = document.getElementById("input-nama-keranjang");
-            const selectJamKeranjang = document.getElementById("select-jam-keranjang");
-            const namaPelanggan = inputNamaKeranjang.value.trim() || "Pelanggan Kokownut";
-            const jamAmbil = selectJamKeranjang ? selectJamKeranjang.value : ambilJamTersimpan();
-            const kodeRef = "KKW-" + Math.floor(100000 + Math.random() * 900000);
-            const waktuSkrg = new Date().toLocaleString("id-ID", {
-                day: "2-digit",
-                month: "short",
-                year: "numeric",
-                hour: "2-digit",
-                minute: "2-digit"
-            });
-
-            const kertas = document.getElementById("wadah-kertas-nota");
-            kertas.innerHTML = "";
-
-            const kepala = buatEl("div", "nota-tengah");
-            kepala.appendChild(buatEl("strong", "", "KOKOWNUT SEGAR INDONESIA"));
-            kepala.appendChild(buatEl("div", "", "No. Ref: #" + kodeRef));
-            kepala.appendChild(buatEl("div", "", waktuSkrg));
-            kertas.appendChild(kepala);
-
-            const barisNama = buatEl("div", "nota-baris");
-            barisNama.appendChild(buatEl("span", "", "Nama Pemesan:"));
-            barisNama.appendChild(buatEl("strong", "", namaPelanggan));
-            kertas.appendChild(barisNama);
-
-            const barisJam = buatEl("div", "nota-baris");
-            barisJam.appendChild(buatEl("span", "", "Jam Pengambilan:"));
-            barisJam.appendChild(buatEl("strong", "", jamAmbil));
-            kertas.appendChild(barisJam);
-
-            const barisMetode = buatEl("div", "nota-baris");
-            barisMetode.appendChild(buatEl("span", "", "Metode Bayar:"));
-            barisMetode.appendChild(buatEl("strong", "", "QRIS"));
-            kertas.appendChild(barisMetode);
-
-            stats.daftarItemLengkap.forEach(function (item) {
-                const b = buatEl("div", "nota-baris");
-                const label = item.qty + "x " + item.nama + " (" + item.catatan + ")";
-                b.appendChild(buatEl("span", "", label));
-                b.appendChild(buatEl("span", "", formatRupiah(item.harga * item.qty)));
-                kertas.appendChild(b);
-            });
-
-            if (stats.nominalDiskon > 0) {
-                const bDiskon = buatEl("div", "nota-baris");
-                bDiskon.appendChild(buatEl("span", "", "Voucher (" + kodePromoAktif + "):"));
-                bDiskon.appendChild(buatEl("span", "", "- " + formatRupiah(stats.nominalDiskon)));
-                kertas.appendChild(bDiskon);
-            }
-
-            const bTotal = buatEl("div", "nota-baris nota-total");
-            bTotal.appendChild(buatEl("span", "", "TOTAL QRIS (" + stats.totalCup + " Cup)"));
-            bTotal.appendChild(buatEl("span", "", formatRupiah(stats.totalHarga)));
-            kertas.appendChild(bTotal);
-
-            document.getElementById("drawer-keranjang").classList.remove("aktif");
-            document.getElementById("modal-nota").classList.add("aktif");
-        }
-
-        // ====== 10. RENDER KATALOG ======
-        function renderKatalog() {
-            const gridProduk = document.getElementById("grid-produk");
-            if (!gridProduk) return;
-            gridProduk.innerHTML = "";
-
-            let daftarKunci = Object.keys(produk).filter(function (kunci) {
-                const p = produk[kunci];
-                const cocokKategori = kategoriAktif === "semua" || p.kategori === kategoriAktif;
-                const teksGabungan = (p.nama + " " + p.tagline + " " + p.deskripsi).toLowerCase();
-                const cocokCari = kataKunciCari === "" || teksGabungan.indexOf(kataKunciCari.toLowerCase()) !== -1;
-                return cocokKategori && cocokCari;
-            });
-
-            if (urutanAktif === "termurah") {
-                daftarKunci.sort(function (a, b) {
-                    return produk[a].harga - produk[b].harga;
-                });
-            } else if (urutanAktif === "termahal") {
-                daftarKunci.sort(function (a, b) {
-                    return produk[b].harga - produk[a].harga;
-                });
-            } else if (urutanAktif === "nama") {
-                daftarKunci.sort(function (a, b) {
-                    return produk[a].nama.localeCompare(produk[b].nama);
-                });
-            }
-
-            if (daftarKunci.length === 0) {
-                const kosong = buatEl("div", "tidak-ditemukan");
-                kosong.appendChild(buatEl("h3", "", "Varian tidak ditemukan"));
-                kosong.appendChild(buatEl("p", "", "Coba kata kunci atau filter kategori lain."));
-                gridProduk.appendChild(kosong);
-                return;
-            }
-
-            daftarKunci.forEach(function (kunci) {
-                const p = produk[kunci];
-                const kartu = buatEl("div", "kartu-produk");
-
-                const bungkusImg = buatEl("a", "bungkus-img");
-                bungkusImg.href = "?produk=" + kunci;
-
-                const img = buatEl("img", "produk-img");
-                img.src = p.gambar;
-                img.alt = p.nama;
-                img.loading = "lazy";
-                bungkusImg.appendChild(img);
-
-                if (p.lencana) {
-                    bungkusImg.appendChild(buatEl("span", "lencana-kartu", p.lencana));
-                }
-                if (p.nutrisi && p.nutrisi.kalori) {
-                    bungkusImg.appendChild(buatEl("span", "lencana-kalori", p.nutrisi.kalori));
-                }
-                kartu.appendChild(bungkusImg);
-
-                const isi = buatEl("div", "isi-kartu");
-                const barisJudul = buatEl("div", "baris-judul-kartu");
-
-                const linkJudul = buatEl("a", "nama-produk", p.nama);
-                linkJudul.href = "?produk=" + kunci;
-                barisJudul.appendChild(linkJudul);
-                barisJudul.appendChild(buatEl("span", "harga-kartu", formatRupiah(p.harga)));
-                isi.appendChild(barisJudul);
-
-                isi.appendChild(buatEl("p", "tagline-kartu", p.tagline));
-
-                if (p.nutrisi) {
-                    const meta = buatEl("div", "meta-nutrisi-kartu");
-                    meta.appendChild(buatEl("span", "chip-nutrisi", p.nutrisi.volume));
-                    meta.appendChild(buatEl("span", "chip-nutrisi", p.nutrisi.utama));
-                    meta.appendChild(buatEl("span", "chip-nutrisi", p.nutrisi.karakter));
-                    isi.appendChild(meta);
-                }
-
-                const grupAksi = buatEl("div", "aksi-kartu-grup");
-
-                const btnDetail = buatEl("a", "btn-detail-kartu", "Lihat Detail");
-                btnDetail.href = "?produk=" + kunci;
-
-                const btnTambah = buatEl("button", "btn-tambah-keranjang-cepat", "+ Keranjang");
-                btnTambah.type = "button";
-                btnTambah.addEventListener("click", function () {
-                    tambahKeKeranjang(kunci, 1, "Normal Ice", "Normal Sweet");
-                });
-
-                grupAksi.appendChild(btnDetail);
-                grupAksi.appendChild(btnTambah);
-                isi.appendChild(grupAksi);
-
-                kartu.appendChild(isi);
-                gridProduk.appendChild(kartu);
-            });
-        }
-
-        // ====== 11. EVENT LISTENERS GLOBAL ======
-        const inputNamaKeranjangEl = document.getElementById("input-nama-keranjang");
-        const selectJamKeranjangEl = document.getElementById("select-jam-keranjang");
-        const errorNamaKeranjangEl = document.getElementById("error-nama-keranjang");
-
-        inputNamaKeranjangEl.value = ambilNamaTersimpan();
-        isiDropdownJam(selectJamKeranjangEl);
-
-        inputNamaKeranjangEl.addEventListener("input", function () {
-            if (inputNamaKeranjangEl.value.trim() !== "") {
-                inputNamaKeranjangEl.classList.remove("input-error");
-                errorNamaKeranjangEl.style.display = "none";
-                simpanNamaPelanggan(inputNamaKeranjangEl.value.trim());
-            }
-        });
-
-        selectJamKeranjangEl.addEventListener("change", function () {
-            simpanJamPengambilan(selectJamKeranjangEl.value);
-        });
-
-        document.getElementById("btn-terapkan-promo").addEventListener("click", function () {
-            const kodeInput = document.getElementById("input-kode-promo").value.trim().toUpperCase();
-            if (!kodeInput) {
-                tampilkanToast("Masukkan kode voucher terlebih dahulu");
-                return;
-            }
-            const infoVoucher = DAFTAR_VOUCHER[kodeInput];
-            if (!infoVoucher) {
-                kodePromoAktif = "";
-                perbaruiRingkasanAngkaKeranjang();
-                tampilkanToast("Belum ada kode voucher yang aktif saat ini");
-                return;
-            }
-            kodePromoAktif = kodeInput;
-            perbaruiRingkasanAngkaKeranjang();
-            tampilkanToast("Voucher " + kodeInput + " berhasil diterapkan!");
-        });
-
-        function prosesKeGerbangQRISDariKeranjang() {
-            const stats = hitungStatistikKeranjang();
-            if (stats.jumlahBaris === 0) return;
-
-            const namaPelanggan = inputNamaKeranjangEl.value.trim();
-            if (namaPelanggan === "") {
-                tutupSemuaOverlay();
-                bukaDrawerKeranjang();
-                inputNamaKeranjangEl.classList.add("input-error");
-                errorNamaKeranjangEl.style.display = "block";
-                inputNamaKeranjangEl.focus();
-                return;
-            }
-
-            const jamPilihan = selectJamKeranjangEl.value;
-            simpanNamaPelanggan(namaPelanggan);
-            simpanJamPengambilan(jamPilihan);
-
-            bukaGerbangPembayaranQRIS({
-                sumber: "keranjang",
-                nama: namaPelanggan,
-                varian: stats.teksVarianGabungan,
-                jumlah: stats.totalCup,
-                jamAmbil: jamPilihan,
-                total: stats.totalHarga
-            });
-        }
-
-        document.getElementById("btn-checkout-keranjang").addEventListener("click", prosesKeGerbangQRISDariKeranjang);
-        document.getElementById("btn-lanjut-qris-nota").addEventListener("click", prosesKeGerbangQRISDariKeranjang);
-        document.getElementById("btn-lihat-nota").addEventListener("click", bukaModalNota);
-
-        document.getElementById("btn-buka-keranjang").addEventListener("click", bukaDrawerKeranjang);
-        document.getElementById("btn-buka-keranjang-bawah").addEventListener("click", bukaDrawerKeranjang);
-        document.getElementById("btn-hero-buka-keranjang").addEventListener("click", bukaDrawerKeranjang);
-        document.getElementById("btn-tutup-keranjang").addEventListener("click", tutupSemuaOverlay);
-        document.getElementById("btn-tutup-riwayat").addEventListener("click", tutupSemuaOverlay);
-        document.getElementById("btn-tutup-nota").addEventListener("click", tutupSemuaOverlay);
-        document.getElementById("btn-tutup-qris").addEventListener("click", tutupSemuaOverlay);
-        document.getElementById("latar-drawer").addEventListener("click", tutupSemuaOverlay);
-        document.getElementById("btn-buka-riwayat").addEventListener("click", bukaModalRiwayat);
-        document.getElementById("btn-hapus-riwayat-beranda").addEventListener("click", hapusSemuaRiwayatPribadi);
-
-        document.querySelectorAll(".tombol-filter").forEach(function (btn) {
-            btn.addEventListener("click", function () {
-                document.querySelectorAll(".tombol-filter").forEach(function (b) {
-                    b.classList.remove("aktif");
-                });
-                btn.classList.add("aktif");
-                kategoriAktif = btn.getAttribute("data-kategori") || "semua";
-                renderKatalog();
-            });
-        });
-
-        document.getElementById("input-cari-produk").addEventListener("input", function (e) {
-            kataKunciCari = e.target.value;
-            renderKatalog();
-        });
-
-        document.getElementById("pilih-urutan-produk").addEventListener("change", function (e) {
-            urutanAktif = e.target.value;
-            renderKatalog();
-        });
-
-        document.querySelectorAll(".tombol-faq").forEach(function (btn) {
-            btn.addEventListener("click", function () {
-                btn.closest(".item-faq").classList.toggle("terbuka");
-            });
-        });
-
-        window.addEventListener("scroll", function () {
-            const nav = document.getElementById("navbar");
-            if (window.scrollY > 10) {
-                nav.classList.add("tergulir");
-            } else {
-                nav.classList.remove("tergulir");
-            }
-        });
-
-        // ====== 12. INISIALISASI & ROUTING HALAMAN DETAIL (?produk=...) ======
-        const konten = document.getElementById("konten");
-        const id = new URLSearchParams(window.location.search).get("produk");
-        const item = Object.prototype.hasOwnProperty.call(produk, id) ? produk[id] : undefined;
-
-        inisialisasiModalQRIS();
-        inisialisasiHeroCarousel();
-        renderKatalog();
-        perbaruiUIKeranjang();
-        perbaruiTampilanRiwayatPembelian();
-
-        if (id !== null) {
-            document.getElementById("beranda").hidden = true;
-            document.getElementById("detail").hidden = false;
-            window.scrollTo(0, 0);
-
-            if (!item) {
-                document.title = "Produk tidak ditemukan - Kokownut Segar";
-                const kosong = buatEl("div", "tidak-ditemukan");
-                kosong.appendChild(buatEl("h1", "detail-nama", "Produk Tidak Ditemukan"));
-                kosong.appendChild(buatEl("p", "detail-deskripsi", "Silakan kembali ke halaman utama dan pilih salah satu menu Kokownut Segar."));
-                konten.appendChild(kosong);
-            } else {
-                document.title = item.nama + " — Kokownut Segar";
-                document.getElementById("breadcrumb-teks").innerHTML = "Beranda / Katalog / <strong>" + item.nama + "</strong>";
-
-                const wrapper = buatEl("div", "detail-wrapper");
-
-                const kolomKiri = buatEl("div", "detail-kiri");
-                const imgBox = buatEl("div", "detail-img-container");
-                const img = buatEl("img", "detail-img");
-                img.src = item.gambar;
-                img.alt = item.nama;
-                imgBox.appendChild(img);
-                kolomKiri.appendChild(imgBox);
-
-                if (item.nutrisi) {
-                    const kotakNutrisi = buatEl("div", "kotak-nutrisi-detail");
-                    kotakNutrisi.appendChild(buatEl("div", "judul-nutrisi", "Informasi Takaran & Karakter Sajian"));
-                    const gridN = buatEl("div", "grid-nutrisi");
-
-                    [
-                        { label: "Ukuran Cup", nilai: item.nutrisi.volume },
-                        { label: "Estimasi Energi", nilai: item.nutrisi.kalori },
-                        { label: "Kandungan Utama", nilai: item.nutrisi.utama },
-                        { label: "Profil Rasa", nilai: item.nutrisi.karakter }
-                    ].forEach(function (n) {
-                        const kotakItem = buatEl("div", "item-nutrisi");
-                        kotakItem.appendChild(buatEl("strong", "", n.nilai));
-                        kotakItem.appendChild(buatEl("span", "", n.label));
-                        gridN.appendChild(kotakItem);
-                    });
-
-                    kotakNutrisi.appendChild(gridN);
-                    kolomKiri.appendChild(kotakNutrisi);
-                }
-
-                wrapper.appendChild(kolomKiri);
-
-                const teks = buatEl("div", "detail-teks");
-                if (item.lencana) {
-                    teks.appendChild(buatEl("span", "detail-lencana", item.lencana));
-                }
-                teks.appendChild(buatEl("h1", "detail-nama", item.nama));
-                teks.appendChild(buatEl("p", "detail-tagline", item.tagline));
-
-                const hargaEl = buatEl("div", "detail-harga", formatRupiah(item.harga) + " ");
-                hargaEl.appendChild(buatEl("span", "", "/ cup (350 ml)"));
-                teks.appendChild(hargaEl);
-
-                teks.appendChild(buatEl("p", "detail-deskripsi", item.deskripsi));
-
-                const daftar = buatEl("ul", "detail-sorotan");
-                item.sorotan.forEach(function (s) {
-                    daftar.appendChild(buatEl("li", "", s));
-                });
-                teks.appendChild(daftar);
-
-                let jumlahCup = 1;
-                const kartuForm = buatEl("div", "kartu-form-pesan");
-
-                const kepalaForm = buatEl("div", "kepala-form-pesan");
-                kepalaForm.appendChild(buatEl("span", "judul-form-pesan", "Formulir Pemesanan & Kustomisasi"));
-                kepalaForm.appendChild(buatEl("span", "sub-form-pesan", "📲 Pembayaran QRIS"));
-                kartuForm.appendChild(kepalaForm);
-
-                const gridNamaJam = buatEl("div", "grid-kustomisasi");
-
-                const grupNama = buatEl("div", "grup-form");
-                const labelNama = buatEl("label", "label-form", "Nama Pemesan");
-                labelNama.setAttribute("for", "input-nama-pelanggan");
-                const inputNama = buatEl("input", "input-nama");
-                inputNama.type = "text";
-                inputNama.id = "input-nama-pelanggan";
-                inputNama.placeholder = "Masukkan nama Anda...";
-                inputNama.value = ambilNamaTersimpan();
-                grupNama.appendChild(labelNama);
-                grupNama.appendChild(inputNama);
-
-                const grupJamDetail = buatEl("div", "grup-form");
-                grupJamDetail.appendChild(buatEl("label", "label-form", "Estimasi Jam Pengambilan"));
-                const selectJamDetail = buatEl("select", "select-kustom");
-                isiDropdownJam(selectJamDetail);
-                grupJamDetail.appendChild(selectJamDetail);
-
-                gridNamaJam.appendChild(grupNama);
-                gridNamaJam.appendChild(grupJamDetail);
-                kartuForm.appendChild(gridNamaJam);
-
-                const pesanError = buatEl("span", "teks-error", "Mohon isi nama Anda terlebih dahulu sebelum lanjut ke pembayaran QRIS.");
-                kartuForm.appendChild(pesanError);
-
-                const gridKustom = buatEl("div", "grid-kustomisasi");
-
-                const grupEs = buatEl("div", "grup-form");
-                grupEs.appendChild(buatEl("label", "label-form", "Takaran Es Batu"));
-                const selectEs = buatEl("select", "select-kustom");
-                OPSI_ES.forEach(function (opt) {
-                    const o = buatEl("option", "", opt);
-                    o.value = opt;
-                    selectEs.appendChild(o);
-                });
-                grupEs.appendChild(selectEs);
-
-                const grupManis = buatEl("div", "grup-form");
-                grupManis.appendChild(buatEl("label", "label-form", "Tingkat Kemanisan"));
-                const selectManis = buatEl("select", "select-kustom");
-                OPSI_MANIS.forEach(function (opt) {
-                    const o = buatEl("option", "", opt);
-                    o.value = opt;
-                    selectManis.appendChild(o);
-                });
-                grupManis.appendChild(selectManis);
-
-                gridKustom.appendChild(grupEs);
-                gridKustom.appendChild(grupManis);
-                kartuForm.appendChild(gridKustom);
-
-                const barisKuantitas = buatEl("div", "baris-kuantitas-total");
-
-                const grupJumlah = buatEl("div", "grup-form");
-                grupJumlah.appendChild(buatEl("span", "label-form", "Jumlah Cup"));
-                const pengatur = buatEl("div", "pengatur-jumlah");
-                const btnKurang = buatEl("button", "tombol-jml", "−");
-                btnKurang.type = "button";
-                const inputJml = buatEl("input", "input-jml");
-                inputJml.type = "text";
-                inputJml.value = "1";
-                inputJml.readOnly = true;
-                const btnTambah = buatEl("button", "tombol-jml", "+");
-                btnTambah.type = "button";
-
-                pengatur.appendChild(btnKurang);
-                pengatur.appendChild(inputJml);
-                pengatur.appendChild(btnTambah);
-                grupJumlah.appendChild(pengatur);
-
-                const kotakTotal = buatEl("div", "kotak-total-harga");
-                kotakTotal.appendChild(buatEl("span", "label-total", "Total Tagihan QRIS"));
-                const nominalTotal = buatEl("span", "nominal-total", formatRupiah(item.harga));
-                kotakTotal.appendChild(nominalTotal);
-
-                barisKuantitas.appendChild(grupJumlah);
-                barisKuantitas.appendChild(kotakTotal);
-                kartuForm.appendChild(barisKuantitas);
-
-                const grupTombol = buatEl("div", "grup-tombol-detail");
-                const tombolKeranjangDetail = buatEl("button", "tombol-masuk-keranjang", "+ Tambah ke Keranjang");
-                tombolKeranjangDetail.type = "button";
-                const tombolBeli = buatEl("button", "tombol-beli-langsung", "Bayar QRIS & Pesan Langsung");
-                tombolBeli.type = "button";
-
-                grupTombol.appendChild(tombolKeranjangDetail);
-                grupTombol.appendChild(tombolBeli);
-                kartuForm.appendChild(grupTombol);
-
-                function ambilNamaVarianLengkap() {
-                    const catatan = formatCatatanEsManis(selectEs.value, selectManis.value);
-                    return item.nama + " [" + catatan + "]";
-                }
-
-                function perbaruiStateDetail() {
-                    const totalNominal = item.harga * jumlahCup;
-                    nominalTotal.textContent = formatRupiah(totalNominal);
-                }
-
-                inputNama.addEventListener("input", function () {
-                    if (inputNama.value.trim() !== "") {
-                        inputNama.classList.remove("input-error");
-                        pesanError.style.display = "none";
-                        simpanNamaPelanggan(inputNama.value.trim());
-                        inputNamaKeranjangEl.value = inputNama.value.trim();
-                    }
-                });
-
-                selectJamDetail.addEventListener("change", function () {
-                    simpanJamPengambilan(selectJamDetail.value);
-                    selectJamKeranjangEl.value = selectJamDetail.value;
-                });
-
-                btnKurang.addEventListener("click", function () {
-                    if (jumlahCup > 1) {
-                        jumlahCup--;
-                        inputJml.value = jumlahCup;
-                        perbaruiStateDetail();
-                    }
-                });
-
-                btnTambah.addEventListener("click", function () {
-                    jumlahCup++;
-                    inputJml.value = jumlahCup;
-                    perbaruiStateDetail();
-                });
-
-                tombolKeranjangDetail.addEventListener("click", function () {
-                    if (inputNama.value.trim() !== "") {
-                        simpanNamaPelanggan(inputNama.value.trim());
-                        inputNamaKeranjangEl.value = inputNama.value.trim();
-                    }
-                    simpanJamPengambilan(selectJamDetail.value);
-                    selectJamKeranjangEl.value = selectJamDetail.value;
-                    tambahKeKeranjang(id, jumlahCup, selectEs.value, selectManis.value);
-                    bukaDrawerKeranjang();
-                });
-
-                tombolBeli.addEventListener("click", function (e) {
-                    const namaBersih = inputNama.value.trim();
-                    if (namaBersih === "") {
-                        if (e) e.preventDefault();
-                        inputNama.classList.add("input-error");
-                        pesanError.style.display = "block";
-                        inputNama.focus();
-                        return;
-                    }
-                    simpanNamaPelanggan(namaBersih);
-                    inputNamaKeranjangEl.value = namaBersih;
-                    simpanJamPengambilan(selectJamDetail.value);
-                    selectJamKeranjangEl.value = selectJamDetail.value;
-
-                    const totalNominal = item.harga * jumlahCup;
-                    const varianLengkap = ambilNamaVarianLengkap();
-
-                    bukaGerbangPembayaranQRIS({
-                        sumber: "detail",
-                        nama: namaBersih,
-                        varian: varianLengkap,
-                        jumlah: jumlahCup,
-                        jamAmbil: selectJamDetail.value,
-                        total: totalNominal
-                    });
-                });
-
-                perbaruiStateDetail();
-                teks.appendChild(kartuForm);
-                wrapper.appendChild(teks);
-                konten.appendChild(wrapper);
-
-                const lain = buatEl("div", "varian-lain");
-                lain.appendChild(buatEl("h2", "", "Coba Varian Lainnya"));
-                const daftarLain = buatEl("div", "daftar-pilihan-lain");
-
-                Object.keys(produk).forEach(function (kunci) {
-                    if (kunci === id) return;
-                    const pLain = produk[kunci];
-                    const a = buatEl("a", "");
-                    a.href = "?produk=" + kunci;
-                    a.textContent = pLain.nama + " • " + formatRupiah(pLain.harga);
-                    daftarLain.appendChild(a);
-                });
-
-                lain.appendChild(daftarLain);
-                konten.appendChild(lain);
-            }
-        }
-    </script>
-
-</body>
-</html>
