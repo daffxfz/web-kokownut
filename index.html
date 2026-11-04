@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="description" content="Kokownut Segar - Minuman Air Kelapa Murni dengan Ekstrak Buah Tropis Asli. Pembayaran Praktis via QRIS. Hadir di Bazaar Politeknik Negeri Jakarta 10-11 November.">
-    <meta name="theme-color" content="#163818">
+    <meta name="description" content="Kokownut - Minuman Air Kelapa Murni dengan Ekstrak Buah Tropis Asli. Pembayaran Praktis via QRIS. Hadir di Bazaar Politeknik Negeri Jakarta 10-11 November.">
+    <meta name="theme-color" content="#1b3b1e">
     <title>Kokownut — Official Web Store</title>
 
     <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
@@ -14,43 +14,46 @@
 
     <style class="elemen-kokownut">
         /* ==========================================================================
-           1. DESIGN TOKENS & RESET + PEMBLOKIR BADGE EKSTERNAL NETLIFY
+           1. DESIGN TOKENS & RESET (SMOOTH BOTANICAL PALETTE) + PEMBLOKIR BADGE
            ========================================================================== */
         :root {
-            --hijau-gelap: #0f2911;
-            --hijau-tua: #163818;
-            --hijau-utama: #1e4620;
-            --hijau-sedang: #2e6b32;
-            --hijau-segar: #558b2f;
-            --hijau-cerah: #7cb342;
-            --hijau-muda: #e8f3e8;
-            --hijau-pudar: #f1f8f1;
-            --krem-latar: #f7fbf7;
-            --putih: #ffffff;
-            --abu-terang: #f3f6f3;
-            --abu-garis: #dce6dc;
-            --teks-utama: #182419;
-            --teks-sekunder: #4a5d4c;
-            --teks-redup: #768978;
-            --aksen-kuning: #f59e0b;
-            --aksen-kuning-muda: #fef3c7;
-            --merah-error: #dc2626;
-            --merah-muda: #fef2f2;
-            --hijau-wa: #1ebe57;
-            --hijau-wa-gelap: #169c46;
+            /* Palet Hijau Tropis & Sage yang Diperhalus (Smooth & Harmonious) */
+            --hijau-gelap: #122815;
+            --hijau-tua: #1b3b1e;
+            --hijau-utama: #234d26;
+            --hijau-sedang: #316936;
+            --hijau-segar: #4e8738;
+            --hijau-cerah: #74a948;
+            --hijau-muda: #e3efe4;
+            --hijau-pudar: #edf5ed;
+            --krem-latar: #f3f8f3;
+            --putih: #fafdfa;
+            --putih-murni: #ffffff;
+            --abu-terang: #eef4ee;
+            --abu-garis: rgba(35, 77, 38, 0.11);
+            --teks-utama: #1a281b;
+            --teks-sekunder: #4d614f;
+            --teks-redup: #788b7a;
+            --aksen-kuning: #f2a922;
+            --aksen-kuning-muda: #fef5e4;
+            --merah-error: #d93838;
+            --merah-muda: #fdf2f2;
+            --hijau-wa: #20b858;
+            --hijau-wa-gelap: #189947;
 
-            --bayangan-kecil: 0 4px 12px rgba(22, 56, 24, 0.05);
-            --bayangan-halus: 0 10px 30px rgba(22, 56, 24, 0.07);
-            --bayangan-tegas: 0 20px 45px rgba(22, 56, 24, 0.14);
-            --bayangan-modal: 0 25px 60px rgba(15, 41, 17, 0.35);
+            /* Bayangan Berlapis yang Lebih Lembut (Soft Diffused Shadows) */
+            --bayangan-kecil: 0 4px 16px -2px rgba(27, 59, 30, 0.05), 0 2px 6px -1px rgba(27, 59, 30, 0.03);
+            --bayangan-halus: 0 14px 34px -6px rgba(27, 59, 30, 0.07), 0 4px 14px -3px rgba(27, 59, 30, 0.04);
+            --bayangan-tegas: 0 22px 48px -8px rgba(27, 59, 30, 0.13), 0 8px 20px -4px rgba(27, 59, 30, 0.06);
+            --bayangan-modal: 0 28px 64px -10px rgba(18, 40, 21, 0.32);
 
-            --radius-kecil: 10px;
-            --radius-sedang: 16px;
-            --radius-besar: 24px;
+            --radius-kecil: 12px;
+            --radius-sedang: 18px;
+            --radius-besar: 26px;
             --radius-penuh: 9999px;
 
-            --transisi-cepat: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            --transisi-halus: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --transisi-cepat: 0.25s cubic-bezier(0.33, 1, 0.68, 1);
+            --transisi-halus: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         /* Sembunyikan paksa badge "Powered by Netlify" atau script suntikan luar */
@@ -96,6 +99,11 @@
         body {
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background-color: var(--krem-latar);
+            background-image:
+                radial-gradient(circle at 12% 8%, rgba(116, 169, 72, 0.09) 0%, transparent 45%),
+                radial-gradient(circle at 88% 35%, rgba(35, 77, 38, 0.05) 0%, transparent 50%),
+                linear-gradient(180deg, #eaf3ea 0%, #f3f8f3 38%, #eff6ef 75%, #e8f1e8 100%);
+            background-attachment: fixed;
             color: var(--teks-utama);
             display: flex;
             flex-direction: column;
@@ -134,7 +142,7 @@
 
         button:disabled {
             cursor: not-allowed;
-            opacity: 0.55;
+            opacity: 0.6;
         }
 
         a {
@@ -144,11 +152,11 @@
         }
 
         /* ==========================================================================
-           2. TOPBAR & NAVBAR (DESKTOP + MOBILE QUICK-NAV)
+           2. TOPBAR & NAVBAR (GLASSMORPHISM HALUS)
            ========================================================================== */
         .topbar {
             width: 100%;
-            background-color: var(--hijau-gelap);
+            background: linear-gradient(90deg, var(--hijau-gelap) 0%, var(--hijau-tua) 100%);
             color: rgba(255, 255, 255, 0.92);
             font-size: 13px;
             font-weight: 500;
@@ -177,7 +185,7 @@
             color: var(--hijau-gelap);
             font-weight: 800;
             font-size: 11px;
-            padding: 2px 8px;
+            padding: 2px 9px;
             border-radius: var(--radius-penuh);
             text-transform: uppercase;
             flex-shrink: 0;
@@ -188,7 +196,7 @@
             align-items: center;
             gap: 16px;
             font-size: 12px;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.82);
         }
 
         .navbar {
@@ -197,14 +205,15 @@
             z-index: 800;
             width: 100%;
             max-width: 100vw;
-            background: rgba(255, 255, 255, 0.94);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border-bottom: 1px solid rgba(30, 70, 32, 0.08);
-            transition: box-shadow var(--transisi-cepat);
+            background: rgba(246, 251, 246, 0.86);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(35, 77, 38, 0.07);
+            transition: background var(--transisi-cepat), box-shadow var(--transisi-cepat);
         }
 
         .navbar.tergulir {
+            background: rgba(250, 253, 250, 0.94);
             box-shadow: var(--bayangan-kecil);
         }
 
@@ -233,14 +242,14 @@
         .brand-ikon {
             width: 36px;
             height: 36px;
-            border-radius: 10px;
+            border-radius: 11px;
             background: linear-gradient(135deg, var(--hijau-utama), var(--hijau-segar));
-            color: var(--putih);
+            color: var(--putih-murni);
             display: inline-flex;
             align-items: center;
             justify-content: center;
             font-size: 18px;
-            box-shadow: 0 4px 10px rgba(30, 70, 32, 0.25);
+            box-shadow: 0 4px 12px rgba(35, 77, 38, 0.22);
             flex-shrink: 0;
         }
 
@@ -284,7 +293,7 @@
             font-size: 13px;
             font-weight: 700;
             color: var(--hijau-utama);
-            background-color: var(--hijau-pudar);
+            background-color: rgba(227, 239, 228, 0.65);
             border: 1px solid var(--abu-garis);
             transition: all var(--transisi-cepat);
             white-space: nowrap;
@@ -296,7 +305,7 @@
 
         .lencana-riwayat-nav {
             background-color: var(--hijau-utama);
-            color: var(--putih);
+            color: var(--putih-murni);
             font-size: 11px;
             font-weight: 800;
             min-width: 20px;
@@ -313,20 +322,20 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background-color: var(--hijau-utama);
-            color: var(--putih);
+            background: linear-gradient(135deg, var(--hijau-utama), var(--hijau-sedang));
+            color: var(--putih-murni);
             padding: 10px 18px;
             border-radius: var(--radius-penuh);
             font-size: 14px;
             font-weight: 700;
-            box-shadow: 0 6px 16px rgba(30, 70, 32, 0.22);
+            box-shadow: 0 6px 18px rgba(35, 77, 38, 0.2);
             transition: all var(--transisi-cepat);
             white-space: nowrap;
         }
 
         .tombol-buka-keranjang:hover {
-            background-color: var(--hijau-sedang);
             transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(35, 77, 38, 0.26);
         }
 
         .tombol-buka-keranjang svg {
@@ -362,8 +371,8 @@
             scrollbar-width: none;
             -ms-overflow-style: none;
             padding: 8px 12px;
-            background-color: rgba(247, 251, 247, 0.95);
-            border-top: 1px solid rgba(30, 70, 32, 0.06);
+            background-color: rgba(243, 248, 243, 0.85);
+            border-top: 1px solid rgba(35, 77, 38, 0.05);
             gap: 8px;
         }
 
@@ -375,9 +384,9 @@
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            padding: 6px 12px;
+            padding: 6px 13px;
             border-radius: var(--radius-penuh);
-            background-color: var(--putih);
+            background-color: rgba(255, 255, 255, 0.88);
             border: 1px solid var(--abu-garis);
             font-size: 12px;
             font-weight: 700;
@@ -387,40 +396,36 @@
         }
 
         /* ==========================================================================
-           3. HERO SECTION & AUTO-ROLLING CAROUSEL
+           3. HERO SECTION (TANPA CAROUSEL, MENYATU MULUS DENGAN BAZAAR)
            ========================================================================== */
         .hero {
             position: relative;
             width: 100%;
-            background:
-                radial-gradient(circle at 85% 15%, rgba(124, 179, 66, 0.18) 0%, transparent 45%),
-                radial-gradient(circle at 15% 80%, rgba(30, 70, 32, 0.08) 0%, transparent 50%),
-                linear-gradient(180deg, #eef7ee 0%, var(--krem-latar) 100%);
-            padding: 56px 24px 48px 24px;
-            border-bottom: 1px solid rgba(30, 70, 32, 0.06);
+            padding: 44px 24px 20px 24px;
         }
 
         .hero-isi {
-            max-width: 1240px;
+            max-width: 920px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1.15fr 0.85fr;
-            gap: 48px;
+            display: flex;
+            flex-direction: column;
             align-items: center;
+            text-align: center;
         }
 
         .hero-teks {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            min-width: 0;
+            align-items: center;
+            width: 100%;
         }
 
         .hero-lencana {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background-color: var(--putih);
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
             color: var(--hijau-utama);
             padding: 7px 16px;
             border-radius: var(--radius-penuh);
@@ -428,7 +433,7 @@
             font-weight: 700;
             border: 1px solid var(--abu-garis);
             box-shadow: var(--bayangan-kecil);
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .hero-lencana-titik {
@@ -440,11 +445,12 @@
 
         .judul-utama {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(32px, 5vw, 60px);
+            font-size: clamp(32px, 5vw, 56px);
             font-weight: 800;
             color: var(--hijau-tua);
-            line-height: 1.12;
-            margin-bottom: 18px;
+            line-height: 1.14;
+            margin-bottom: 16px;
+            max-width: 780px;
         }
 
         .judul-utama span {
@@ -453,19 +459,20 @@
         }
 
         .deskripsi-produk {
-            font-size: clamp(15px, 1.9vw, 18px);
+            font-size: clamp(15px, 1.8vw, 17.5px);
             color: var(--teks-sekunder);
-            max-width: 560px;
-            margin-bottom: 28px;
+            max-width: 640px;
+            margin-bottom: 26px;
             line-height: 1.7;
         }
 
         .hero-tombol-grup {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 12px;
             flex-wrap: wrap;
-            margin-bottom: 34px;
+            margin-bottom: 30px;
         }
 
         .btn-primer {
@@ -473,19 +480,19 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            background-color: var(--hijau-utama);
-            color: var(--putih);
+            background: linear-gradient(135deg, var(--hijau-utama), var(--hijau-sedang));
+            color: var(--putih-murni);
             font-weight: 700;
             font-size: 15px;
             padding: 14px 28px;
             border-radius: var(--radius-penuh);
-            box-shadow: 0 10px 24px rgba(30, 70, 32, 0.25);
+            box-shadow: 0 10px 24px rgba(35, 77, 38, 0.22);
             transition: all var(--transisi-cepat);
         }
 
         .btn-primer:hover {
-            background-color: var(--hijau-sedang);
             transform: translateY(-2px);
+            box-shadow: 0 14px 28px rgba(35, 77, 38, 0.28);
         }
 
         .btn-sekunder {
@@ -493,7 +500,7 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            background-color: var(--putih);
+            background-color: rgba(255, 255, 255, 0.85);
             color: var(--hijau-utama);
             font-weight: 700;
             font-size: 15px;
@@ -505,16 +512,21 @@
 
         .btn-sekunder:hover {
             border-color: var(--hijau-utama);
-            background-color: var(--hijau-pudar);
+            background-color: var(--putih-murni);
         }
 
         .hero-statistik {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 20px;
-            padding-top: 24px;
-            border-top: 1px solid rgba(30, 70, 32, 0.12);
+            padding: 20px 28px;
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--abu-garis);
+            border-radius: var(--radius-sedang);
+            box-shadow: var(--bayangan-kecil);
             width: 100%;
+            max-width: 680px;
         }
 
         .stat-item {
@@ -523,7 +535,7 @@
 
         .stat-item strong {
             display: block;
-            font-size: 20px;
+            font-size: 19px;
             font-weight: 800;
             color: var(--hijau-tua);
         }
@@ -534,187 +546,24 @@
             font-weight: 500;
         }
 
-        .hero-visual {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            min-width: 0;
-        }
-
-        .hero-kartu-utama {
-            width: 100%;
-            max-width: 420px;
-            background: var(--putih);
-            border-radius: var(--radius-besar);
-            padding: 16px;
-            box-shadow: var(--bayangan-tegas);
-            border: 1px solid rgba(30, 70, 32, 0.08);
-            position: relative;
-            user-select: none;
-        }
-
-        .hero-bungkus-gambar {
-            position: relative;
-            width: 100%;
-            height: 310px;
-            border-radius: var(--radius-sedang);
-            overflow: hidden;
-            background-color: #e4efe4;
-        }
-
-        .hero-kartu-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: opacity 0.4s ease, transform 0.5s ease;
-        }
-
-        .hero-kartu-img.sedang-berganti {
-            opacity: 0.25;
-            transform: scale(1.04);
-        }
-
-        .hero-lencana-varian {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            background: rgba(255, 255, 255, 0.94);
-            backdrop-filter: blur(6px);
-            color: var(--hijau-tua);
-            font-size: 12px;
-            font-weight: 800;
-            padding: 5px 12px;
-            border-radius: var(--radius-penuh);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            z-index: 2;
-        }
-
-        .hero-nav-panah {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.92);
-            color: var(--hijau-tua);
-            font-size: 18px;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
-            transition: background var(--transisi-cepat);
-            z-index: 5;
-        }
-
-        .hero-nav-panah:hover {
-            background: var(--hijau-utama);
-            color: var(--putih);
-        }
-
-        .hero-panah-kiri {
-            left: 10px;
-        }
-
-        .hero-panah-kanan {
-            right: 10px;
-        }
-
-        .hero-kartu-info {
-            padding: 14px 6px 10px 6px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-            text-align: left;
-        }
-
-        .hero-kartu-info h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 21px;
-            color: var(--hijau-tua);
-            margin-bottom: 2px;
-        }
-
-        .hero-kartu-info p {
-            font-size: 13px;
-            color: var(--teks-sekunder);
-        }
-
-        .hero-kartu-harga {
-            background-color: var(--hijau-muda);
-            color: var(--hijau-utama);
-            font-weight: 800;
-            font-size: 15px;
-            padding: 6px 14px;
-            border-radius: var(--radius-penuh);
-            white-space: nowrap;
-        }
-
-        .hero-indikator-dots {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            padding-top: 8px;
-            border-top: 1px solid #eef3ee;
-        }
-
-        .hero-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: var(--radius-penuh);
-            background-color: #cbd8cb;
-            transition: all 0.3s ease;
-        }
-
-        .hero-dot.aktif {
-            width: 24px;
-            background-color: var(--hijau-utama);
-        }
-
-        .hero-badge-melayang {
-            position: absolute;
-            bottom: 110px;
-            left: -12px;
-            background: rgba(255, 255, 255, 0.96);
-            backdrop-filter: blur(8px);
-            padding: 10px 14px;
-            border-radius: var(--radius-sedang);
-            box-shadow: var(--bayangan-tegas);
-            border: 1px solid var(--abu-garis);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 12.5px;
-            font-weight: 700;
-            color: var(--hijau-tua);
-            pointer-events: none;
-            z-index: 4;
-        }
-
         /* ==========================================================================
-           4. HIGHLIGHT BANNER BAZAAR PNJ
+           4. HIGHLIGHT BANNER BAZAAR PNJ (NAIK KE ATAS & LEBIH SMOOTH)
            ========================================================================== */
         .seksi-bazaar-wrapper {
             width: 100%;
             max-width: 1240px;
-            margin: 36px auto 0 auto;
+            margin: 18px auto 0 auto;
             padding: 0 24px;
         }
 
         .kartu-bazaar-pnj {
             position: relative;
-            background: linear-gradient(135deg, var(--hijau-gelap) 0%, var(--hijau-utama) 60%, #2b632e 100%);
-            color: var(--putih);
+            background: linear-gradient(135deg, #163319 0%, #234d26 55%, #2f6433 100%);
+            color: var(--putih-murni);
             border-radius: var(--radius-besar);
             padding: 28px 34px;
             box-shadow: var(--bayangan-tegas);
-            border: 2px solid rgba(245, 158, 11, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.14);
             display: grid;
             grid-template-columns: 1.35fr 0.65fr;
             gap: 28px;
@@ -731,9 +580,9 @@
             position: absolute;
             top: -50%;
             right: -10%;
-            width: 340px;
-            height: 340px;
-            background: radial-gradient(circle, rgba(245, 158, 11, 0.22) 0%, transparent 70%);
+            width: 360px;
+            height: 360px;
+            background: radial-gradient(circle, rgba(242, 169, 34, 0.18) 0%, transparent 70%);
             pointer-events: none;
         }
 
@@ -743,7 +592,7 @@
             gap: 8px;
             background-color: var(--aksen-kuning);
             color: var(--hijau-gelap);
-            font-size: 12px;
+            font-size: 11.5px;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.6px;
@@ -754,11 +603,11 @@
 
         .bazaar-judul {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(22px, 3vw, 34px);
+            font-size: clamp(22px, 3vw, 33px);
             font-weight: 800;
             line-height: 1.22;
             margin-bottom: 10px;
-            color: var(--putih);
+            color: var(--putih-murni);
         }
 
         .bazaar-judul span {
@@ -768,15 +617,15 @@
 
         .bazaar-deskripsi {
             font-size: 14.5px;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.88);
             max-width: 640px;
             line-height: 1.65;
         }
 
         .bazaar-info-kanan {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.09);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.16);
             border-radius: var(--radius-sedang);
             padding: 18px 20px;
             display: flex;
@@ -795,7 +644,7 @@
             width: 34px;
             height: 34px;
             border-radius: 10px;
-            background-color: rgba(245, 158, 11, 0.22);
+            background-color: rgba(242, 169, 34, 0.2);
             color: #fde68a;
             display: flex;
             align-items: center;
@@ -812,27 +661,27 @@
         }
 
         .bazaar-baris-detail span {
-            color: rgba(255, 255, 255, 0.92);
+            color: rgba(255, 255, 255, 0.9);
             font-size: 13px;
             line-height: 1.4;
             display: block;
         }
 
         /* ==========================================================================
-           5. SEKSI KATALOG & FILTER
+           5. SEKSI KATALOG, FILTER & STYLING SOLD OUT
            ========================================================================== */
         .seksi-katalog {
             width: 100%;
             max-width: 1240px;
             margin: 0 auto;
-            padding: 44px 24px 48px 24px;
+            padding: 40px 24px 48px 24px;
         }
 
         .kepala-seksi {
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
-            margin-bottom: 24px;
+            margin-bottom: 22px;
             flex-wrap: wrap;
             gap: 16px;
         }
@@ -861,7 +710,8 @@
         }
 
         .bar-kontrol-katalog {
-            background-color: var(--putih);
+            background-color: rgba(250, 253, 250, 0.88);
+            backdrop-filter: blur(10px);
             padding: 16px 20px;
             border-radius: var(--radius-sedang);
             box-shadow: var(--bayangan-kecil);
@@ -900,8 +750,9 @@
         }
 
         .tombol-filter.aktif {
-            background-color: var(--hijau-utama);
-            color: var(--putih);
+            background: linear-gradient(135deg, var(--hijau-utama), var(--hijau-sedang));
+            color: var(--putih-murni);
+            box-shadow: 0 4px 12px rgba(35, 77, 38, 0.18);
         }
 
         .kontrol-kanan-katalog {
@@ -926,14 +777,14 @@
             padding: 10px 14px 10px 36px;
             border-radius: var(--radius-penuh);
             border: 1px solid var(--abu-garis);
-            background-color: var(--krem-latar);
+            background-color: var(--putih-murni);
             font-size: 14px;
             outline: none;
+            transition: border-color var(--transisi-cepat);
         }
 
         .input-cari:focus {
             border-color: var(--hijau-utama);
-            background-color: var(--putih);
         }
 
         .ikon-cari {
@@ -951,7 +802,7 @@
             padding: 10px 14px;
             border-radius: var(--radius-penuh);
             border: 1px solid var(--abu-garis);
-            background-color: var(--krem-latar);
+            background-color: var(--putih-murni);
             font-size: 13px;
             font-weight: 600;
             color: var(--teks-utama);
@@ -971,7 +822,7 @@
             overflow: hidden;
             box-shadow: var(--bayangan-halus);
             transition: transform var(--transisi-halus), box-shadow var(--transisi-halus);
-            border: 1px solid rgba(30, 70, 32, 0.06);
+            border: 1px solid rgba(35, 77, 38, 0.07);
             display: flex;
             flex-direction: column;
             height: 100%;
@@ -979,7 +830,7 @@
         }
 
         .kartu-produk:hover {
-            transform: translateY(-6px);
+            transform: translateY(-5px);
             box-shadow: var(--bayangan-tegas);
         }
 
@@ -988,7 +839,7 @@
             width: 100%;
             height: 260px;
             overflow: hidden;
-            background-color: #e4efe4;
+            background-color: #e2ede2;
             display: block;
         }
 
@@ -996,7 +847,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.55s ease;
+            transition: transform 0.55s ease, filter 0.35s ease;
         }
 
         .kartu-produk:hover .produk-img {
@@ -1007,7 +858,7 @@
             position: absolute;
             top: 14px;
             left: 14px;
-            background: rgba(255, 255, 255, 0.94);
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(6px);
             color: var(--hijau-tua);
             font-size: 12px;
@@ -1015,18 +866,76 @@
             padding: 5px 12px;
             border-radius: var(--radius-penuh);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            z-index: 2;
         }
 
         .lencana-kalori {
             position: absolute;
             bottom: 12px;
             right: 12px;
-            background: rgba(15, 41, 17, 0.78);
-            color: var(--putih);
+            background: rgba(18, 40, 21, 0.76);
+            color: var(--putih-murni);
             font-size: 11px;
             font-weight: 600;
             padding: 4px 10px;
             border-radius: var(--radius-penuh);
+            z-index: 2;
+        }
+
+        /* ====== EFEK MENU SOLD OUT (ABU-ABU & STEMPEL MIRING) ====== */
+        .kartu-produk.produk-habis {
+            background-color: #f1f4f1;
+            border-color: rgba(100, 116, 102, 0.2);
+        }
+
+        .kartu-produk.produk-habis .produk-img,
+        .detail-img-container.produk-habis .detail-img {
+            filter: grayscale(100%) contrast(0.92);
+            opacity: 0.72;
+        }
+
+        .kartu-produk.produk-habis:hover .produk-img {
+            transform: none;
+        }
+
+        .kartu-produk.produk-habis .nama-produk {
+            color: #5b695c;
+        }
+
+        .kartu-produk.produk-habis .harga-kartu {
+            background-color: #e2e6e2;
+            color: #637064;
+        }
+
+        .kartu-produk.produk-habis .lencana-kartu {
+            background: rgba(240, 242, 240, 0.9);
+            color: #637064;
+        }
+
+        .overlay-sold-out {
+            position: absolute;
+            inset: 0;
+            background: rgba(30, 36, 31, 0.28);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .stempel-sold-out {
+            background: rgba(45, 53, 46, 0.92);
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 15px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 8px 22px;
+            border: 2px dashed rgba(255, 255, 255, 0.85);
+            border-radius: 10px;
+            transform: rotate(-14deg);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .isi-kartu {
@@ -1063,24 +972,8 @@
         .tagline-kartu {
             font-size: 14px;
             color: var(--teks-sekunder);
-            margin-bottom: 14px;
+            margin-bottom: 16px;
             flex-grow: 1;
-        }
-
-        .meta-nutrisi-kartu {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 18px;
-        }
-
-        .chip-nutrisi {
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--teks-sekunder);
-            background-color: var(--abu-terang);
-            padding: 4px 10px;
-            border-radius: 6px;
         }
 
         .aksi-kartu-grup {
@@ -1088,7 +981,7 @@
             grid-template-columns: 1fr 1.25fr;
             gap: 10px;
             padding-top: 14px;
-            border-top: 1px solid #edf2ed;
+            border-top: 1px solid rgba(35, 77, 38, 0.08);
         }
 
         .btn-detail-kartu {
@@ -1117,13 +1010,20 @@
             border-radius: var(--radius-kecil);
             font-size: 13.5px;
             font-weight: 700;
-            color: var(--putih);
-            background-color: var(--hijau-utama);
+            color: var(--putih-murni);
+            background: linear-gradient(135deg, var(--hijau-utama), var(--hijau-sedang));
             transition: all var(--transisi-cepat);
         }
 
-        .btn-tambah-keranjang-cepat:hover {
-            background-color: var(--hijau-segar);
+        .btn-tambah-keranjang-cepat:hover:not(:disabled) {
+            background: linear-gradient(135deg, var(--hijau-sedang), var(--hijau-segar));
+        }
+
+        .btn-tambah-keranjang-cepat.btn-sold-out {
+            background: #9ca79d;
+            color: #f4f6f4;
+            cursor: not-allowed;
+            opacity: 0.85;
         }
 
         /* ==========================================================================
@@ -1132,12 +1032,12 @@
         .seksi-riwayat-pembelian {
             max-width: 1240px;
             margin: 0 auto;
-            padding: 8px 24px 64px 24px;
+            padding: 8px 24px 56px 24px;
         }
 
         .kotak-riwayat-utama {
-            background: linear-gradient(145deg, #ffffff 0%, #f1f8f1 100%);
-            border: 1.5px solid #c5dec5;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.92) 0%, rgba(237, 245, 237, 0.92) 100%);
+            border: 1px solid var(--abu-garis);
             border-radius: var(--radius-besar);
             padding: 28px;
             box-shadow: var(--bayangan-halus);
@@ -1254,20 +1154,20 @@
         .btn-pesan-ulang {
             font-size: 12px;
             font-weight: 700;
-            color: var(--putih);
+            color: var(--putih-murni);
             background-color: var(--hijau-utama);
             padding: 8px 14px;
             border-radius: var(--radius-penuh);
         }
 
         /* ==========================================================================
-           7. SEKSI KEUNGGULAN & FAQ
+           7. SEKSI KEUNGGULAN & FAQ (MENYATU LEMBUT TANPA BORDER KAKU)
            ========================================================================== */
         .seksi-keunggulan {
-            background-color: var(--putih);
-            border-top: 1px solid var(--abu-garis);
-            border-bottom: 1px solid var(--abu-garis);
-            padding: 60px 24px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, rgba(235, 245, 235, 0.7) 100%);
+            border-top: 1px solid rgba(35, 77, 38, 0.06);
+            border-bottom: 1px solid rgba(35, 77, 38, 0.06);
+            padding: 56px 24px;
         }
 
         .kontainer-lebar {
@@ -1283,10 +1183,11 @@
         }
 
         .kartu-keunggulan {
-            background-color: var(--krem-latar);
+            background-color: rgba(250, 253, 250, 0.92);
             border: 1px solid var(--abu-garis);
             border-radius: var(--radius-sedang);
             padding: 22px;
+            box-shadow: var(--bayangan-kecil);
         }
 
         .ikon-keunggulan {
@@ -1317,7 +1218,7 @@
         .seksi-faq {
             max-width: 920px;
             margin: 0 auto;
-            padding: 60px 24px;
+            padding: 56px 24px;
         }
 
         .daftar-faq {
@@ -1332,6 +1233,7 @@
             border: 1px solid var(--abu-garis);
             border-radius: var(--radius-sedang);
             overflow: hidden;
+            box-shadow: var(--bayangan-kecil);
         }
 
         .tombol-faq {
@@ -1421,14 +1323,14 @@
             border-radius: var(--radius-besar);
             overflow: hidden;
             box-shadow: var(--bayangan-halus);
-            border: 1px solid rgba(30, 70, 32, 0.08);
+            border: 1px solid var(--abu-garis);
             margin-bottom: 44px;
         }
 
         .detail-kiri {
             display: flex;
             flex-direction: column;
-            background-color: #eaf2ea;
+            background-color: #e6f0e6;
             min-width: 0;
         }
 
@@ -1529,7 +1431,7 @@
             color: var(--hijau-utama);
             margin-bottom: 14px;
             padding-bottom: 14px;
-            border-bottom: 1px solid #edf2ed;
+            border-bottom: 1px solid var(--abu-garis);
             display: flex;
             align-items: baseline;
             gap: 8px;
@@ -1574,13 +1476,30 @@
         }
 
         .kartu-form-pesan {
-            background-color: #f9fcf9;
-            border: 1.5px solid #cfe2cf;
+            background-color: var(--hijau-pudar);
+            border: 1px solid var(--abu-garis);
             border-radius: var(--radius-sedang);
             padding: 18px 20px;
             display: flex;
             flex-direction: column;
             gap: 14px;
+        }
+
+        .kotak-info-soldout-detail {
+            background-color: #ecefec;
+            border: 1.5px dashed #9aa69b;
+            border-radius: var(--radius-sedang);
+            padding: 20px;
+            text-align: center;
+            color: #49544a;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .kotak-info-soldout-detail strong {
+            font-size: 16px;
+            color: #2f3830;
         }
 
         .kepala-form-pesan {
@@ -1589,7 +1508,7 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 6px;
-            border-bottom: 1px dashed #cfe2cf;
+            border-bottom: 1px dashed var(--abu-garis);
             padding-bottom: 8px;
         }
 
@@ -1636,7 +1555,7 @@
             padding: 9px 11px;
             font-size: 14px;
             color: var(--teks-utama);
-            background-color: var(--putih);
+            background-color: var(--putih-murni);
             border: 1.5px solid #c5dbc5;
             border-radius: var(--radius-kecil);
             outline: none;
@@ -1672,7 +1591,7 @@
             align-items: center;
             border: 1.5px solid #c5dbc5;
             border-radius: var(--radius-kecil);
-            background: var(--putih);
+            background: var(--putih-murni);
             overflow: hidden;
         }
 
@@ -1723,7 +1642,7 @@
             justify-content: center;
             align-items: center;
             gap: 8px;
-            background-color: var(--putih);
+            background-color: var(--putih-murni);
             color: var(--hijau-utama);
             border: 1.5px solid var(--hijau-utama);
             font-weight: 700;
@@ -1737,13 +1656,13 @@
             justify-content: center;
             align-items: center;
             gap: 8px;
-            background-color: var(--hijau-utama);
-            color: var(--putih);
+            background: linear-gradient(135deg, var(--hijau-utama), var(--hijau-sedang));
+            color: var(--putih-murni);
             font-weight: 700;
             font-size: 14px;
             padding: 13px 16px;
             border-radius: var(--radius-kecil);
-            box-shadow: 0 8px 20px rgba(30, 70, 32, 0.22);
+            box-shadow: 0 8px 20px rgba(35, 77, 38, 0.22);
         }
 
         .varian-lain {
@@ -1786,7 +1705,7 @@
         .latar-gelap-drawer {
             position: fixed;
             inset: 0;
-            background: rgba(15, 41, 17, 0.62);
+            background: rgba(18, 40, 21, 0.58);
             backdrop-filter: blur(5px);
             z-index: 2147483642;
             opacity: 0;
@@ -1822,8 +1741,8 @@
 
         .drawer-kepala {
             padding: 14px 18px;
-            background-color: var(--hijau-tua);
-            color: var(--putih);
+            background: linear-gradient(135deg, var(--hijau-tua), var(--hijau-utama));
+            color: var(--putih-murni);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -1844,7 +1763,7 @@
             height: 32px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.14);
-            color: var(--putih);
+            color: var(--putih-murni);
             font-size: 20px;
             display: flex;
             align-items: center;
@@ -1928,7 +1847,7 @@
             align-items: center;
             border: 1px solid var(--abu-garis);
             border-radius: 8px;
-            background-color: var(--putih);
+            background-color: var(--putih-murni);
             overflow: hidden;
         }
 
@@ -2002,7 +1921,7 @@
             font-size: 12px;
             font-weight: 600;
             color: var(--hijau-tua);
-            background-color: var(--putih);
+            background-color: var(--putih-murni);
             border: 1px solid #c5dbc5;
             border-radius: 8px;
             outline: none;
@@ -2036,7 +1955,7 @@
             border-radius: var(--radius-kecil);
             font-size: 12.5px;
             text-transform: uppercase;
-            background-color: var(--putih);
+            background-color: var(--putih-murni);
             outline: none;
         }
 
@@ -2057,7 +1976,7 @@
 
         .drawer-kaki {
             padding: 12px 16px calc(14px + env(safe-area-inset-bottom, 0px)) 16px;
-            background-color: #f9fcf9;
+            background-color: var(--hijau-pudar);
             border-top: 1px solid var(--abu-garis);
             display: flex;
             flex-direction: column;
@@ -2106,27 +2025,26 @@
             color: var(--hijau-utama);
             font-weight: 700;
             font-size: 12.5px;
-            background-color: var(--putih);
+            background-color: var(--putih-murni);
         }
 
         .tombol-checkout-wa {
             width: 100%;
             padding: 12px 16px;
             border-radius: var(--radius-kecil);
-            background-color: var(--hijau-utama);
-            color: var(--putih);
+            background: linear-gradient(135deg, var(--hijau-utama), var(--hijau-sedang));
+            color: var(--putih-murni);
             font-size: 13.5px;
             font-weight: 800;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            box-shadow: 0 8px 20px rgba(30, 70, 32, 0.25);
-            transition: background-color var(--transisi-cepat), transform var(--transisi-cepat);
+            box-shadow: 0 8px 20px rgba(35, 77, 38, 0.22);
+            transition: all var(--transisi-cepat);
         }
 
         .tombol-checkout-wa:hover:not(:disabled) {
-            background-color: var(--hijau-segar);
             transform: translateY(-2px);
         }
 
@@ -2171,8 +2089,8 @@
 
         .qris-banner-instruksi {
             background-color: var(--aksen-kuning-muda);
-            border: 1px solid #f59e0b;
-            color: #92400e;
+            border: 1px solid #f2a922;
+            color: #8c420c;
             padding: 10px 14px;
             border-radius: var(--radius-kecil);
             font-size: 12.5px;
@@ -2199,7 +2117,7 @@
         }
 
         .btn-salin-nominal {
-            background-color: var(--putih);
+            background-color: var(--putih-murni);
             color: var(--hijau-utama);
             border: 1px solid var(--hijau-utama);
             padding: 7px 12px;
@@ -2221,7 +2139,7 @@
         }
 
         .qris-bingkai-gambar {
-            background-color: var(--putih);
+            background-color: var(--putih-murni);
             border: 2px dashed #b8d0b8;
             border-radius: var(--radius-sedang);
             padding: 16px;
@@ -2265,7 +2183,7 @@
         }
 
         .qris-kotak-bukti {
-            background-color: #f9fcf9;
+            background-color: var(--hijau-pudar);
             border: 1.5px solid #c5dbc5;
             border-radius: var(--radius-sedang);
             padding: 14px;
@@ -2281,7 +2199,7 @@
             justify-content: center;
             gap: 6px;
             padding: 14px;
-            background-color: var(--putih);
+            background-color: var(--putih-murni);
             border: 1.5px dashed var(--hijau-segar);
             border-radius: var(--radius-kecil);
             cursor: pointer;
@@ -2293,7 +2211,7 @@
         }
 
         .label-upload-bukti:hover {
-            background-color: var(--hijau-pudar);
+            background-color: var(--hijau-muda);
         }
 
         .pratinjau-bukti-wrapper {
@@ -2310,7 +2228,7 @@
             height: 48px;
             object-fit: cover;
             border-radius: 6px;
-            border: 1px solid var(--putih);
+            border: 1px solid var(--putih-murni);
         }
 
         .info-file-bukti {
@@ -2346,14 +2264,14 @@
             padding: 14px 18px;
             border-radius: var(--radius-kecil);
             background-color: var(--hijau-wa);
-            color: var(--putih);
+            color: var(--putih-murni);
             font-size: 14.5px;
             font-weight: 800;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            box-shadow: 0 8px 20px rgba(30, 190, 87, 0.28);
+            box-shadow: 0 8px 20px rgba(32, 184, 88, 0.28);
             transition: all var(--transisi-cepat);
         }
 
@@ -2369,7 +2287,7 @@
 
         .kepala-kasir-bar {
             background: linear-gradient(135deg, var(--hijau-gelap), var(--hijau-utama));
-            color: var(--putih);
+            color: var(--putih-murni);
             padding: 20px 24px;
             border-radius: var(--radius-besar);
             display: flex;
@@ -2469,7 +2387,7 @@
             transition: all var(--transisi-cepat);
         }
 
-        .btn-item-pos:hover {
+        .btn-item-pos:hover:not(:disabled) {
             border-color: var(--hijau-utama);
             background-color: var(--hijau-muda);
             transform: translateY(-2px);
@@ -2504,7 +2422,7 @@
         }
 
         .btn-uang-cepat {
-            background-color: var(--putih);
+            background-color: var(--putih-murni);
             border: 1px solid var(--abu-garis);
             padding: 6px 10px;
             border-radius: 8px;
@@ -2515,7 +2433,7 @@
 
         .btn-uang-cepat:hover {
             background-color: var(--hijau-utama);
-            color: var(--putih);
+            color: var(--putih-murni);
         }
 
         .tabel-log-pos-wrapper {
@@ -2561,13 +2479,8 @@
             color: var(--hijau-utama);
         }
 
-        .badge-status-sheet.lokal {
-            background-color: var(--aksen-kuning-muda);
-            color: #92400e;
-        }
-
         /* ==========================================================================
-           12. STICKY BOTTOM CART BAR KHUSUS SMARTPHONE (Z-INDEX TERTINGGI)
+           12. STICKY BOTTOM CART BAR KHUSUS SMARTPHONE
            ========================================================================== */
         .bar-keranjang-bawah-mobile {
             display: none;
@@ -2576,25 +2489,25 @@
             left: 0;
             right: 0;
             z-index: 2147483640;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(250, 253, 250, 0.96);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             border-top: 1px solid var(--abu-garis);
             padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px)) 14px;
-            box-shadow: 0 -8px 25px rgba(15, 41, 17, 0.14);
+            box-shadow: 0 -8px 25px rgba(18, 40, 21, 0.12);
         }
 
         .tombol-bar-keranjang-mobile {
             width: 100%;
             background: linear-gradient(135deg, var(--hijau-tua), var(--hijau-utama));
-            color: var(--putih);
+            color: var(--putih-murni);
             border-radius: var(--radius-sedang);
             padding: 12px 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: 10px;
-            box-shadow: 0 6px 18px rgba(30, 70, 32, 0.28);
+            box-shadow: 0 6px 18px rgba(35, 77, 38, 0.25);
         }
 
         .info-kiri-bar-mobile {
@@ -2694,7 +2607,7 @@
 
         .toast-item {
             background-color: var(--hijau-gelap);
-            color: var(--putih);
+            color: var(--putih-murni);
             padding: 12px 18px;
             border-radius: var(--radius-kecil);
             box-shadow: var(--bayangan-tegas);
@@ -2718,7 +2631,7 @@
             margin-top: auto;
             padding: 56px 24px 36px 24px;
             width: 100%;
-            background-color: var(--hijau-gelap);
+            background: linear-gradient(180deg, var(--hijau-tua) 0%, var(--hijau-gelap) 100%);
             color: rgba(255, 255, 255, 0.85);
             font-size: 14px;
         }
@@ -2737,12 +2650,12 @@
             font-family: 'Playfair Display', serif;
             font-size: 24px;
             font-weight: 800;
-            color: var(--putih);
+            color: var(--putih-murni);
             margin-bottom: 12px;
         }
 
         .footer-kolom h4 {
-            color: var(--putih);
+            color: var(--putih-murni);
             font-size: 15px;
             font-weight: 700;
             margin-bottom: 14px;
@@ -2780,24 +2693,10 @@
            14. RESPONSIVE BREAKPOINTS (TABLET & SMARTPHONE)
            ========================================================================== */
         @media (max-width: 960px) {
-            .hero-isi,
             .kartu-bazaar-pnj,
             .layout-utama-kasir {
                 grid-template-columns: 1fr;
                 gap: 24px;
-            }
-
-            .hero-isi {
-                text-align: center;
-            }
-
-            .hero-teks {
-                align-items: center;
-            }
-
-            .hero-tombol-grup,
-            .hero-statistik {
-                justify-content: center;
             }
 
             .detail-wrapper {
@@ -2892,13 +2791,14 @@
             }
 
             .hero {
-                padding: 28px 14px 32px 14px;
+                padding: 26px 14px 12px 14px;
             }
 
             .hero-tombol-grup {
                 width: 100%;
                 flex-direction: column;
                 align-items: stretch;
+                margin-bottom: 22px;
             }
 
             .btn-primer,
@@ -2907,17 +2807,10 @@
                 padding: 13px 20px;
             }
 
-            .hero-bungkus-gambar {
-                height: 250px;
-            }
-
-            .hero-badge-melayang {
-                display: none;
-            }
-
             .hero-statistik {
                 grid-template-columns: repeat(3, minmax(0, 1fr));
                 gap: 8px;
+                padding: 14px 12px;
             }
 
             .stat-item strong {
@@ -2932,7 +2825,7 @@
             }
 
             .seksi-bazaar-wrapper {
-                margin-top: 22px;
+                margin-top: 14px;
                 padding: 0 14px;
             }
 
@@ -3114,7 +3007,7 @@
                     </div>
                     <h1 class="judul-utama">Kesegaran Alami <span>Kokownut</span> di Setiap Tegukan</h1>
                     <p class="deskripsi-produk">
-                        Perpaduan murni air kelapa muda pilihan dengan 100% ekstrak buah tropis asli. Pilih varian favorit Anda, atur takaran es, gula, dan jam pengambilan, lalu bayar praktis menggunakan QRIS.
+                        Perpaduan murni air kelapa muda pilihan dengan 100% ekstrak buah tropis asli. Pilih varian favorit Anda, atur takaran es, gula, dan jam pengambilan.
                     </p>
                     <div class="hero-tombol-grup">
                         <a href="#katalog" class="btn-primer">Pilih Menu Sekarang &darr;</a>
@@ -3122,7 +3015,7 @@
                     </div>
                     <div class="hero-statistik">
                         <div class="stat-item">
-                            <strong>5 Varian</strong>
+                            <strong>7 Varian</strong>
                             <span>Rasa Tropis Khas</span>
                         </div>
                         <div class="stat-item">
@@ -3135,39 +3028,10 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Auto-Rolling Showcase Gambar Produk -->
-                <div class="hero-visual">
-                    <div id="hero-carousel-kartu" class="hero-kartu-utama">
-                        <div class="hero-bungkus-gambar">
-                            <span id="hero-slide-lencana" class="hero-lencana-varian">Signature Tropis</span>
-                            <button type="button" id="hero-sebelumnya" class="hero-nav-panah hero-panah-kiri" aria-label="Varian Sebelumnya">&lsaquo;</button>
-                            <a id="hero-slide-link" href="?produk=coco-passion">
-                                <img id="hero-slide-img" class="hero-kartu-img" src="coco-passion.jpeg" data-fallback="images/coco-passion.jpeg" alt="Coco Passion" />
-                            </a>
-                            <button type="button" id="hero-selanjutnya" class="hero-nav-panah hero-panah-kanan" aria-label="Varian Selanjutnya">&rsaquo;</button>
-                        </div>
-
-                        <a id="hero-slide-info-link" href="?produk=coco-passion" class="hero-kartu-info">
-                            <div>
-                                <h3 id="hero-slide-nama">Coco Passion</h3>
-                                <p id="hero-slide-tagline">Segar manis kelapa berpadu asam markisa.</p>
-                            </div>
-                            <span id="hero-slide-harga" class="hero-kartu-harga">Rp 18.000</span>
-                        </a>
-
-                        <div id="hero-indikator-dots" class="hero-indikator-dots"></div>
-                    </div>
-
-                    <div class="hero-badge-melayang">
-                        <span>⚡</span>
-                        <span>Elektrolit & Vitamin Alami</span>
-                    </div>
-                </div>
             </div>
         </header>
 
-        <!-- Highlight & Reminder Bazaar Politeknik Negeri Jakarta -->
+        <!-- Highlight & Reminder Bazaar Politeknik Negeri Jakarta (Naik ke Atas) -->
         <div id="info-bazaar" class="seksi-bazaar-wrapper">
             <div class="kartu-bazaar-pnj">
                 <div>
@@ -3212,7 +3076,7 @@
 
             <div class="bar-kontrol-katalog">
                 <div class="daftar-filter-kategori">
-                    <button type="button" class="tombol-filter aktif" data-kategori="semua">Semua Menu (5)</button>
+                    <button type="button" class="tombol-filter aktif" data-kategori="semua">Semua Menu (7)</button>
                     <button type="button" class="tombol-filter" data-kategori="klasik">Klasik Murni</button>
                     <button type="button" class="tombol-filter" data-kategori="segar-asam">Segar Asam</button>
                     <button type="button" class="tombol-filter" data-kategori="manis-lembut">Manis Lembut</button>
@@ -3372,7 +3236,7 @@
             </div>
             <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                 <a href="https://docs.google.com/spreadsheets/d/1Wh8dSxSLliY2IbNeOZ1lAruo-mGOPlOusbTE1jJcApc/edit?gid=0#gid=0" target="_blank" rel="noopener" class="link-kembali" style="background: var(--aksen-kuning); color: var(--hijau-gelap); border: none;">📊 Buka Google Spreadsheet</a>
-                <button type="button" id="btn-kunci-keluar-kasir" class="link-kembali" style="background: rgba(220,38,38,0.85); color: #fff; border: none;">🔒 Kunci Keluar Kasir</button>
+                <button type="button" id="btn-kunci-keluar-kasir" class="link-kembali" style="background: rgba(217,56,56,0.85); color: #fff; border: none;">🔒 Kunci Keluar Kasir</button>
                 <a href="index.html" class="link-kembali" style="background: rgba(255,255,255,0.15); color: #fff; border-color: rgba(255,255,255,0.3);">&larr; Web Pelanggan</a>
             </div>
         </div>
@@ -3685,11 +3549,13 @@
             <div class="footer-kolom">
                 <h4>Varian Menu</h4>
                 <ul>
-                    <li><a href="?produk=original-coco">Original Coco — Rp 8.000</a></li>
-                    <li><a href="?produk=cocomellon">Cocomellon — Rp 12.000</a></li>
-                    <li><a href="?produk=pinnacollada">Pinnacollada — Rp 12.000</a></li>
-                    <li><a href="?produk=coco-sunkissed">Coco Sunkissed — Rp 15.000</a></li>
-                    <li><a href="?produk=coco-passion">Coco Passion — Rp 18.000</a></li>
+                    <li><a href="?produk=original-coco">Original Coco</a></li>
+                    <li><a href="?produk=cocomellon">Cocomellon</a></li>
+                    <li><a href="?produk=pinnacollada">Pinnacollada</a></li>
+                    <li><a href="?produk=coco-sunkissed">Coco Sunkissed</a></li>
+                    <li><a href="?produk=coco-passion">Coco Passion</a></li>
+                    <li><a href="?produk=virgin-mojito" style="opacity: 0.7;">Virgin Mojito</a></li>
+                    <li><a href="?produk=coco-sunshine" style="opacity: 0.7;">Coco Sunshine</a></li>
                 </ul>
             </div>
             <div class="footer-kolom">
@@ -3762,7 +3628,6 @@
         const KUNCI_STORAGE_POS_LOG = "kokownut_pos_ots_log_v1";
         const KUNCI_STORAGE_AUTH_KASIR = "kokownut_otorisasi_kasir_v1";
 
-        // Fungsi verifikasi PIN Kasir (1011) yang disamarkan agar tidak tertulis angka secara telanjang
         function apakahPinKasirValid(inputPin) {
             if (!inputPin || typeof inputPin !== "string") return false;
             const bersih = inputPin.trim();
@@ -3771,7 +3636,7 @@
             for (let i = 0; i < bersih.length; i++) {
                 kodeHash = (kodeHash * 31) + bersih.charCodeAt(i);
             }
-            return kodeHash === 1507454;
+            return kodeHash === 1507455;
         }
 
         const OPSI_ES = ["Normal Ice", "Less Ice", "No Ice"];
@@ -3789,7 +3654,7 @@
 
         const DAFTAR_VOUCHER = {};
 
-        // ====== 1. DATABASE PRODUK UTAMA ======
+        // ====== 1. DATABASE PRODUK UTAMA (5 TERSEDIA + 2 SOLD OUT) ======
         const produk = {
             "original-coco": {
                 nama: "Original Coco",
@@ -3797,6 +3662,7 @@
                 kategori: "klasik",
                 lencana: "Klasik Favorit",
                 gambar: "original-coco.jpeg",
+                soldOut: false,
                 tagline: "Kesegaran air kelapa murni, apa adanya.",
                 deskripsi: "Original Coco adalah varian paling klasik dari Kokownut Segar. Rasa manis alami air kelapa muda pilihan yang ringan, murni, dan menghidrasi tubuh secara optimal saat cuaca panas.",
                 nutrisi: {
@@ -3817,6 +3683,7 @@
                 kategori: "segar-asam",
                 lencana: "Signature Tropis",
                 gambar: "coco-passion.jpeg",
+                soldOut: false,
                 tagline: "Segar manis kelapa berpadu asam markisa.",
                 deskripsi: "Coco Passion memadukan air kelapa murni dengan ekstrak buah markisa asli. Manis lembut kelapa bertemu sensasi asam segar markisa, menghasilkan profil rasa tropis yang kuat dan berkarakter.",
                 nutrisi: {
@@ -3837,6 +3704,7 @@
                 kategori: "manis-lembut",
                 lencana: "Paling Menyegarkan",
                 gambar: "cocomellon.jpeg",
+                soldOut: false,
                 tagline: "Manis lembut semangka, sejuk air kelapa.",
                 deskripsi: "Cocomellon menghadirkan kombinasi air kelapa dengan ekstrak buah semangka merah segar. Rasanya manis lembut, ringan di tenggorokan, dan sangat menyejukkan di siang hari.",
                 nutrisi: {
@@ -3857,6 +3725,7 @@
                 kategori: "segar-asam",
                 lencana: "Mood Booster",
                 gambar: "coco-sunkissed.jpeg",
+                soldOut: false,
                 tagline: "Hangat cerahnya buah tropis dalam setiap tegukan.",
                 deskripsi: "Coco Sunkissed memadukan air kelapa dengan ekstrak buah sitrus tropis yang memberi kesan cerah seperti sinar matahari. Rasanya segar, manis seimbang, dan membangkitkan semangat.",
                 nutrisi: {
@@ -3877,6 +3746,7 @@
                 kategori: "manis-lembut",
                 lencana: "Best Seller",
                 gambar: "pinnacollada.jpeg",
+                soldOut: false,
                 tagline: "Nanas dan kelapa, duet tropis yang klasik.",
                 deskripsi: "Pinnacollada memadukan air kelapa dengan ekstrak buah nanas madu pilihan, terinspirasi dari kombinasi mocktail klasik dunia. Manis, segar, dan menghadirkan suasana liburan tropis.",
                 nutrisi: {
@@ -3889,6 +3759,48 @@
                     "Perpaduan harmonis air kelapa dan ekstrak nanas",
                     "Manis segar dengan sentuhan asam khas nanas",
                     "Rasa mocktail tropis yang paling mudah disukai"
+                ]
+            },
+            "virgin-mojito": {
+                nama: "Virgin Mojito",
+                harga: 15000,
+                kategori: "segar-asam",
+                lencana: "Sitrus Segar",
+                gambar: "virgin-mojito.jpeg",
+                soldOut: true,
+                tagline: "Air kelapa murni dengan kesegaran perasan jeruk nipis asli.",
+                deskripsi: "Virgin Mojito memadukan kesegaran alami air kelapa muda pilihan dengan perasan jeruk nipis segar. Sensasi asam sitrus yang bersih dan menyegarkan langsung membangkitkan semangat di tengah cuaca terik.",
+                nutrisi: {
+                    volume: "350 ml",
+                    kalori: "75 kkal",
+                    utama: "Vitamin C & Elektrolit",
+                    karakter: "Asam Segar Nipis"
+                },
+                sorotan: [
+                    "Perpaduan air kelapa murni dan perasan jeruk nipis asli",
+                    "Sensasi sitrus zesty yang menyegarkan tenggorokan",
+                    "Kaya elektrolit alami dan vitamin C"
+                ]
+            },
+            "coco-sunshine": {
+                nama: "Coco Sunshine",
+                harga: 15000,
+                kategori: "manis-lembut",
+                lencana: "Favorit Sitrus",
+                gambar: "coco-sunshine.jpeg",
+                soldOut: true,
+                tagline: "Manis segarnya jeruk peras asli berpadu lembut dengan air kelapa.",
+                deskripsi: "Coco Sunshine menghadirkan kombinasi harmonis antara air kelapa muda murni dengan jeruk peras pilihan yang manis dan segar. Rasa cerah jeruk peras berpadu lembut dengan mineral alami kelapa.",
+                nutrisi: {
+                    volume: "350 ml",
+                    kalori: "85 kkal",
+                    utama: "Tinggi Vitamin C",
+                    karakter: "Manis Segar Jeruk"
+                },
+                sorotan: [
+                    "Kombinasi air kelapa murni dan jeruk peras asli",
+                    "Rasa manis-segar jeruk peras yang ringan dan cerah",
+                    "Sumber vitamin C dan hidrasi alami tubuh"
                 ]
             }
         };
@@ -3915,7 +3827,6 @@
 
             const stringData = JSON.stringify(payloadData);
 
-            // Gunakan fetch dengan keepalive: true agar pengiriman tetap tuntas meski browser langsung membuka WhatsApp
             fetch(url, {
                 method: "POST",
                 mode: "no-cors",
@@ -3929,7 +3840,6 @@
                 if (callbackSelesai) callbackSelesai(true);
             })
             .catch(function () {
-                // Fallback menggunakan sendBeacon jika jaringan seluler terputus saat pindah aplikasi
                 try {
                     if (navigator.sendBeacon) {
                         const blob = new Blob([stringData], { type: "text/plain;charset=utf-8" });
@@ -3986,7 +3896,7 @@
                 const parsed = JSON.parse(data);
                 if (Array.isArray(parsed)) {
                     return parsed.filter(function (it) {
-                        return it && produk[it.idProduk] && it.qty > 0;
+                        return it && produk[it.idProduk] && !produk[it.idProduk].soldOut && it.qty > 0;
                     });
                 }
                 return [];
@@ -4075,7 +3985,7 @@
             return "https://wa.me/" + NOMOR_WA + "?text=" + encodeURIComponent(teksPesan);
         }
 
-        // ====== 5. INISIALISASI GERBANG PEMBAYARAN QRIS (TERCATAT KE SPREADSHEET) ======
+        // ====== 5. INISIALISASI GERBANG PEMBAYARAN QRIS ======
         function inisialisasiModalQRIS() {
             const imgQrisEl = document.getElementById("img-qris-utama");
             const fallbackQrisEl = document.getElementById("qris-fallback-teks");
@@ -4147,7 +4057,6 @@
                 const trx = transaksiTertundaQRIS;
                 const idOrder = "KKW-" + Math.floor(100000 + Math.random() * 900000);
 
-                // 1. Catat Otomatis Pesanan Web Pelanggan ke Google Spreadsheet Anda
                 kirimDataKeSpreadsheet({
                     idOrder: idOrder,
                     jalur: "ONLINE-WEB",
@@ -4160,7 +4069,6 @@
                     status: "Menunggu Cek Bukti WA"
                 });
 
-                // 2. Susun Pesan WhatsApp
                 const teksWA = susunTeksPesanWA(
                     trx.nama,
                     trx.varian,
@@ -4170,7 +4078,6 @@
                     idOrder
                 );
 
-                // 3. Simpan ke Riwayat Pribadi Perangkat Pembeli
                 simpanKeRiwayatPribadi({
                     idOrder: idOrder,
                     waktu: new Date().toLocaleDateString("id-ID", {
@@ -4230,120 +4137,12 @@
             document.body.classList.add("kunci-scroll");
         }
 
-        // ====== 6. AUTO-ROLLING HERO CAROUSEL ======
-        function inisialisasiHeroCarousel() {
-            const kunciVarian = Object.keys(produk);
-            let indeksSlide = 1;
-            let timerRolling = null;
-            let sentuhAwalX = 0;
-
-            const imgEl = document.getElementById("hero-slide-img");
-            const lencanaEl = document.getElementById("hero-slide-lencana");
-            const namaEl = document.getElementById("hero-slide-nama");
-            const taglineEl = document.getElementById("hero-slide-tagline");
-            const hargaEl = document.getElementById("hero-slide-harga");
-            const linkImgEl = document.getElementById("hero-slide-link");
-            const linkInfoEl = document.getElementById("hero-slide-info-link");
-            const wadahDots = document.getElementById("hero-indikator-dots");
-            const kartuCarousel = document.getElementById("hero-carousel-kartu");
-
-            if (!imgEl || !wadahDots) return;
-
-            pasangGambarPintar(imgEl, produk[kunciVarian[indeksSlide]].gambar);
-
-            kunciVarian.forEach(function (_, idx) {
-                const dot = buatEl("button", "hero-dot" + (idx === indeksSlide ? " aktif" : ""));
-                dot.type = "button";
-                dot.setAttribute("aria-label", "Pilih slide " + (idx + 1));
-                dot.addEventListener("click", function () {
-                    tampilkanSlide(idx);
-                    mulaiUlangTimer();
-                });
-                wadahDots.appendChild(dot);
-            });
-
-            function tampilkanSlide(idxBaru) {
-                indeksSlide = (idxBaru + kunciVarian.length) % kunciVarian.length;
-                const kunci = kunciVarian[indeksSlide];
-                const item = produk[kunci];
-
-                imgEl.classList.add("sedang-berganti");
-
-                setTimeout(function () {
-                    pasangGambarPintar(imgEl, item.gambar);
-                    imgEl.alt = item.nama;
-                    lencanaEl.textContent = item.lencana || "Menu Segar";
-                    namaEl.textContent = item.nama;
-                    taglineEl.textContent = item.tagline;
-                    hargaEl.textContent = formatRupiah(item.harga);
-                    linkImgEl.href = "?produk=" + kunci;
-                    linkInfoEl.href = "?produk=" + kunci;
-
-                    const semuaDot = wadahDots.querySelectorAll(".hero-dot");
-                    semuaDot.forEach(function (d, i) {
-                        if (i === indeksSlide) {
-                            d.classList.add("aktif");
-                        } else {
-                            d.classList.remove("aktif");
-                        }
-                    });
-
-                    imgEl.classList.remove("sedang-berganti");
-                }, 220);
-            }
-
-            function mulaiTimer() {
-                timerRolling = setInterval(function () {
-                    tampilkanSlide(indeksSlide + 1);
-                }, 3500);
-            }
-
-            function hentikanTimer() {
-                if (timerRolling) clearInterval(timerRolling);
-            }
-
-            function mulaiUlangTimer() {
-                hentikanTimer();
-                mulaiTimer();
-            }
-
-            document.getElementById("hero-sebelumnya").addEventListener("click", function () {
-                tampilkanSlide(indeksSlide - 1);
-                mulaiUlangTimer();
-            });
-
-            document.getElementById("hero-selanjutnya").addEventListener("click", function () {
-                tampilkanSlide(indeksSlide + 1);
-                mulaiUlangTimer();
-            });
-
-            kartuCarousel.addEventListener("touchstart", function (e) {
-                sentuhAwalX = e.changedTouches[0].screenX;
-                hentikanTimer();
-            }, { passive: true });
-
-            kartuCarousel.addEventListener("touchend", function (e) {
-                const sentuhAkhirX = e.changedTouches[0].screenX;
-                const selisih = sentuhAkhirX - sentuhAwalX;
-                if (Math.abs(selisih) > 40) {
-                    if (selisih < 0) {
-                        tampilkanSlide(indeksSlide + 1);
-                    } else {
-                        tampilkanSlide(indeksSlide - 1);
-                    }
-                }
-                mulaiTimer();
-            }, { passive: true });
-
-            kartuCarousel.addEventListener("mouseenter", hentikanTimer);
-            kartuCarousel.addEventListener("mouseleave", mulaiTimer);
-
-            mulaiTimer();
-        }
-
-        // ====== 7. LOGIKA KERANJANG PELANGGAN ======
+        // ====== 6. LOGIKA KERANJANG PELANGGAN ======
         function tambahKeKeranjang(kunciProduk, jumlahTambah, esPilihan, manisPilihan) {
-            if (!produk[kunciProduk]) return;
+            if (!produk[kunciProduk] || produk[kunciProduk].soldOut) {
+                tampilkanToast("Maaf, varian ini sedang Sold Out");
+                return;
+            }
             const qty = Number(jumlahTambah) || 1;
             const es = esPilihan || "Normal Ice";
             const manis = manisPilihan || "Normal Sweet";
@@ -4457,7 +4256,7 @@
 
             keranjang.forEach(function (entry) {
                 const item = produk[entry.idProduk];
-                if (!item || entry.qty <= 0) return;
+                if (!item || item.soldOut || entry.qty <= 0) return;
 
                 const qty = entry.qty;
                 totalCup += qty;
@@ -4676,7 +4475,7 @@
             badan.appendChild(daftarEl);
         }
 
-        // ====== 8. MANAJEMEN RIWAYAT PEMBELIAN PRIBADI ======
+        // ====== 7. MANAJEMEN RIWAYAT PEMBELIAN PRIBADI ======
         function muatDaftarRiwayatPribadi() {
             try {
                 const data = JSON.parse(localStorage.getItem(KUNCI_STORAGE_RIWAYAT) || "[]");
@@ -4802,7 +4601,7 @@
             }
         }
 
-        // ====== 9. KONTROL OVERLAY & NOTA DIGITAL ======
+        // ====== 8. KONTROL OVERLAY & NOTA DIGITAL ======
         function bukaDrawerKeranjang() {
             document.getElementById("latar-drawer").classList.add("aktif");
             document.getElementById("drawer-keranjang").classList.add("aktif");
@@ -4890,7 +4689,7 @@
             document.getElementById("modal-nota").classList.add("aktif");
         }
 
-        // ====== 10. RENDER KATALOG ======
+        // ====== 9. RENDER KATALOG (TANPA CHIP NUTRISI + DUKUNGAN SOLD OUT) ======
         function renderKatalog() {
             const gridProduk = document.getElementById("grid-produk");
             if (!gridProduk) return;
@@ -4928,7 +4727,8 @@
 
             daftarKunci.forEach(function (kunci) {
                 const p = produk[kunci];
-                const kartu = buatEl("div", "kartu-produk");
+                const apakahHabis = Boolean(p.soldOut);
+                const kartu = buatEl("div", "kartu-produk" + (apakahHabis ? " produk-habis" : ""));
 
                 const bungkusImg = buatEl("a", "bungkus-img");
                 bungkusImg.href = "?produk=" + kunci;
@@ -4945,6 +4745,13 @@
                 if (p.nutrisi && p.nutrisi.kalori) {
                     bungkusImg.appendChild(buatEl("span", "lencana-kalori", p.nutrisi.kalori));
                 }
+
+                if (apakahHabis) {
+                    const overlayHabis = buatEl("div", "overlay-sold-out");
+                    overlayHabis.appendChild(buatEl("span", "stempel-sold-out", "SOLD OUT"));
+                    bungkusImg.appendChild(overlayHabis);
+                }
+
                 kartu.appendChild(bungkusImg);
 
                 const isi = buatEl("div", "isi-kartu");
@@ -4958,24 +4765,24 @@
 
                 isi.appendChild(buatEl("p", "tagline-kartu", p.tagline));
 
-                if (p.nutrisi) {
-                    const meta = buatEl("div", "meta-nutrisi-kartu");
-                    meta.appendChild(buatEl("span", "chip-nutrisi", p.nutrisi.volume));
-                    meta.appendChild(buatEl("span", "chip-nutrisi", p.nutrisi.utama));
-                    meta.appendChild(buatEl("span", "chip-nutrisi", p.nutrisi.karakter));
-                    isi.appendChild(meta);
-                }
-
                 const grupAksi = buatEl("div", "aksi-kartu-grup");
 
                 const btnDetail = buatEl("a", "btn-detail-kartu", "Lihat Detail");
                 btnDetail.href = "?produk=" + kunci;
 
-                const btnTambah = buatEl("button", "btn-tambah-keranjang-cepat", "+ Keranjang");
+                const btnTambah = buatEl(
+                    "button",
+                    "btn-tambah-keranjang-cepat" + (apakahHabis ? " btn-sold-out" : ""),
+                    apakahHabis ? "Sold Out" : "+ Keranjang"
+                );
                 btnTambah.type = "button";
-                btnTambah.addEventListener("click", function () {
-                    tambahKeKeranjang(kunci, 1, "Normal Ice", "Normal Sweet");
-                });
+                if (apakahHabis) {
+                    btnTambah.disabled = true;
+                } else {
+                    btnTambah.addEventListener("click", function () {
+                        tambahKeKeranjang(kunci, 1, "Normal Ice", "Normal Sweet");
+                    });
+                }
 
                 grupAksi.appendChild(btnDetail);
                 grupAksi.appendChild(btnTambah);
@@ -4986,7 +4793,7 @@
             });
         }
 
-        // ====== 11. SISTEM MODE KASIR POS (ON THE SPOT / WALK-IN) ======
+        // ====== 10. SISTEM MODE KASIR POS (ON THE SPOT / WALK-IN) ======
         let keranjangPOS = [];
 
         function muatLogPOS() {
@@ -5013,7 +4820,6 @@
                 window.location.href = "index.html";
             });
 
-            // Render tombol menu POS
             const gridMenuPOS = document.getElementById("pos-grid-menu");
             gridMenuPOS.innerHTML = "";
             Object.keys(produk).forEach(function (kunci) {
@@ -5021,28 +4827,34 @@
                 const btn = buatEl("button", "btn-item-pos");
                 btn.type = "button";
                 btn.appendChild(buatEl("strong", "", p.nama));
-                btn.appendChild(buatEl("span", "", formatRupiah(p.harga)));
-                btn.addEventListener("click", function () {
-                    const esDef = document.getElementById("pos-default-es").value;
-                    const manisDef = document.getElementById("pos-default-manis").value;
-                    const ada = keranjangPOS.find(function (it) {
-                        return it.idProduk === kunci && it.es === esDef && it.manis === manisDef;
-                    });
-                    if (ada) {
-                        ada.qty += 1;
-                    } else {
-                        keranjangPOS.push({
-                            uid: buatUidItem(),
-                            idProduk: kunci,
-                            nama: p.nama,
-                            harga: p.harga,
-                            qty: 1,
-                            es: esDef,
-                            manis: manisDef
+
+                if (p.soldOut) {
+                    btn.appendChild(buatEl("span", "", "SOLD OUT"));
+                    btn.disabled = true;
+                } else {
+                    btn.appendChild(buatEl("span", "", formatRupiah(p.harga)));
+                    btn.addEventListener("click", function () {
+                        const esDef = document.getElementById("pos-default-es").value;
+                        const manisDef = document.getElementById("pos-default-manis").value;
+                        const ada = keranjangPOS.find(function (it) {
+                            return it.idProduk === kunci && it.es === esDef && it.manis === manisDef;
                         });
-                    }
-                    renderKeranjangPOS();
-                });
+                        if (ada) {
+                            ada.qty += 1;
+                        } else {
+                            keranjangPOS.push({
+                                uid: buatUidItem(),
+                                idProduk: kunci,
+                                nama: p.nama,
+                                harga: p.harga,
+                                qty: 1,
+                                es: esDef,
+                                manis: manisDef
+                            });
+                        }
+                        renderKeranjangPOS();
+                    });
+                }
                 gridMenuPOS.appendChild(btn);
             });
 
@@ -5283,7 +5095,7 @@
             document.getElementById("pos-stat-tunai").textContent = formatRupiah(omzetTunai);
         }
 
-        // ====== 12. EVENT LISTENERS GLOBAL ======
+        // ====== 11. EVENT LISTENERS GLOBAL ======
         const inputNamaKeranjangEl = document.getElementById("input-nama-keranjang");
         const selectJamKeranjangEl = document.getElementById("select-jam-keranjang");
         const errorNamaKeranjangEl = document.getElementById("error-nama-keranjang");
@@ -5400,7 +5212,7 @@
             }
         });
 
-        // ====== 13. INISIALISASI & ROUTING (?mode=kasir ATAU ?produk=...) ======
+        // ====== 12. INISIALISASI & ROUTING (?mode=kasir ATAU ?produk=...) ======
         const konten = document.getElementById("konten");
         const paramsURL = new URLSearchParams(window.location.search);
         const id = paramsURL.get("produk");
@@ -5408,7 +5220,6 @@
         const item = Object.prototype.hasOwnProperty.call(produk, id) ? produk[id] : undefined;
 
         inisialisasiModalQRIS();
-        inisialisasiHeroCarousel();
         renderKatalog();
         perbaruiUIKeranjang();
         perbaruiTampilanRiwayatPembelian();
@@ -5453,17 +5264,25 @@
                 kosong.appendChild(buatEl("p", "detail-deskripsi", "Silakan kembali ke halaman utama dan pilih salah satu menu Kokownut Segar."));
                 konten.appendChild(kosong);
             } else {
+                const apakahHabis = Boolean(item.soldOut);
                 document.title = item.nama + " — Kokownut Segar";
                 document.getElementById("breadcrumb-teks").innerHTML = "Beranda / Katalog / <strong>" + item.nama + "</strong>";
 
                 const wrapper = buatEl("div", "detail-wrapper");
 
                 const kolomKiri = buatEl("div", "detail-kiri");
-                const imgBox = buatEl("div", "detail-img-container");
+                const imgBox = buatEl("div", "detail-img-container" + (apakahHabis ? " produk-habis" : ""));
                 const img = buatEl("img", "detail-img");
                 pasangGambarPintar(img, item.gambar);
                 img.alt = item.nama;
                 imgBox.appendChild(img);
+
+                if (apakahHabis) {
+                    const overlayHabis = buatEl("div", "overlay-sold-out");
+                    overlayHabis.appendChild(buatEl("span", "stempel-sold-out", "SOLD OUT"));
+                    imgBox.appendChild(overlayHabis);
+                }
+
                 kolomKiri.appendChild(imgBox);
 
                 if (item.nutrisi) {
@@ -5491,7 +5310,7 @@
 
                 const teks = buatEl("div", "detail-teks");
                 if (item.lencana) {
-                    teks.appendChild(buatEl("span", "detail-lencana", item.lencana));
+                    teks.appendChild(buatEl("span", "detail-lencana", apakahHabis ? "SOLD OUT • " + item.lencana : item.lencana));
                 }
                 teks.appendChild(buatEl("h1", "detail-nama", item.nama));
                 teks.appendChild(buatEl("p", "detail-tagline", item.tagline));
@@ -5508,182 +5327,195 @@
                 });
                 teks.appendChild(daftar);
 
-                let jumlahCup = 1;
-                const kartuForm = buatEl("div", "kartu-form-pesan");
+                if (apakahHabis) {
+                    const infoHabis = buatEl("div", "kotak-info-soldout-detail");
+                    infoHabis.appendChild(buatEl("strong", "", "🚫 Mohon Maaf, Varian " + item.nama + " Sedang Sold Out"));
+                    infoHabis.appendChild(buatEl("p", "", "Varian ini telah habis terjual dan belum dapat dipesan kembali saat ini. Silakan pilih salah satu dari 5 varian segar Kokownut lainnya di bawah ini."));
+                    const btnPilihLain = buatEl("a", "btn-primer", "Lihat Varian Lain yang Tersedia");
+                    btnPilihLain.href = "index.html#katalog";
+                    btnPilihLain.style.alignSelf = "center";
+                    btnPilihLain.style.marginTop = "6px";
+                    infoHabis.appendChild(btnPilihLain);
+                    teks.appendChild(infoHabis);
+                } else {
+                    let jumlahCup = 1;
+                    const kartuForm = buatEl("div", "kartu-form-pesan");
 
-                const kepalaForm = buatEl("div", "kepala-form-pesan");
-                kepalaForm.appendChild(buatEl("span", "judul-form-pesan", "Formulir Pemesanan & Kustomisasi"));
-                kepalaForm.appendChild(buatEl("span", "sub-form-pesan", "📲 Pembayaran QRIS"));
-                kartuForm.appendChild(kepalaForm);
+                    const kepalaForm = buatEl("div", "kepala-form-pesan");
+                    kepalaForm.appendChild(buatEl("span", "judul-form-pesan", "Formulir Pemesanan & Kustomisasi"));
+                    kepalaForm.appendChild(buatEl("span", "sub-form-pesan", "📲 Pembayaran QRIS"));
+                    kartuForm.appendChild(kepalaForm);
 
-                const gridNamaJam = buatEl("div", "grid-kustomisasi");
+                    const gridNamaJam = buatEl("div", "grid-kustomisasi");
 
-                const grupNama = buatEl("div", "grup-form");
-                const labelNama = buatEl("label", "label-form", "Nama Pemesan");
-                labelNama.setAttribute("for", "input-nama-pelanggan");
-                const inputNama = buatEl("input", "input-nama");
-                inputNama.type = "text";
-                inputNama.id = "input-nama-pelanggan";
-                inputNama.placeholder = "Masukkan nama Anda...";
-                inputNama.value = ambilNamaTersimpan();
-                grupNama.appendChild(labelNama);
-                grupNama.appendChild(inputNama);
+                    const grupNama = buatEl("div", "grup-form");
+                    const labelNama = buatEl("label", "label-form", "Nama Pemesan");
+                    labelNama.setAttribute("for", "input-nama-pelanggan");
+                    const inputNama = buatEl("input", "input-nama");
+                    inputNama.type = "text";
+                    inputNama.id = "input-nama-pelanggan";
+                    inputNama.placeholder = "Masukkan nama Anda...";
+                    inputNama.value = ambilNamaTersimpan();
+                    grupNama.appendChild(labelNama);
+                    grupNama.appendChild(inputNama);
 
-                const grupJamDetail = buatEl("div", "grup-form");
-                grupJamDetail.appendChild(buatEl("label", "label-form", "Estimasi Jam Pengambilan"));
-                const selectJamDetail = buatEl("select", "select-kustom");
-                isiDropdownJam(selectJamDetail);
-                grupJamDetail.appendChild(selectJamDetail);
+                    const grupJamDetail = buatEl("div", "grup-form");
+                    grupJamDetail.appendChild(buatEl("label", "label-form", "Estimasi Jam Pengambilan"));
+                    const selectJamDetail = buatEl("select", "select-kustom");
+                    isiDropdownJam(selectJamDetail);
+                    grupJamDetail.appendChild(selectJamDetail);
 
-                gridNamaJam.appendChild(grupNama);
-                gridNamaJam.appendChild(grupJamDetail);
-                kartuForm.appendChild(gridNamaJam);
+                    gridNamaJam.appendChild(grupNama);
+                    gridNamaJam.appendChild(grupJamDetail);
+                    kartuForm.appendChild(gridNamaJam);
 
-                const pesanError = buatEl("span", "teks-error", "Mohon isi nama Anda terlebih dahulu sebelum lanjut ke pembayaran QRIS.");
-                kartuForm.appendChild(pesanError);
+                    const pesanError = buatEl("span", "teks-error", "Mohon isi nama Anda terlebih dahulu sebelum lanjut ke pembayaran QRIS.");
+                    kartuForm.appendChild(pesanError);
 
-                const gridKustom = buatEl("div", "grid-kustomisasi");
+                    const gridKustom = buatEl("div", "grid-kustomisasi");
 
-                const grupEs = buatEl("div", "grup-form");
-                grupEs.appendChild(buatEl("label", "label-form", "Takaran Es Batu"));
-                const selectEs = buatEl("select", "select-kustom");
-                OPSI_ES.forEach(function (opt) {
-                    const o = buatEl("option", "", opt);
-                    o.value = opt;
-                    selectEs.appendChild(o);
-                });
-                grupEs.appendChild(selectEs);
+                    const grupEs = buatEl("div", "grup-form");
+                    grupEs.appendChild(buatEl("label", "label-form", "Takaran Es Batu"));
+                    const selectEs = buatEl("select", "select-kustom");
+                    OPSI_ES.forEach(function (opt) {
+                        const o = buatEl("option", "", opt);
+                        o.value = opt;
+                        selectEs.appendChild(o);
+                    });
+                    grupEs.appendChild(selectEs);
 
-                const grupManis = buatEl("div", "grup-form");
-                grupManis.appendChild(buatEl("label", "label-form", "Tingkat Kemanisan"));
-                const selectManis = buatEl("select", "select-kustom");
-                OPSI_MANIS.forEach(function (opt) {
-                    const o = buatEl("option", "", opt);
-                    o.value = opt;
-                    selectManis.appendChild(o);
-                });
-                grupManis.appendChild(selectManis);
+                    const grupManis = buatEl("div", "grup-form");
+                    grupManis.appendChild(buatEl("label", "label-form", "Tingkat Kemanisan"));
+                    const selectManis = buatEl("select", "select-kustom");
+                    OPSI_MANIS.forEach(function (opt) {
+                        const o = buatEl("option", "", opt);
+                        o.value = opt;
+                        selectManis.appendChild(o);
+                    });
+                    grupManis.appendChild(selectManis);
 
-                gridKustom.appendChild(grupEs);
-                gridKustom.appendChild(grupManis);
-                kartuForm.appendChild(gridKustom);
+                    gridKustom.appendChild(grupEs);
+                    gridKustom.appendChild(grupManis);
+                    kartuForm.appendChild(gridKustom);
 
-                const barisKuantitas = buatEl("div", "baris-kuantitas-total");
+                    const barisKuantitas = buatEl("div", "baris-kuantitas-total");
 
-                const grupJumlah = buatEl("div", "grup-form");
-                grupJumlah.appendChild(buatEl("span", "label-form", "Jumlah Cup"));
-                const pengatur = buatEl("div", "pengatur-jumlah");
-                const btnKurang = buatEl("button", "tombol-jml", "−");
-                btnKurang.type = "button";
-                const inputJml = buatEl("input", "input-jml");
-                inputJml.type = "text";
-                inputJml.value = "1";
-                inputJml.readOnly = true;
-                const btnTambah = buatEl("button", "tombol-jml", "+");
-                btnTambah.type = "button";
+                    const grupJumlah = buatEl("div", "grup-form");
+                    grupJumlah.appendChild(buatEl("span", "label-form", "Jumlah Cup"));
+                    const pengatur = buatEl("div", "pengatur-jumlah");
+                    const btnKurang = buatEl("button", "tombol-jml", "−");
+                    btnKurang.type = "button";
+                    const inputJml = buatEl("input", "input-jml");
+                    inputJml.type = "text";
+                    inputJml.value = "1";
+                    inputJml.readOnly = true;
+                    const btnTambah = buatEl("button", "tombol-jml", "+");
+                    btnTambah.type = "button";
 
-                pengatur.appendChild(btnKurang);
-                pengatur.appendChild(inputJml);
-                pengatur.appendChild(btnTambah);
-                grupJumlah.appendChild(pengatur);
+                    pengatur.appendChild(btnKurang);
+                    pengatur.appendChild(inputJml);
+                    pengatur.appendChild(btnTambah);
+                    grupJumlah.appendChild(pengatur);
 
-                const kotakTotal = buatEl("div", "kotak-total-harga");
-                kotakTotal.appendChild(buatEl("span", "label-total", "Total Tagihan QRIS"));
-                const nominalTotal = buatEl("span", "nominal-total", formatRupiah(item.harga));
-                kotakTotal.appendChild(nominalTotal);
+                    const kotakTotal = buatEl("div", "kotak-total-harga");
+                    kotakTotal.appendChild(buatEl("span", "label-total", "Total Tagihan QRIS"));
+                    const nominalTotal = buatEl("span", "nominal-total", formatRupiah(item.harga));
+                    kotakTotal.appendChild(nominalTotal);
 
-                barisKuantitas.appendChild(grupJumlah);
-                barisKuantitas.appendChild(kotakTotal);
-                kartuForm.appendChild(barisKuantitas);
+                    barisKuantitas.appendChild(grupJumlah);
+                    barisKuantitas.appendChild(kotakTotal);
+                    kartuForm.appendChild(barisKuantitas);
 
-                const grupTombol = buatEl("div", "grup-tombol-detail");
-                const tombolKeranjangDetail = buatEl("button", "tombol-masuk-keranjang", "+ Tambah ke Keranjang");
-                tombolKeranjangDetail.type = "button";
-                const tombolBeli = buatEl("button", "tombol-beli-langsung", "Bayar QRIS & Pesan Langsung");
-                tombolBeli.type = "button";
+                    const grupTombol = buatEl("div", "grup-tombol-detail");
+                    const tombolKeranjangDetail = buatEl("button", "tombol-masuk-keranjang", "+ Tambah ke Keranjang");
+                    tombolKeranjangDetail.type = "button";
+                    const tombolBeli = buatEl("button", "tombol-beli-langsung", "Bayar QRIS & Pesan Langsung");
+                    tombolBeli.type = "button";
 
-                grupTombol.appendChild(tombolKeranjangDetail);
-                grupTombol.appendChild(tombolBeli);
-                kartuForm.appendChild(grupTombol);
+                    grupTombol.appendChild(tombolKeranjangDetail);
+                    grupTombol.appendChild(tombolBeli);
+                    kartuForm.appendChild(grupTombol);
 
-                function ambilNamaVarianLengkap() {
-                    const catatan = formatCatatanEsManis(selectEs.value, selectManis.value);
-                    return item.nama + " [" + catatan + "]";
-                }
-
-                function perbaruiStateDetail() {
-                    const totalNominal = item.harga * jumlahCup;
-                    nominalTotal.textContent = formatRupiah(totalNominal);
-                }
-
-                inputNama.addEventListener("input", function () {
-                    if (inputNama.value.trim() !== "") {
-                        inputNama.classList.remove("input-error");
-                        pesanError.style.display = "none";
-                        simpanNamaPelanggan(inputNama.value.trim());
-                        inputNamaKeranjangEl.value = inputNama.value.trim();
+                    function ambilNamaVarianLengkap() {
+                        const catatan = formatCatatanEsManis(selectEs.value, selectManis.value);
+                        return item.nama + " [" + catatan + "]";
                     }
-                });
 
-                selectJamDetail.addEventListener("change", function () {
-                    simpanJamPengambilan(selectJamDetail.value);
-                    selectJamKeranjangEl.value = selectJamDetail.value;
-                });
+                    function perbaruiStateDetail() {
+                        const totalNominal = item.harga * jumlahCup;
+                        nominalTotal.textContent = formatRupiah(totalNominal);
+                    }
 
-                btnKurang.addEventListener("click", function () {
-                    if (jumlahCup > 1) {
-                        jumlahCup--;
+                    inputNama.addEventListener("input", function () {
+                        if (inputNama.value.trim() !== "") {
+                            inputNama.classList.remove("input-error");
+                            pesanError.style.display = "none";
+                            simpanNamaPelanggan(inputNama.value.trim());
+                            inputNamaKeranjangEl.value = inputNama.value.trim();
+                        }
+                    });
+
+                    selectJamDetail.addEventListener("change", function () {
+                        simpanJamPengambilan(selectJamDetail.value);
+                        selectJamKeranjangEl.value = selectJamDetail.value;
+                    });
+
+                    btnKurang.addEventListener("click", function () {
+                        if (jumlahCup > 1) {
+                            jumlahCup--;
+                            inputJml.value = jumlahCup;
+                            perbaruiStateDetail();
+                        }
+                    });
+
+                    btnTambah.addEventListener("click", function () {
+                        jumlahCup++;
                         inputJml.value = jumlahCup;
                         perbaruiStateDetail();
-                    }
-                });
-
-                btnTambah.addEventListener("click", function () {
-                    jumlahCup++;
-                    inputJml.value = jumlahCup;
-                    perbaruiStateDetail();
-                });
-
-                tombolKeranjangDetail.addEventListener("click", function () {
-                    if (inputNama.value.trim() !== "") {
-                        simpanNamaPelanggan(inputNama.value.trim());
-                        inputNamaKeranjangEl.value = inputNama.value.trim();
-                    }
-                    simpanJamPengambilan(selectJamDetail.value);
-                    selectJamKeranjangEl.value = selectJamDetail.value;
-                    tambahKeKeranjang(id, jumlahCup, selectEs.value, selectManis.value);
-                    bukaDrawerKeranjang();
-                });
-
-                tombolBeli.addEventListener("click", function (e) {
-                    const namaBersih = inputNama.value.trim();
-                    if (namaBersih === "") {
-                        if (e) e.preventDefault();
-                        inputNama.classList.add("input-error");
-                        pesanError.style.display = "block";
-                        inputNama.focus();
-                        return;
-                    }
-                    simpanNamaPelanggan(namaBersih);
-                    inputNamaKeranjangEl.value = namaBersih;
-                    simpanJamPengambilan(selectJamDetail.value);
-                    selectJamKeranjangEl.value = selectJamDetail.value;
-
-                    const totalNominal = item.harga * jumlahCup;
-                    const varianLengkap = ambilNamaVarianLengkap();
-
-                    bukaGerbangPembayaranQRIS({
-                        sumber: "detail",
-                        nama: namaBersih,
-                        varian: varianLengkap,
-                        jumlah: jumlahCup,
-                        jamAmbil: selectJamDetail.value,
-                        total: totalNominal
                     });
-                });
 
-                perbaruiStateDetail();
-                teks.appendChild(kartuForm);
+                    tombolKeranjangDetail.addEventListener("click", function () {
+                        if (inputNama.value.trim() !== "") {
+                            simpanNamaPelanggan(inputNama.value.trim());
+                            inputNamaKeranjangEl.value = inputNama.value.trim();
+                        }
+                        simpanJamPengambilan(selectJamDetail.value);
+                        selectJamKeranjangEl.value = selectJamDetail.value;
+                        tambahKeKeranjang(id, jumlahCup, selectEs.value, selectManis.value);
+                        bukaDrawerKeranjang();
+                    });
+
+                    tombolBeli.addEventListener("click", function (e) {
+                        const namaBersih = inputNama.value.trim();
+                        if (namaBersih === "") {
+                            if (e) e.preventDefault();
+                            inputNama.classList.add("input-error");
+                            pesanError.style.display = "block";
+                            inputNama.focus();
+                            return;
+                        }
+                        simpanNamaPelanggan(namaBersih);
+                        inputNamaKeranjangEl.value = namaBersih;
+                        simpanJamPengambilan(selectJamDetail.value);
+                        selectJamKeranjangEl.value = selectJamDetail.value;
+
+                        const totalNominal = item.harga * jumlahCup;
+                        const varianLengkap = ambilNamaVarianLengkap();
+
+                        bukaGerbangPembayaranQRIS({
+                            sumber: "detail",
+                            nama: namaBersih,
+                            varian: varianLengkap,
+                            jumlah: jumlahCup,
+                            jamAmbil: selectJamDetail.value,
+                            total: totalNominal
+                        });
+                    });
+
+                    perbaruiStateDetail();
+                    teks.appendChild(kartuForm);
+                }
+
                 wrapper.appendChild(teks);
                 konten.appendChild(wrapper);
 
@@ -5696,7 +5528,8 @@
                     const pLain = produk[kunci];
                     const a = buatEl("a", "");
                     a.href = "?produk=" + kunci;
-                    a.textContent = pLain.nama + " • " + formatRupiah(pLain.harga);
+                    a.textContent = pLain.nama + (pLain.soldOut ? " (Sold Out)" : " • " + formatRupiah(pLain.harga));
+                    if (pLain.soldOut) a.style.opacity = "0.65";
                     daftarLain.appendChild(a);
                 });
 
